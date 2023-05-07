@@ -14,7 +14,7 @@ public abstract class A_PhysicsSystem {
     protected abstract A_GameObjectList getCollisions(A_GameObject obj);
 
     /**
-     * Retutrns distance between two objects
+     * Returns distance between two objects
      */
     protected double distance(double x1, double y1, double x2, double y2){
         double xd = x1 - x2;

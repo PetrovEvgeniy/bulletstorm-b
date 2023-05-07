@@ -5,5 +5,6 @@ package BaseClasses;
  */
 public interface A_InputSystem {
 
+    // return the UserInput object
     public A_UserInput getUserInput();
 }

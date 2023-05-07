@@ -1,7 +1,6 @@
 package BaseClasses;
 
 import ZOMBIESFUCKSHITFUCK.PhysicsEngine;
-
 import java.util.ArrayList;
 
 public abstract class A_World {
@@ -13,7 +12,7 @@ public abstract class A_World {
 
     private static final int FRAME_MINIMUM_MILLIS = 10; //  If 10 then each frame will be 10 milliseconds min
 
-    //All game objects
+    // All game objects
     A_GameObject mainCharacter;
     public A_GameObjectList gameObjects = new A_GameObjectList();
     ArrayList<A_TextObject> textObjects = new ArrayList<>();
@@ -22,7 +21,6 @@ public abstract class A_World {
         physicsSystem = new PhysicsEngine(this);
     }
 
-    //Main game loop starting from here
 
     /**
      * Main loop of the game. Very Important yes
@@ -31,7 +29,7 @@ public abstract class A_World {
         long lastTick = System.currentTimeMillis();
 
         while(true){
-            //Calculating elapsed time so that each frame doesn't run faster than min diff seconds *per frame*
+            // Calculating elapsed time so that each frame doesn't run faster than min diff seconds *per frame*
             long currentTick = System.currentTimeMillis();
             long difference = currentTick - lastTick;
             //That time is defined in the int FRAME_MINIMUM_MILLIS
@@ -47,19 +45,19 @@ public abstract class A_World {
             lastTick = currentTick;
 
 
-            //Processing user input here
+            // Processing user input here
             userInput = inputSystem.getUserInput();
             processUserInput(userInput,difference/1000.0);
             userInput.clear();
 
-            //Moving all objects. Zombies/Enemies will follow the player in their move method
+            // Moving all objects. Zombies/Enemies will follow the player in their move method
             int numberOfObjects = gameObjects.size();
             for(int i = 0; i < numberOfObjects; i++){
                 A_GameObject temp = gameObjects.get(i);
                 if(temp.isLiving) temp.move(difference/1000.0);
             }
 
-            //Delete the dead objects
+            // Delete the dead objects
             int num = 0;
             while(num < numberOfObjects){
                 if(!gameObjects.get(num).isLiving){
@@ -68,18 +66,18 @@ public abstract class A_World {
                 }else num++;
             }
 
-            //Draw whatever objects needs to be drawn
+            // Draw whatever objects needs to be drawn
             graphicSystem.clear();
             for(int i = 0; i < numberOfObjects;i++){
                 graphicSystem.draw(gameObjects.get(i));
             }
 
-            //Draw text objects. Not sure what it is, but I added the base class so will test later
+            // Draw text objects. Not sure what it is, but I added the base class so will test later
             for(int i = 0; i < textObjects.size();i++){
                 graphicSystem.draw(textObjects.get(i));
             }
 
-            //redraw everything here
+            // Redraw everything here
             graphicSystem.redraw();
 
             // Spawn any new objects here

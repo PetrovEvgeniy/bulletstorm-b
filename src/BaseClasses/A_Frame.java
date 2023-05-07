@@ -11,7 +11,7 @@ public interface A_Frame {
     void displayOnScreen();
 
     /**
-     * getters for graphic subsystems
+     * Getters for graphic subsystems
      */
     A_GraphicSystem getGraphicSystem();
     A_InputSystem getInputSystem();

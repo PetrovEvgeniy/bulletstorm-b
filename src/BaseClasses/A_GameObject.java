@@ -2,7 +2,7 @@ package BaseClasses;
 
 public abstract class A_GameObject {
 
-    //Public so we can access it easier and faster because it is accessed all the time
+    // Public so we can access it easier and faster because it is accessed all the time
     public double x,y;
     public double alfa = 0;
     public double speed = 0;
@@ -12,17 +12,17 @@ public abstract class A_GameObject {
     protected boolean isLiving = true;
     protected boolean isMoving = true;
 
-    //Destination the object will move to. Also, old coordinates
+    // Destination the object will move to. Also, old coordinates
     private double destX,destY;
     private boolean hasDestination = false;
     private double xOld,yOld;
 
 
-    //Objects for calling the physics methods
+    // Objects for calling the physics methods
     protected static A_PhysicsSystem physicsSystem;
     protected static A_World world;
 
-    //Constructor
+    // Constructor
     public A_GameObject(int x, int y, double alfa, double speed, A_Shape shape){
         this.x = x;
         this.y = y;
@@ -38,7 +38,7 @@ public abstract class A_GameObject {
 
         if(!isMoving) return;
 
-        //Stop if destination is reached
+        // Stop if destination is reached
         if(hasDestination){
             double diffX = Math.abs(x-destX);
             double diffY = Math.abs(y-destY);
