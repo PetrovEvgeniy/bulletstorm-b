@@ -1,14 +1,14 @@
 
-// (c) Thorsten Hasbargen
-
 import java.awt.Color;
 
-
+/**
+ * Base class for text objects (maybe tips, tutorials etc. ?)
+ */
 abstract class A_TextObject
 {
   protected static A_World world;
   
-  // yes, public :(
+  // Public so we can access it easier and faster because it is accessed all the time
   protected int     x,y;
   protected Color color;
   

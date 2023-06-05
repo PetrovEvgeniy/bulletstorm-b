@@ -1,13 +1,16 @@
-
-// (c) Thorsten Hasbargen
-
-
+/**
+ * Interface defines methods for the frame
+ */
 interface A_Frame 
 {
-  // appear on Screen
+  /**
+  * Appear on screen
+  */
   void displayOnScreen();
   
-  // return Subsystems
+  /**
+  * Getters for graphic subsystems
+  */
   A_GraphicSystem getGraphicSystem();
   A_InputSystem   getInputSystem();
 }

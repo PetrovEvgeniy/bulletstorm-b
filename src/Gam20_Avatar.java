@@ -1,7 +1,4 @@
 
-// (c) Thorsten Hasbargen
-
-
 import java.awt.Color;
 
 class Gam20_Avatar extends GameObject
@@ -14,20 +11,24 @@ class Gam20_Avatar extends GameObject
   
   public void move(double diffSeconds)
   {
-	// move Avatar one step forward
+	// Move Avatar one step forward
 	super.move(diffSeconds);
 	
-    // calculate all collisions with other Objects 
+    // Calculate all collisions with other Objects 
 	A_GameObjectList collisions = world.getPhysicsSystem().getCollisions(this);
 	for(int i=0; i<collisions.size(); i++)
 	{
 	  GameObject obj = collisions.get(i);
 	  
-	  // if Object is a tree, move back one step
+	  // If Object is a tree, move back one step
 	  if(obj.type()== GlobalConsts.TYPE_TREE)
 	  { this.moveBack(); }
 	  
-	  // pick up Grenades
+	  // TODO: Do the same for other obstacles...
+	  
+	
+
+	  // Pick up Grenades
 	  else if(obj.type()== GlobalConsts.TYPE_GRENADE)
 	  { ((Gam20_World)world).addGrenade();
 	    obj.isLiving=false;

@@ -1,6 +1,4 @@
 
-// (c) Thorsten Hasbargen
-
 
 import java.awt.event.*;
 
@@ -13,7 +11,7 @@ class B_InputSystem
 	  
   public void mousePressed(MouseEvent evt)
   {
-	// an input Event occurs
+	// when an input event occurs...
 	userInput.isMouseEvent      = true;
     userInput.mousePressedX     = evt.getX();
     userInput.mousePressedY     = evt.getY();

@@ -1,7 +1,4 @@
 
-// (c) Thorsten Hasbargen
-
-
 import java.util.ArrayList;
 
 abstract class A_World
@@ -11,17 +8,17 @@ abstract class A_World
   private  A_InputSystem   inputSystem;  
   private  A_UserInput     userInput;
   
-  // top left corner of the displayed pane of the world
+  // Top left corner of the displayed pane of the world
   double worldPartX = 0;
   double worldPartY = 0;
   
-  // defines maximum frame rate
+  // Define maximum frame rate
   private static final int FRAME_MINIMUM_MILLIS = 10;
   
-  // if game is over
+  // Define if game is over
   boolean gameOver = false;
   
-  // all objects in the game, including the Avatar
+  // All objects in the game, including the Avatar
   A_GameObjectList        gameObjects = new A_GameObjectList();
   GameObject avatar;
   ArrayList<A_TextObject> textObjects = new ArrayList<A_TextObject>();
@@ -33,7 +30,7 @@ abstract class A_World
   
   
   //
-  // the main GAME LOOP
+  // The main GAME LOOP
   //
   final void run()
   {
@@ -41,13 +38,11 @@ abstract class A_World
 	
 	while(true)
 	{
-	  // calculate elapsed time
-	  //
+	  // Calculating elapsed time so that each frame doesn't run faster than min diff seconds *per frame*
 	  long currentTick = System.currentTimeMillis();
 	  long millisDiff  = currentTick-lastTick;
 	  
-	  // don�t run faster then MINIMUM_DIFF_SECONDS per frame
-	  //
+	  //That time is defined in the int FRAME_MINIMUM_MILLIS
 	  if(millisDiff<FRAME_MINIMUM_MILLIS)
 	  {
 	    try{ Thread.sleep(FRAME_MINIMUM_MILLIS-millisDiff);} catch(Exception ex){}
@@ -58,15 +53,15 @@ abstract class A_World
 	  lastTick = currentTick;
 
 	  
-	  // process User Input
+	   // Processing user input here
 	  userInput = inputSystem.getUserInput();
 	  processUserInput(userInput,millisDiff/1000.0);
 	  userInput.clear();
 
-	  // no actions if game is over
+	  // No actions if game is over
 	  if(gameOver) { continue;}
 	  
-	  // move all Objects, maybe collide them etc...
+	   // Moving all objects. Zombies/Enemies will follow the player in their move method
 	  int gameSize = gameObjects.size();
 	  for(int i=0; i<gameSize; i++)
 	  { 
@@ -75,7 +70,7 @@ abstract class A_World
 	  }
 	  
 	  
-      // delete all Objects which are not living anymore
+      // Delete the dead objects
       int num=0;
       while(num<gameSize)
       {
@@ -89,31 +84,31 @@ abstract class A_World
       }	  
 	  
       
-      // adjust displayed pane of the world
+      // Adjust displayed pane of the world
       this.adjustWorldPart();
       
-      // draw all Objects
+      // Draw whatever objects needs to be drawn
       graphicSystem.clear();
       for(int i=0; i<gameSize; i++)
       { graphicSystem.draw(gameObjects.get(i));
       }
 
 	  
-      // draw all TextObjects
+    // Draw text objects
 	  for(int i=0; i<textObjects.size(); i++)
 	  { graphicSystem.draw(textObjects.get(i));
 	  }
 	  
-	  // redraw everything
+	  // Redraw everything here
 	  graphicSystem.redraw();
 	  	  
-	  // create new objects if needed
+	  // Spawn any new objects here
 	  createNewObjects(millisDiff/1000.0);
 	}
   }
   
   
-  // adjust the displayed pane of the world according to Avatar and Bounds
+  // Adjust the displayed pane of the world according to Avatar and Bounds
   //
   private final void adjustWorldPart()
   {
@@ -121,7 +116,7 @@ abstract class A_World
     final int BOTTOM_END = GlobalConsts.WORLD_HEIGHT- GlobalConsts.WORLDPART_HEIGHT;
 	  	  
     
-	// if avatar is too much right in display ...
+	// If avatar is too much RIGHT in display ...
     if(avatar.x > worldPartX+ GlobalConsts.WORLDPART_WIDTH- GlobalConsts.SCROLL_BOUNDS)
     {
       // ... adjust display
@@ -131,7 +126,7 @@ abstract class A_World
       }
     }
     
-    // same left
+    // Same on the LEFT side
     else if(avatar.x < worldPartX+ GlobalConsts.SCROLL_BOUNDS)
     {
       worldPartX = avatar.x- GlobalConsts.SCROLL_BOUNDS;
@@ -140,7 +135,7 @@ abstract class A_World
       }
     }
     
-    // same bottom
+    // Same at the BOTTOM
     if(avatar.y > worldPartY+ GlobalConsts.WORLDPART_HEIGHT- GlobalConsts.SCROLL_BOUNDS)
     {
         worldPartY = avatar.y+ GlobalConsts.SCROLL_BOUNDS- GlobalConsts.WORLDPART_HEIGHT;
@@ -149,7 +144,7 @@ abstract class A_World
         }   	
     }
     
-    // same top
+    // Same at the TOP
     else if(avatar.y < worldPartY+ GlobalConsts.SCROLL_BOUNDS)
     {
       worldPartY = avatar.y- GlobalConsts.SCROLL_BOUNDS;

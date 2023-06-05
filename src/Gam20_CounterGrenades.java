@@ -1,7 +1,4 @@
 
-// (c) Thorsten Hasbargen
-
-
 import java.awt.Color;
 
 class Gam20_CounterGrenades extends A_TextObject

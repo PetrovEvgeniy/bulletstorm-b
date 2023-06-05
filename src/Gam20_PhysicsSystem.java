@@ -1,6 +1,4 @@
 
-// (c) Thorsten Hasbargen
-
 
 class Gam20_PhysicsSystem extends A_PhysicsSystem
 {
@@ -11,7 +9,7 @@ class Gam20_PhysicsSystem extends A_PhysicsSystem
   
   
   //
-  // collisions for circle Objects only...
+  // Collisions for CIRCLE objects only...
   //
   public A_GameObjectList getCollisions(GameObject object)
   {
@@ -22,10 +20,10 @@ class Gam20_PhysicsSystem extends A_PhysicsSystem
     {
       GameObject obj2 = world.gameObjects.get(i);
       
-      // an object doesn't collide with itself
+      // Make sure that an object doesn't collide with itself
       if(obj2==object) continue;
       
-      // check if they touch each other
+      // Check if they touch each other
       double dist = object.radius+obj2.radius;
       double dx   = object.x-obj2.x;
       double dy   = object.y-obj2.y;

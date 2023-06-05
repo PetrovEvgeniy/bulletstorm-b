@@ -1,10 +1,10 @@
 
-// (c) Thorsten Hasbargen
-
-
+/**
+ * Interface for implementing methods for User Input system
+ */
 interface A_InputSystem 
 {
-  // return User Input Object
+  // return the UserInput object
   A_UserInput getUserInput();
 }
 

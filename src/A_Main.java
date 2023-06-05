@@ -1,6 +1,7 @@
 
-// (c) Thorsten Hasbargen
-
+/**
+ * Main class where the game is launched from
+ */
 final class A_Main 
 {
   private A_World world = null;

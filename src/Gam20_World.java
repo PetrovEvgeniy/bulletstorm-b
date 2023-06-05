@@ -1,12 +1,10 @@
 
-// (c) Thorsten Hasbargen
-
 
 class Gam20_World extends A_World {
     private double timePassed = 0;
     private double timeSinceLastShot = 0;
 
-    // for grenades
+    // For grenades
     private int grenades = 5;
     private Gam20_CounterGrenades counterG;
     private Gam20_Counter counterZ;
@@ -16,30 +14,30 @@ class Gam20_World extends A_World {
     private double lifeHelpText = 10.0;
 
     protected void init() {
-        // add the Avatar
+        // Add the Avatar
         avatar = new Gam20_Avatar(2500, 2000);
         gameObjects.add(avatar);
 
-        // set WorldPart position
+        // Set WorldPart position
         worldPartX = 1500;
         worldPartY = 1500;
 
-        // add a little forrest
+        // [REMOVED] Add a little forest
 
-        for (int x = 0; x < 5000; x += 1000) {
+        // for (int x = 0; x < 5000; x += 1000) {
 
-            for (int y = 0; y < 4000; y += 800) {
-                gameObjects.add(new Gam20_Tree(x + 300, y + 200, 80));
-                gameObjects.add(new Gam20_Tree(x + 600, y + 370, 50));
-                gameObjects.add(new Gam20_Tree(x + 200, y + 600, 50));
-                gameObjects.add(new Gam20_Tree(x + 500, y + 800, 40));
-                gameObjects.add(new Gam20_Tree(x + 900, y + 500, 100));
-                gameObjects.add(new Gam20_Tree(x + 760, y + 160, 40));
-            }
-        }
+        //     for (int y = 0; y < 4000; y += 800) {
+        //         gameObjects.add(new Gam20_Tree(x + 300, y + 200, 80));
+        //         gameObjects.add(new Gam20_Tree(x + 600, y + 370, 50));
+        //         gameObjects.add(new Gam20_Tree(x + 200, y + 600, 50));
+        //         gameObjects.add(new Gam20_Tree(x + 500, y + 800, 40));
+        //         gameObjects.add(new Gam20_Tree(x + 900, y + 500, 100));
+        //         gameObjects.add(new Gam20_Tree(x + 760, y + 160, 40));
+        //     }
+        // }
 
 
-        // add one zombie
+        // Add one single zombie
         gameObjects.add(new Gam20_ZombieAI(100, 100));
 
 
@@ -54,41 +52,41 @@ class Gam20_World extends A_World {
     }
 
     protected void processUserInput(A_UserInput userInput, double diffSeconds) {
-        // distinguish if Avatar shall move or shoots
+        // Distinguish if Avatar shall move or shoots
         int button = userInput.mouseButton;
 
         //
         // Mouse events
         //
         // MOUSE EVENT NOT NEEDED FOR NOW
-//	if(userInput.isMouseEvent)
-//	{
-//	  // move
-//	  if(button==1) { avatar.setDestination(userInput.mousePressedX+worldPartX,
-//                              userInput.mousePressedY+worldPartY);
-//	  }
-//	}
+        //	if(userInput.isMouseEvent)
+        //	{
+        //	  // move
+        //	  if(button==1) { avatar.setDestination(userInput.mousePressedX+worldPartX,
+        //                              userInput.mousePressedY+worldPartY);
+        //	  }
+        //	}
 
         //
         // Mouse still pressed?
         //
-//	if(userInput.isMousePressed && button==3) {
-//	  // only 1 shot every ... seconds:
-//      timeSinceLastShot += diffSeconds;
-//      if(timeSinceLastShot > 0.2)
-//      {
-//    	timeSinceLastShot = 0;
-//
-//        Gam20_Shot shot = new Gam20_Shot(
-//          avatar.x,avatar.y,userInput.mouseMovedX+worldPartX,userInput.mouseMovedY+worldPartY);
-//        this.gameObjects.add(shot);
-//      }
-//	}
+    //	if(userInput.isMousePressed && button==3) {
+    //	  // only 1 shot every ... seconds:
+    //      timeSinceLastShot += diffSeconds;
+    //      if(timeSinceLastShot > 0.2)
+    //      {
+    //    	timeSinceLastShot = 0;
+    //
+    //        Gam20_Shot shot = new Gam20_Shot(
+    //          avatar.x,avatar.y,userInput.mouseMovedX+worldPartX,userInput.mouseMovedY+worldPartY);
+    //        this.gameObjects.add(shot);
+    //      }
+    //	}
 
         //
         // Keyboard events
         //
-        //TODO IMPLEMENT MOVE
+        //TODO IMPLEMENT MOVE LOGIC
         if (userInput.isKeyEvent) {
             if (userInput.keyPressed == ' ') {
                 throwGrenade(userInput.mouseMovedX + worldPartX, userInput.mouseMovedY + worldPartY);
@@ -118,7 +116,7 @@ class Gam20_World extends A_World {
     private void throwGrenade(double x, double y) {
         if (grenades <= 0) return;
 
-        // throw grenade
+        // Throw a grenade
         for (int i = 0; i < 2000; i++) {
             double alfa = Math.random() * Math.PI * 2;
             double speed = 50 + Math.random() * 200;
@@ -127,7 +125,7 @@ class Gam20_World extends A_World {
             this.gameObjects.add(shot);
         }
 
-        // inform counter
+        // Adjust grenade counter
         grenades--;
         counterG.setNumber(grenades);
     }

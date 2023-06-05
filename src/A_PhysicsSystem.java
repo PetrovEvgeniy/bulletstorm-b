@@ -1,6 +1,4 @@
 
-// (c) Thorsten Hasbargen
-
 
 abstract class A_PhysicsSystem 
 {
@@ -10,9 +8,15 @@ abstract class A_PhysicsSystem
   { world = w;
   }
 
+  /**
+  * Abstract method so that any class extending this has to define it
+  */
   protected abstract A_GameObjectList getCollisions(GameObject object);
   
   
+  /**
+  * Returns distance between two objects
+  */
   protected double distance(double x1, double y1, double x2, double y2)
   {
     double xd = x1-x2;
@@ -21,9 +25,9 @@ abstract class A_PhysicsSystem
   }
   
   
-  //
-  // move object "back" reverse alfa until it just does not collide
-  //
+  /**
+  * Moves objects if it collides and gets stuck to object
+  */
   public void moveBackToUncollide(GameObject object)
   {
     double dx = Math.cos(object.alfa);

@@ -27,7 +27,7 @@ class Gam20_Shot extends GameObject
 	}
 	
 	
-    // handle collisions of the zombie
+    // Handle collisions of the zombie (dependng on the type of the object)
 	A_GameObjectList collisions = world.getPhysicsSystem().getCollisions(this);
 	for(int i=0; i<collisions.size(); i++)
 	{
@@ -35,11 +35,11 @@ class Gam20_Shot extends GameObject
 	  
 	  int type = obj.type();
 	  
-	  // tree: shot is deleted
+	  // [Tree]: shot is deleted
 	  if(type== GlobalConsts.TYPE_TREE)
 	  { this.isLiving=false;
 	  }
-	  // Zombie: inform Zombie it is hit
+	  // [Zombie]: inform Zombie it is hit
 	  else if(type== GlobalConsts.TYPE_ZOMBIE && obj.isLiving)
 	  { 
 	    Gam20_ZombieAI zombie = (Gam20_ZombieAI)obj;

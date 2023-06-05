@@ -1,6 +1,4 @@
 
-// (c) Thorsten Hasbargen
-
 
 import java.awt.Color;
 

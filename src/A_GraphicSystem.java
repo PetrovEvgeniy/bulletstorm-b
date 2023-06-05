@@ -1,22 +1,21 @@
 
-// (c) Thorsten Hasbargen
-
-
+/**
+ * Interface for implementing the methods for the graphic system
+ */
 interface A_GraphicSystem 
 {
-  // prepare to draw a new Screen
+  // Clear the current screen and prepares to draw a new screen
   void clear();
   
-  // draw ONE GameObject on the Screen
+  // Draw a single GameObject on the screen
   void draw(GameObject dot);
  
-  // draw ONE TextObject on the Screen
+  // Draw a single TextObject on the screen
   void draw(A_TextObject obj);
   
-  // display the completed Screen
+  // Display the completed screen
   void redraw();
   
-  
-  // set world
+  // Set the world
   void setWorld(A_World world);  
 }

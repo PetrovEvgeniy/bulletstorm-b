@@ -1,6 +1,4 @@
 
-// (c) Thorsten Hasbargen
-
 
 import java.awt.Color;
 
@@ -15,7 +13,7 @@ class Gam20_ZombieAI extends GameObject
   private double alfaClear;
   private double secondsClear;
   
-  // life of a zombie
+  // Define the life (health) of a zombie
   private double life = 1.0;
   
 
@@ -26,7 +24,7 @@ class Gam20_ZombieAI extends GameObject
     
     state = HUNTING;
     
-	  // turn left or right to clear
+	  // Turn LEFT or RIGHT to clear
 	  alfaClear = Math.PI;
 	  if(Math.random()<0.5) alfaClear = -alfaClear;
     
@@ -35,7 +33,7 @@ class Gam20_ZombieAI extends GameObject
   
   public void move(double diffSeconds)
   {
-    // if avatar is too far away: stop
+    // If avatar is too far away: STOP
 	double dist = world.getPhysicsSystem()
 			           .distance(x,y,world.avatar.x,world.avatar.y);
 	  
@@ -48,7 +46,7 @@ class Gam20_ZombieAI extends GameObject
 	}
 	  
 	  
-	// state HUNTING
+	// state of zombie: [HUNTING]
 	//
 	  
 	if(state==HUNTING)
@@ -57,7 +55,7 @@ class Gam20_ZombieAI extends GameObject
     
       super.move(diffSeconds);
     
-      // handle collisions of the zombie
+      // Handle collisions of the zombie
 	  A_GameObjectList collisions = world.getPhysicsSystem().getCollisions(this);
 	  for(int i=0; i<collisions.size(); i++)
 	  {
@@ -65,13 +63,13 @@ class Gam20_ZombieAI extends GameObject
 	  
 	    int type = obj.type();
 	  
-	    // if object is avatar, game over
+	    // If object is [avatar], GAME OVER
 	    if(type== GlobalConsts.TYPE_AVATAR)
 	    { this.moveBack();
 	      world.gameOver=true; 
 	    }
 	  
-	    // if object is zombie, step back
+	    // If object is [zombie], step back
 	    if(type== GlobalConsts.TYPE_ZOMBIE)
 	    { 
           moveBack(); 
@@ -79,7 +77,7 @@ class Gam20_ZombieAI extends GameObject
           return;
 	    }
 	  
-	    // if Object is a tree, move back one step
+	    // if object is a [tree], move back one step
 	    if(obj.type()== GlobalConsts.TYPE_TREE)
 	    { 
           moveBack(); 
@@ -89,7 +87,7 @@ class Gam20_ZombieAI extends GameObject
       }
     }  
 	
-	// state STUCK
+	// state of zombie : [STUCK]
 	//
 	
 	else if(state==STUCK)
@@ -104,7 +102,7 @@ class Gam20_ZombieAI extends GameObject
 	}
 	
 	
-	// state CLEARING
+	// state of zombie : [CLEARING]
 	//
 	else if(state==CLEARING)
 	{
@@ -135,13 +133,13 @@ class Gam20_ZombieAI extends GameObject
   }
   
   
-  // inform zombie it is hit
+  // Inform that a zombie it is hit
   public void hasBeenShot()
   { 
-	// every shot decreases life
+	// every shot decreases life (health)
 	life -= 0.21;
 
-	// if Zombie is dead (haha), delete it	
+	// if zombie is dead, delete it	
 	if(life<=0)
 	{
 	  this.isLiving=false;

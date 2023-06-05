@@ -1,6 +1,4 @@
 
-// (c) Thorsten Hasbargen
-
 
 import javax.swing.*;
 
@@ -22,7 +20,7 @@ class B_Frame extends JFrame implements A_Frame
 	
 	panel = new B_Panel();
 	
-	// needed for Keyboard input !!!
+	// Needed for KEYBOARD input !!!
 	panel.setFocusable(true);
 	panel.requestFocusInWindow();
 	

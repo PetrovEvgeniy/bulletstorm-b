@@ -1,6 +1,4 @@
 
-// (c) Thorsten Hasbargen
-
 
 import java.awt.*;
 import java.awt.image.*;
@@ -8,7 +6,7 @@ import javax.swing.*;
 
 class B_Panel extends JPanel implements A_GraphicSystem
 {
-  // constants
+  // Constants
   private static final long serialVersionUID = 1L;
   private static final Font font = new Font("Arial",Font.PLAIN,24);
 
@@ -35,7 +33,7 @@ class B_Panel extends JPanel implements A_GraphicSystem
 			        this.getWidth(), this.getHeight());	 
 	graphics = imageBuffer.getGraphics();
 	
-	// initialize Listeners
+	// Initialize listeners
 	this.addMouseListener(inputSystem);
 	this.addMouseMotionListener(inputSystem);
 	this.addKeyListener(inputSystem);
