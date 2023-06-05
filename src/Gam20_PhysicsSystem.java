@@ -13,14 +13,14 @@ class Gam20_PhysicsSystem extends A_PhysicsSystem
   //
   // collisions for circle Objects only...
   //
-  public A_GameObjectList getCollisions(A_GameObject object)
+  public A_GameObjectList getCollisions(GameObject object)
   {
     A_GameObjectList result = new A_GameObjectList();
     
     int len = world.gameObjects.size();
     for(int i=0; i<len; i++)
     {
-      A_GameObject obj2 = world.gameObjects.get(i);
+      GameObject obj2 = world.gameObjects.get(i);
       
       // an object doesn't collide with itself
       if(obj2==object) continue;

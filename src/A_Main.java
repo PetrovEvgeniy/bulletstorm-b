@@ -9,13 +9,12 @@ final class A_Main
   { 
 	A_Frame frame = new B_Frame();
     frame.displayOnScreen();
-    
     world = new Gam20_World();
     
     world.setGraphicSystem(frame.getGraphicSystem());
     world.setInputSystem(frame.getInputSystem());
     
-    A_GameObject.setWorld(world);
+    GameObject.setWorld(world);
     A_TextObject.setWorld(world);
     frame.getGraphicSystem().setWorld(world);
     

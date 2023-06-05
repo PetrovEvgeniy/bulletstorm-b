@@ -4,7 +4,7 @@
 
 import java.awt.Color;
 
-class Gam20_Tree extends A_GameObject
+class Gam20_Tree extends GameObject
 {
   public Gam20_Tree(double x, double y, int r)
   {
@@ -12,5 +12,5 @@ class Gam20_Tree extends A_GameObject
     this.isMoving = false;
   }
   
-  public int type() { return A_Const.TYPE_TREE; }
+  public int type() { return GlobalConsts.TYPE_TREE; }
 }

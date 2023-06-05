@@ -10,7 +10,7 @@ abstract class A_PhysicsSystem
   { world = w;
   }
 
-  protected abstract A_GameObjectList getCollisions(A_GameObject object);
+  protected abstract A_GameObjectList getCollisions(GameObject object);
   
   
   protected double distance(double x1, double y1, double x2, double y2)
@@ -24,7 +24,7 @@ abstract class A_PhysicsSystem
   //
   // move object "back" reverse alfa until it just does not collide
   //
-  public void moveBackToUncollide(A_GameObject object)
+  public void moveBackToUncollide(GameObject object)
   {
     double dx = Math.cos(object.alfa);
     double dy = Math.sin(object.alfa);

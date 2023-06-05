@@ -4,7 +4,7 @@
 
 import java.awt.Color;
 
-abstract class A_GameObject 
+abstract class GameObject
 {
   // yes, public  :(
   //
@@ -30,9 +30,9 @@ abstract class A_GameObject
   
   
   // construct GameObject
-  public A_GameObject(double x_, double y_, 
-		              double a_, double s_, 
-		              int radius_, Color color_)
+  public GameObject(double x_, double y_,
+                    double a_, double s_,
+                    int radius_, Color color_)
   { 
 	x=x_;    y=y_; 
     xOld=x;  yOld=y;
@@ -80,10 +80,10 @@ abstract class A_GameObject
     if(y<rad && alfa>PI)
 	{ alfa = PI*2-alfa; 
 	}
-    if(x>A_Const.WORLD_WIDTH-rad)
+    if(x> GlobalConsts.WORLD_WIDTH-rad)
 	{ alfa = Math.PI-alfa;
 	}
-    if(y>A_Const.WORLD_HEIGHT-rad)
+    if(y> GlobalConsts.WORLD_HEIGHT-rad)
 	{ alfa = PI*2-alfa;
     }
 
@@ -106,7 +106,7 @@ abstract class A_GameObject
   
   
   // set the LOCATION of an object as destination
-  public void setDestination(A_GameObject obj)
+  public void setDestination(GameObject obj)
   { setDestination(obj.x, obj.y);	  
   }
   

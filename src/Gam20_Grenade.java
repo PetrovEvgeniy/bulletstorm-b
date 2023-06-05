@@ -4,9 +4,9 @@
 
 import java.awt.Color;
 
-class Gam20_Grenade extends A_GameObject
+class Gam20_Grenade extends GameObject
 {
-  double life = A_Const.LIFE_GRENADE;
+  double life = GlobalConsts.LIFE_GRENADE;
   
   public Gam20_Grenade(double x, double y)
   {
@@ -23,5 +23,5 @@ class Gam20_Grenade extends A_GameObject
     
   }
   
-  public int type() { return A_Const.TYPE_GRENADE; }
+  public int type() { return GlobalConsts.TYPE_GRENADE; }
 }

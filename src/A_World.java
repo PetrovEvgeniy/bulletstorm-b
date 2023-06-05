@@ -23,7 +23,7 @@ abstract class A_World
   
   // all objects in the game, including the Avatar
   A_GameObjectList        gameObjects = new A_GameObjectList();
-  A_GameObject            avatar;          
+  GameObject avatar;
   ArrayList<A_TextObject> textObjects = new ArrayList<A_TextObject>();
     
   
@@ -46,7 +46,7 @@ abstract class A_World
 	  long currentTick = System.currentTimeMillis();
 	  long millisDiff  = currentTick-lastTick;
 	  
-	  // don´t run faster then MINIMUM_DIFF_SECONDS per frame
+	  // donï¿½t run faster then MINIMUM_DIFF_SECONDS per frame
 	  //
 	  if(millisDiff<FRAME_MINIMUM_MILLIS)
 	  {
@@ -70,7 +70,7 @@ abstract class A_World
 	  int gameSize = gameObjects.size();
 	  for(int i=0; i<gameSize; i++)
 	  { 
-        A_GameObject obj = gameObjects.get(i);
+        GameObject obj = gameObjects.get(i);
         if(obj.isLiving)  obj.move(millisDiff/1000.0);
 	  }
 	  
@@ -117,42 +117,42 @@ abstract class A_World
   //
   private final void adjustWorldPart()
   {
-    final int RIGHT_END  = A_Const.WORLD_WIDTH-A_Const.WORLDPART_WIDTH;
-    final int BOTTOM_END = A_Const.WORLD_HEIGHT-A_Const.WORLDPART_HEIGHT;
+    final int RIGHT_END  = GlobalConsts.WORLD_WIDTH- GlobalConsts.WORLDPART_WIDTH;
+    final int BOTTOM_END = GlobalConsts.WORLD_HEIGHT- GlobalConsts.WORLDPART_HEIGHT;
 	  	  
     
 	// if avatar is too much right in display ...
-    if(avatar.x > worldPartX+A_Const.WORLDPART_WIDTH-A_Const.SCROLL_BOUNDS)
+    if(avatar.x > worldPartX+ GlobalConsts.WORLDPART_WIDTH- GlobalConsts.SCROLL_BOUNDS)
     {
       // ... adjust display
-      worldPartX = avatar.x+A_Const.SCROLL_BOUNDS-A_Const.WORLDPART_WIDTH;
+      worldPartX = avatar.x+ GlobalConsts.SCROLL_BOUNDS- GlobalConsts.WORLDPART_WIDTH;
       if(worldPartX >= RIGHT_END)
       { worldPartX = RIGHT_END;
       }
     }
     
     // same left
-    else if(avatar.x < worldPartX+A_Const.SCROLL_BOUNDS)
+    else if(avatar.x < worldPartX+ GlobalConsts.SCROLL_BOUNDS)
     {
-      worldPartX = avatar.x-A_Const.SCROLL_BOUNDS;	
+      worldPartX = avatar.x- GlobalConsts.SCROLL_BOUNDS;
       if(worldPartX <=0)
       { worldPartX = 0;
       }
     }
     
     // same bottom
-    if(avatar.y > worldPartY+A_Const.WORLDPART_HEIGHT-A_Const.SCROLL_BOUNDS)
+    if(avatar.y > worldPartY+ GlobalConsts.WORLDPART_HEIGHT- GlobalConsts.SCROLL_BOUNDS)
     {
-        worldPartY = avatar.y+A_Const.SCROLL_BOUNDS-A_Const.WORLDPART_HEIGHT;
+        worldPartY = avatar.y+ GlobalConsts.SCROLL_BOUNDS- GlobalConsts.WORLDPART_HEIGHT;
         if(worldPartY >= BOTTOM_END)
         { worldPartY = BOTTOM_END;
         }   	
     }
     
     // same top
-    else if(avatar.y < worldPartY+A_Const.SCROLL_BOUNDS)
+    else if(avatar.y < worldPartY+ GlobalConsts.SCROLL_BOUNDS)
     {
-      worldPartY = avatar.y-A_Const.SCROLL_BOUNDS;
+      worldPartY = avatar.y- GlobalConsts.SCROLL_BOUNDS;
       if(worldPartY <=0)
       { worldPartY = 0;
       }

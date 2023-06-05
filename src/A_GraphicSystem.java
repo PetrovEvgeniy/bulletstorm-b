@@ -8,7 +8,7 @@ interface A_GraphicSystem
   void clear();
   
   // draw ONE GameObject on the Screen
-  void draw(A_GameObject dot);
+  void draw(GameObject dot);
  
   // draw ONE TextObject on the Screen
   void draw(A_TextObject obj);

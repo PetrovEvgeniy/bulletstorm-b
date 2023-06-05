@@ -5,7 +5,7 @@
 import java.awt.Color;
 
 
-class Gam20_ZombieAI extends A_GameObject
+class Gam20_ZombieAI extends GameObject
 {
   private static final int HUNTING  = 1;
   private static final int STUCK    = 2;
@@ -61,18 +61,18 @@ class Gam20_ZombieAI extends A_GameObject
 	  A_GameObjectList collisions = world.getPhysicsSystem().getCollisions(this);
 	  for(int i=0; i<collisions.size(); i++)
 	  {
-	    A_GameObject obj = collisions.get(i);
+	    GameObject obj = collisions.get(i);
 	  
 	    int type = obj.type();
 	  
 	    // if object is avatar, game over
-	    if(type==A_Const.TYPE_AVATAR) 
+	    if(type== GlobalConsts.TYPE_AVATAR)
 	    { this.moveBack();
 	      world.gameOver=true; 
 	    }
 	  
 	    // if object is zombie, step back
-	    if(type==A_Const.TYPE_ZOMBIE) 
+	    if(type== GlobalConsts.TYPE_ZOMBIE)
 	    { 
           moveBack(); 
           state = STUCK;
@@ -80,7 +80,7 @@ class Gam20_ZombieAI extends A_GameObject
 	    }
 	  
 	    // if Object is a tree, move back one step
-	    if(obj.type()==A_Const.TYPE_TREE) 
+	    if(obj.type()== GlobalConsts.TYPE_TREE)
 	    { 
           moveBack(); 
           state = STUCK;
@@ -150,5 +150,5 @@ class Gam20_ZombieAI extends A_GameObject
   }
 
   
-  public int type() { return A_Const.TYPE_ZOMBIE; }
+  public int type() { return GlobalConsts.TYPE_ZOMBIE; }
 }

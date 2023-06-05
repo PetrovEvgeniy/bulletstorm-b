@@ -148,7 +148,7 @@ class Gam20_World extends A_World
   
   private void createGrenade(double diffSeconds)
   {
-    final double INTERVAL = A_Const.SPAWN_GRENADE;
+    final double INTERVAL = GlobalConsts.SPAWN_GRENADE;
 		  
 	spawnGrenade += diffSeconds;
 	if(spawnGrenade>INTERVAL)
@@ -156,8 +156,8 @@ class Gam20_World extends A_World
 	  spawnGrenade -= INTERVAL;
 	      
 	  // create new Grenade
-	  double x = worldPartX+Math.random()*A_Const.WORLDPART_WIDTH;
-	  double y = worldPartY+Math.random()*A_Const.WORLDPART_HEIGHT;
+	  double x = worldPartX+Math.random()* GlobalConsts.WORLDPART_WIDTH;
+	  double y = worldPartY+Math.random()* GlobalConsts.WORLDPART_HEIGHT;
 	      
 	  // if too close to Avatar, cancel
 	  double dx = x-avatar.x;
@@ -187,7 +187,7 @@ class Gam20_World extends A_World
   
   private void createZombie(double diffSeconds)
   {
-    final double INTERVAL = A_Const.SPAWN_INTERVAL;
+    final double INTERVAL = GlobalConsts.SPAWN_INTERVAL;
 		  
 	timePassed += diffSeconds;
 	if(timePassed>INTERVAL)
@@ -197,12 +197,12 @@ class Gam20_World extends A_World
 	  // create new Zombie; preference to current screen
 	  double x,y;
 	  if(Math.random() < 0.7)
-	  { x = Math.random()*A_Const.WORLD_WIDTH;
-	    y = Math.random()*A_Const.WORLD_HEIGHT;
+	  { x = Math.random()* GlobalConsts.WORLD_WIDTH;
+	    y = Math.random()* GlobalConsts.WORLD_HEIGHT;
 	  }
 	  else
-	  { x = worldPartX+Math.random()*A_Const.WORLDPART_WIDTH;
-	    y = worldPartY+Math.random()*A_Const.WORLDPART_HEIGHT;
+	  { x = worldPartX+Math.random()* GlobalConsts.WORLDPART_WIDTH;
+	    y = worldPartY+Math.random()* GlobalConsts.WORLDPART_HEIGHT;
 	  }
 	  
 	      

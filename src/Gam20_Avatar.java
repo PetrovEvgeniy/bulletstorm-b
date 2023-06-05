@@ -4,7 +4,7 @@
 
 import java.awt.Color;
 
-class Gam20_Avatar extends A_GameObject
+class Gam20_Avatar extends GameObject
 {
 	
   public Gam20_Avatar(double x, double y) 
@@ -21,14 +21,14 @@ class Gam20_Avatar extends A_GameObject
 	A_GameObjectList collisions = world.getPhysicsSystem().getCollisions(this);
 	for(int i=0; i<collisions.size(); i++)
 	{
-	  A_GameObject obj = collisions.get(i);
+	  GameObject obj = collisions.get(i);
 	  
 	  // if Object is a tree, move back one step
-	  if(obj.type()==A_Const.TYPE_TREE) 
+	  if(obj.type()== GlobalConsts.TYPE_TREE)
 	  { this.moveBack(); }
 	  
 	  // pick up Grenades
-	  else if(obj.type()==A_Const.TYPE_GRENADE)
+	  else if(obj.type()== GlobalConsts.TYPE_GRENADE)
 	  { ((Gam20_World)world).addGrenade();
 	    obj.isLiving=false;
 	  }
@@ -36,5 +36,5 @@ class Gam20_Avatar extends A_GameObject
   }
   
   
-  public int type() { return A_Const.TYPE_AVATAR; }
+  public int type() { return GlobalConsts.TYPE_AVATAR; }
 }

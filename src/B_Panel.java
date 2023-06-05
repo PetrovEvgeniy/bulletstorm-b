@@ -30,7 +30,7 @@ class B_Panel extends JPanel implements A_GraphicSystem
 	
   public B_Panel()
   { 
-	this.setSize(A_Const.WORLDPART_WIDTH,A_Const.WORLDPART_HEIGHT);  
+	this.setSize(GlobalConsts.WORLDPART_WIDTH, GlobalConsts.WORLDPART_HEIGHT);
 	imageBuffer = graphicsConf.createCompatibleImage(
 			        this.getWidth(), this.getHeight());	 
 	graphics = imageBuffer.getGraphics();
@@ -44,11 +44,11 @@ class B_Panel extends JPanel implements A_GraphicSystem
   public void clear()
   { graphics.setColor(Color.LIGHT_GRAY);
     graphics.fillRect(
-               0, 0,A_Const.WORLDPART_WIDTH,A_Const.WORLDPART_HEIGHT);
+               0, 0, GlobalConsts.WORLDPART_WIDTH, GlobalConsts.WORLDPART_HEIGHT);
   }
   
   
-  public final void draw(A_GameObject dot)
+  public final void draw(GameObject dot)
   {	  
 	int x = (int)(dot.x-dot.radius-world.worldPartX);
 	int y = (int)(dot.y-dot.radius-world.worldPartY);

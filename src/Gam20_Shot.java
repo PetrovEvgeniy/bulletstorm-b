@@ -1,7 +1,7 @@
 
 import java.awt.Color;
 
-class Gam20_Shot extends A_GameObject
+class Gam20_Shot extends GameObject
 { 
   private double lifeTime = 1.2;
 
@@ -31,16 +31,16 @@ class Gam20_Shot extends A_GameObject
 	A_GameObjectList collisions = world.getPhysicsSystem().getCollisions(this);
 	for(int i=0; i<collisions.size(); i++)
 	{
-	  A_GameObject obj = collisions.get(i);
+	  GameObject obj = collisions.get(i);
 	  
 	  int type = obj.type();
 	  
 	  // tree: shot is deleted
-	  if(type==A_Const.TYPE_TREE)
+	  if(type== GlobalConsts.TYPE_TREE)
 	  { this.isLiving=false;
 	  }
 	  // Zombie: inform Zombie it is hit
-	  else if(type==A_Const.TYPE_ZOMBIE && obj.isLiving)
+	  else if(type== GlobalConsts.TYPE_ZOMBIE && obj.isLiving)
 	  { 
 	    Gam20_ZombieAI zombie = (Gam20_ZombieAI)obj;
 	    zombie.hasBeenShot();
@@ -51,5 +51,5 @@ class Gam20_Shot extends A_GameObject
 	super.move(diffSeconds);
   }
     
-  public final int type() { return A_Const.TYPE_SHOT;}
+  public final int type() { return GlobalConsts.TYPE_SHOT;}
 }
