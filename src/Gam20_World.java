@@ -3,7 +3,7 @@
 class Gam20_World extends A_World {
     private double timePassed = 0;
     private double timeSinceLastShot = 0;
-
+    private final double charSpeed = 2.0;
     // For grenades
     private int grenades = 5;
     private Gam20_CounterGrenades counterG;
@@ -24,17 +24,17 @@ class Gam20_World extends A_World {
 
         // [REMOVED] Add a little forest
 
-        // for (int x = 0; x < 5000; x += 1000) {
+         for (int x = 0; x < 5000; x += 1000) {
 
-        //     for (int y = 0; y < 4000; y += 800) {
-        //         gameObjects.add(new Gam20_Tree(x + 300, y + 200, 80));
-        //         gameObjects.add(new Gam20_Tree(x + 600, y + 370, 50));
-        //         gameObjects.add(new Gam20_Tree(x + 200, y + 600, 50));
-        //         gameObjects.add(new Gam20_Tree(x + 500, y + 800, 40));
-        //         gameObjects.add(new Gam20_Tree(x + 900, y + 500, 100));
-        //         gameObjects.add(new Gam20_Tree(x + 760, y + 160, 40));
-        //     }
-        // }
+             for (int y = 0; y < 4000; y += 800) {
+                 gameObjects.add(new Gam20_Tree(x + 300, y + 200, 80));
+                 gameObjects.add(new Gam20_Tree(x + 600, y + 370, 50));
+                 gameObjects.add(new Gam20_Tree(x + 200, y + 600, 50));
+                 gameObjects.add(new Gam20_Tree(x + 500, y + 800, 40));
+                 gameObjects.add(new Gam20_Tree(x + 900, y + 500, 100));
+                 gameObjects.add(new Gam20_Tree(x + 760, y + 160, 40));
+             }
+         }
 
 
         // Add one single zombie
@@ -70,48 +70,72 @@ class Gam20_World extends A_World {
         //
         // Mouse still pressed?
         //
-    //	if(userInput.isMousePressed && button==3) {
-    //	  // only 1 shot every ... seconds:
-    //      timeSinceLastShot += diffSeconds;
-    //      if(timeSinceLastShot > 0.2)
-    //      {
-    //    	timeSinceLastShot = 0;
-    //
-    //        Gam20_Shot shot = new Gam20_Shot(
-    //          avatar.x,avatar.y,userInput.mouseMovedX+worldPartX,userInput.mouseMovedY+worldPartY);
-    //        this.gameObjects.add(shot);
-    //      }
-    //	}
+        //	if(userInput.isMousePressed && button==3) {
+        //	  // only 1 shot every ... seconds:
+        //      timeSinceLastShot += diffSeconds;
+        //      if(timeSinceLastShot > 0.2)
+        //      {
+        //    	timeSinceLastShot = 0;
+        //
+        //        Gam20_Shot shot = new Gam20_Shot(
+        //          avatar.x,avatar.y,userInput.mouseMovedX+worldPartX,userInput.mouseMovedY+worldPartY);
+        //        this.gameObjects.add(shot);
+        //      }
+        //	}
 
         //
         // Keyboard events
         //
-        //TODO IMPLEMENT MOVE LOGIC
+        //TODO MAYBE FIX COMBINATIONS
+
+        int denom = 2;
         if (userInput.isKeyEvent) {
-            if (userInput.keyPressed == ' ') {
+            // this way is not perfect because you should implement all possible combinations
+            // for now it is ok
+            if (userInput.keyPressed.contains('w') && userInput.keyPressed.contains('a')) {
+                moveChar(-charSpeed/denom, -charSpeed/denom);
+            }
+            else if (userInput.keyPressed.contains('s') && userInput.keyPressed.contains('a')) {
+
+                moveChar(-charSpeed/denom, charSpeed/denom);
+            }
+            else if (userInput.keyPressed.contains('w') && userInput.keyPressed.contains('d')) {
+                moveChar(charSpeed/denom, -charSpeed/denom);
+            }
+            else if (userInput.keyPressed.contains('s') && userInput.keyPressed.contains('d')) {
+                moveChar(charSpeed/denom, charSpeed/denom);
+            }
+            else if (userInput.keyPressed.contains('w')) {
+                System.out.println("w");
+                moveChar(0, -charSpeed);
+            } else if(userInput.keyPressed.contains('a')){
+                moveChar(-charSpeed, 0);
+            }
+            else if (userInput.keyPressed.contains('s')) {
+                moveChar(0, charSpeed);
+            }else if(userInput.keyPressed.contains('d')){
+                moveChar(charSpeed, 0);
+            }
+            // TODO
+            else if (userInput.keyPressed.contains(' ')) {
                 throwGrenade(userInput.mouseMovedX + worldPartX, userInput.mouseMovedY + worldPartY);
             }
 
-            if (userInput.keyPressed == 'w') {
-                throwGrenade(userInput.mouseMovedX + worldPartX, userInput.mouseMovedY + worldPartY);
-            }
-
-            if (userInput.keyPressed == 'a') {
-                throwGrenade(userInput.mouseMovedX + worldPartX, userInput.mouseMovedY + worldPartY);
-            }
-            if (userInput.keyPressed == 's') {
-                throwGrenade(userInput.mouseMovedX + worldPartX, userInput.mouseMovedY + worldPartY);
-            }
-            if (userInput.keyPressed == 'd') {
-                throwGrenade(userInput.mouseMovedX + worldPartX, userInput.mouseMovedY + worldPartY);
-
-            } else if (userInput.keyPressed == (char) 27) {
-                //TODO MAKE PAUSE
-                //System.exit(0);
-            }
+//
+//            } else if (userInput.keyPressed == (char) 27) {
+//                //TODO MAKE PAUSE
+//                //System.exit(0);
+//            }else if(userInput.keyPressed == 'w' && userInput.keyPressed == 'a'){
+//
+//            }
         }
     }
 
+
+    private void moveChar(double x, double y) {
+        avatar.x += x;
+        avatar.y += y;
+    }
 
     private void throwGrenade(double x, double y) {
         if (grenades <= 0) return;
