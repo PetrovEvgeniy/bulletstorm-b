@@ -1,8 +1,10 @@
+package utils;
 
+import abstracts.A_TextObject;
 
 import java.awt.Color;
 
-class Gam20_HelpText extends A_TextObject
+public class Gam20_HelpText extends A_TextObject
 {
   public Gam20_HelpText(int x, int y)
   { super(x,y, new Color(0,120,255,60));

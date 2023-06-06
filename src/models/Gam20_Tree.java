@@ -1,8 +1,11 @@
+package models;
 
+import abstracts.GameObject;
+import utils.GlobalConsts;
 
 import java.awt.Color;
 
-class Gam20_Tree extends GameObject
+public class Gam20_Tree extends GameObject
 {
   public Gam20_Tree(double x, double y, int r)
   {

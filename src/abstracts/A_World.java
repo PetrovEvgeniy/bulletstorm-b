@@ -1,29 +1,33 @@
+package abstracts;
+
+import utils.Gam20_PhysicsSystem;
+import utils.GlobalConsts;
 
 import java.util.ArrayList;
 
-abstract class A_World {
+public abstract class A_World {
     private A_GraphicSystem graphicSystem;
     private A_PhysicsSystem physicsSystem;
     private A_InputSystem inputSystem;
     private A_UserInput userInput;
 
     // Top left corner of the displayed pane of the world
-    double worldPartX = 0;
-    double worldPartY = 0;
+    public double worldPartX = 0;
+    public double worldPartY = 0;
 
     // Define maximum frame rate
     private static final int FRAME_MINIMUM_MILLIS = 10;
 
     // Define if game is over
-    boolean gameOver = false;
+    public boolean gameOver = false;
 
     // All objects in the game, including the Avatar
-    A_GameObjectList gameObjects = new A_GameObjectList();
-    GameObject avatar;
-    ArrayList<A_TextObject> textObjects = new ArrayList<A_TextObject>();
+    public A_GameObjectList gameObjects = new A_GameObjectList();
+    public GameObject avatar;
+    public ArrayList<A_TextObject> textObjects = new ArrayList<A_TextObject>();
 
 
-    A_World() {
+    public A_World() {
         physicsSystem = new Gam20_PhysicsSystem(this);
     }
 
@@ -31,7 +35,7 @@ abstract class A_World {
     //
     // The main GAME LOOP
     //
-    final void run() {
+    public final void run() {
         long lastTick = System.currentTimeMillis();
 
         while (true) {
@@ -149,20 +153,20 @@ abstract class A_World {
     }
 
 
-    protected void setGraphicSystem(A_GraphicSystem p) {
+    public void setGraphicSystem(A_GraphicSystem p) {
         graphicSystem = p;
     }
 
-    protected void setInputSystem(A_InputSystem p) {
+    public void setInputSystem(A_InputSystem p) {
         inputSystem = p;
     }
 
-    protected A_PhysicsSystem getPhysicsSystem() {
+    public A_PhysicsSystem getPhysicsSystem() {
         return physicsSystem;
     }
 
 
-    protected abstract void init();
+    public abstract void init();
 
     protected abstract void processUserInput(A_UserInput input, double diffSec);
 

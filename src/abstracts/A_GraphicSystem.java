@@ -1,13 +1,17 @@
+package abstracts;
+
+import abstracts.A_World;
+import abstracts.GameObject;
 
 /**
  * Interface for implementing the methods for the graphic system
  */
-interface A_GraphicSystem 
+public interface A_GraphicSystem
 {
   // Clear the current screen and prepares to draw a new screen
   void clear();
   
-  // Draw a single GameObject on the screen
+  // Draw a single abstracts.GameObject on the screen
   void draw(GameObject dot);
  
   // Draw a single TextObject on the screen
@@ -17,5 +21,5 @@ interface A_GraphicSystem
   void redraw();
   
   // Set the world
-  void setWorld(A_World world);  
+  void setWorld(A_World world);
 }

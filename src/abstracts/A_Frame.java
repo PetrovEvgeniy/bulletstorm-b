@@ -1,7 +1,11 @@
+package abstracts;
+
+import abstracts.A_GraphicSystem;
+
 /**
  * Interface defines methods for the frame
  */
-interface A_Frame 
+public interface A_Frame
 {
   /**
   * Appear on screen
@@ -12,5 +16,5 @@ interface A_Frame
   * Getters for graphic subsystems
   */
   A_GraphicSystem getGraphicSystem();
-  A_InputSystem   getInputSystem();
+  A_InputSystem getInputSystem();
 }

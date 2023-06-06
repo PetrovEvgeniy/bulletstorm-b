@@ -1,8 +1,11 @@
+package utils;
 
+import abstracts.A_InputSystem;
+import abstracts.A_UserInput;
 
 import java.awt.event.*;
 
-class B_InputSystem
+public class B_InputSystem
         implements A_InputSystem, KeyListener, MouseListener, MouseMotionListener {
 
     // UserInput variables

@@ -1,9 +1,19 @@
+package utils;
 
+import abstracts.A_GameObjectList;
+import abstracts.A_UserInput;
+import abstracts.A_World;
+import models.*;
+import utils.Gam20_Counter;
+import utils.Gam20_CounterGrenades;
+import utils.Gam20_HelpText;
+import utils.GlobalConsts;
 
-class Gam20_World extends A_World {
+public class Gam20_World extends A_World {
     private double timePassed = 0;
     private double timeSinceLastShot = 0;
     private final double charSpeed = 2.0;
+
     // For grenades
     private int grenades = 5;
     private Gam20_CounterGrenades counterG;
@@ -13,7 +23,7 @@ class Gam20_World extends A_World {
 
     private double lifeHelpText = 10.0;
 
-    protected void init() {
+    public void init() {
         // Add the Avatar
         avatar = new Gam20_Avatar(2500, 2000);
         gameObjects.add(avatar);
@@ -58,30 +68,29 @@ class Gam20_World extends A_World {
         //
         // Mouse events
         //
-        // MOUSE EVENT NOT NEEDED FOR NOW
-        //	if(userInput.isMouseEvent)
-        //	{
-        //	  // move
-        //	  if(button==1) { avatar.setDestination(userInput.mousePressedX+worldPartX,
-        //                              userInput.mousePressedY+worldPartY);
-        //	  }
-        //	}
+        	if(userInput.isMouseEvent)
+        	{
+        	  // move
+        	  if(button==1) { avatar.setDestination(userInput.mousePressedX+worldPartX,
+                                      userInput.mousePressedY+worldPartY);
+        	  }
+        	}
 
         //
         // Mouse still pressed?
         //
-        //	if(userInput.isMousePressed && button==3) {
-        //	  // only 1 shot every ... seconds:
-        //      timeSinceLastShot += diffSeconds;
-        //      if(timeSinceLastShot > 0.2)
-        //      {
-        //    	timeSinceLastShot = 0;
-        //
-        //        Gam20_Shot shot = new Gam20_Shot(
-        //          avatar.x,avatar.y,userInput.mouseMovedX+worldPartX,userInput.mouseMovedY+worldPartY);
-        //        this.gameObjects.add(shot);
-        //      }
-        //	}
+        	if(userInput.isMousePressed && button==3) {
+        	  // only 1 shot every ... seconds:
+              timeSinceLastShot += diffSeconds;
+              if(timeSinceLastShot > 0.2)
+              {
+            	timeSinceLastShot = 0;
+
+                models.Gam20_Shot shot = new models.Gam20_Shot(
+                  avatar.x,avatar.y,userInput.mouseMovedX+worldPartX,userInput.mouseMovedY+worldPartY);
+                this.gameObjects.add(shot);
+              }
+        	}
 
         //
         // Keyboard events

@@ -1,4 +1,9 @@
+package view;
 
+import abstracts.A_Frame;
+import abstracts.A_GraphicSystem;
+import abstracts.A_InputSystem;
+import utils.GlobalConsts;
 
 import javax.swing.*;
 
@@ -30,5 +35,5 @@ class B_Frame extends JFrame implements A_Frame
   public void displayOnScreen() { validate(); setVisible(true); }
   
   public A_GraphicSystem getGraphicSystem() { return panel; }
-  public A_InputSystem   getInputSystem()   { return panel.getInputSystem(); }
+  public A_InputSystem getInputSystem()   { return panel.getInputSystem(); }
 }

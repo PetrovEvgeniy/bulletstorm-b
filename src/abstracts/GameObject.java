@@ -1,17 +1,20 @@
+package abstracts;
 
+import utils.GlobalConsts;
 
 import java.awt.Color;
 
-abstract class GameObject {
+public abstract class GameObject {
     // Public so we can access it easier and faster because it is accessed all the time
-    protected double x, y;
+    public double x;
+    public double y;
     protected double alfa = 0;
     protected double speed = 0;
-    protected int radius = 7;
-    protected Color color;
+    public int radius = 7;
+    public Color color;
 
     // If the object is existing, moving etc
-    protected boolean isLiving = true;
+    public boolean isLiving = true;
     protected boolean isMoving = true;
 
     // Destination the object will move to. Also, old coordinates
@@ -121,9 +124,9 @@ abstract class GameObject {
     }
 
 
-    abstract int type();
+    public abstract int type();
 
-    static void setWorld(A_World w) {
+    public static void setWorld(A_World w) {
         world = w;
     }
 

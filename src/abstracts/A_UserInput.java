@@ -1,4 +1,5 @@
-import java.util.ArrayList;
+package abstracts;
+
 import java.util.HashSet;
 
 /**
@@ -6,17 +7,22 @@ import java.util.HashSet;
  */
 final class A_UserInput {
     // Everything a user can press on keyboard or mouse
-    int mousePressedX, mousePressedY,
-            mouseMovedX, mouseMovedY, mouseButton;
+    public int mousePressedX;
+    public int mousePressedY;
+    public int mouseMovedX;
+    public int mouseMovedY;
+    public int mouseButton;
 
-    HashSet<Character> keyPressed = new HashSet<>();
+    public HashSet<Character> keyPressed = new HashSet<>();
 
 
     // If the mouse was clicked, key was pressed or mouse is still hold down
-    boolean isMouseEvent, isKeyEvent, isMousePressed;
+    public boolean isMouseEvent;
+    public boolean isKeyEvent;
+    public boolean isMousePressed;
 
     // ... is returned as a data set
-    A_UserInput() {
+    public A_UserInput() {
         this.clear();
     }
 

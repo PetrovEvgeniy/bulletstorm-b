@@ -1,8 +1,11 @@
+package models;
 
+import abstracts.GameObject;
+import utils.GlobalConsts;
 
 import java.awt.Color;
 
-class Gam20_Grenade extends GameObject
+public class Gam20_Grenade extends GameObject
 {
   double life = GlobalConsts.LIFE_GRENADE;
   

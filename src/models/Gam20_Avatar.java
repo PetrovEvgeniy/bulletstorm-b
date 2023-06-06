@@ -1,7 +1,13 @@
+package models;
+
+import abstracts.A_GameObjectList;
+import abstracts.GameObject;
+import utils.Gam20_World;
+import utils.GlobalConsts;
 
 import java.awt.Color;
 
-class Gam20_Avatar extends GameObject {
+public class Gam20_Avatar extends GameObject {
 
     public Gam20_Avatar(double x, double y) {
         super(x, y, 0, 200, 15, new Color(96, 96, 255));

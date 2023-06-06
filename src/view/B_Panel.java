@@ -1,4 +1,8 @@
+package view;
 
+import abstracts.*;
+import utils.B_InputSystem;
+import utils.GlobalConsts;
 
 import java.awt.*;
 import java.awt.image.*;
@@ -13,7 +17,7 @@ class B_Panel extends JPanel implements A_GraphicSystem
   
   // InputSystem is an external instance
   private B_InputSystem inputSystem = new B_InputSystem();
-  private A_World       world       = null;
+  private A_World world       = null;
 
 	
   // GraphicsSystem variables

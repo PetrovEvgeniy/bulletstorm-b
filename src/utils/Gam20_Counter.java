@@ -1,7 +1,10 @@
+package utils;
+
+import abstracts.A_TextObject;
 
 import java.awt.Color;
 
-class Gam20_Counter extends A_TextObject
+public class Gam20_Counter extends A_TextObject
 {
   private int number = 1;
 	

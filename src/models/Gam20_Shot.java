@@ -1,7 +1,12 @@
+package models;
+
+import abstracts.A_GameObjectList;
+import abstracts.GameObject;
+import utils.GlobalConsts;
 
 import java.awt.Color;
 
-class Gam20_Shot extends GameObject
+public class Gam20_Shot extends GameObject
 { 
   private double lifeTime = 1.2;
 
