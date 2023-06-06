@@ -10,7 +10,7 @@ final class A_UserInput {
             mouseMovedX, mouseMovedY, mouseButton;
 
     HashSet<Character> keyPressed = new HashSet<>();
-    int index = 0;
+
 
     // If the mouse was clicked, key was pressed or mouse is still hold down
     boolean isMouseEvent, isKeyEvent, isMousePressed;

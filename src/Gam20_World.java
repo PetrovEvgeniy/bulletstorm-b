@@ -106,7 +106,6 @@ class Gam20_World extends A_World {
                 moveChar(charSpeed/denom, charSpeed/denom);
             }
             else if (userInput.keyPressed.contains('w')) {
-                System.out.println("w");
                 moveChar(0, -charSpeed);
             } else if(userInput.keyPressed.contains('a')){
                 moveChar(-charSpeed, 0);
