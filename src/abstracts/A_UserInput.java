@@ -5,7 +5,7 @@ import java.util.HashSet;
 /**
  * This class holds the key and mouse moved. Variables will prob be updated
  */
-final class A_UserInput {
+public final class A_UserInput {
     // Everything a user can press on keyboard or mouse
     public int mousePressedX;
     public int mousePressedY;

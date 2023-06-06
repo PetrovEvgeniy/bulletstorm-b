@@ -7,7 +7,7 @@ import java.awt.Color;
 /**
  * Base class for text objects (maybe tips, tutorials etc. ?)
  */
-abstract class A_TextObject
+public abstract class A_TextObject
 {
   protected static A_World world;
   
