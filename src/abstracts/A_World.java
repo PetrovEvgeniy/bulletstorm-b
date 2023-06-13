@@ -26,7 +26,6 @@ public abstract class A_World {
     public GameObject avatar;
     public ArrayList<A_TextObject> textObjects = new ArrayList<A_TextObject>();
 
-
     public A_World() {
         physicsSystem = new Gam20_PhysicsSystem(this);
     }
@@ -77,7 +76,7 @@ public abstract class A_World {
             // Delete the dead objects
             int num = 0;
             while (num < gameSize) {
-                if (gameObjects.get(num).isLiving == false) {
+                if (!gameObjects.get(num).isLiving) {
                     gameObjects.remove(num);
                     gameSize--;
                 } else {

@@ -2,7 +2,11 @@ package abstracts;
 
 import utils.GlobalConsts;
 
-import java.awt.Color;
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public abstract class GameObject {
     // Public so we can access it easier and faster because it is accessed all the time
@@ -10,6 +14,14 @@ public abstract class GameObject {
     public double y;
     protected double alfa = 0;
     protected double speed = 0;
+
+
+    protected File imageFile;
+    protected BufferedImage objectImage;
+    public int height;
+    public int width;
+
+    //TODO: remove radius and Color once not needed
     public int radius = 7;
     public Color color;
 
@@ -39,6 +51,28 @@ public abstract class GameObject {
         speed = s_;
         radius = radius_;
         color = color_;
+    }
+
+    //TODO: Make this the only constructor at some point
+    public GameObject(double x_, double y_,
+                      double a_, double s_,
+                      String pathToImage) {
+        x = x_;
+        y = y_;
+        xOld = x;
+        yOld = y;
+        alfa = a_;
+        speed = s_;
+        imageFile = new File(pathToImage);
+        try {
+            objectImage = ImageIO.read(imageFile);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            throw new RuntimeException(e);
+        }
+        //Setting height and width here according to screen size constants. We can change later
+        height = GlobalConsts.WORLDPART_HEIGHT/11;
+        width = GlobalConsts.WORLDPART_WIDTH/18;
     }
 
 
@@ -128,6 +162,18 @@ public abstract class GameObject {
 
     public static void setWorld(A_World w) {
         world = w;
+    }
+
+    public File getImageFile(){return imageFile;}
+
+    public void setImageFile(File imageFile){
+        this.imageFile = imageFile;
+    }
+
+    public Image getImage(){return objectImage;}
+
+    public void setImage(BufferedImage image){
+        this.objectImage = image;
     }
 
 }

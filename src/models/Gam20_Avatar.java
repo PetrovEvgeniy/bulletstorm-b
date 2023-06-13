@@ -5,12 +5,22 @@ import abstracts.GameObject;
 import utils.Gam20_World;
 import utils.GlobalConsts;
 
+import javax.imageio.ImageIO;
 import java.awt.Color;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 public class Gam20_Avatar extends GameObject {
 
+
+
     public Gam20_Avatar(double x, double y) {
         super(x, y, 0, 200, 15, new Color(96, 96, 255));
+        this.isMoving = false;
+    }
+
+    public Gam20_Avatar(double x, double y, String pathToImage) {
+        super(x, y, 0, 200, pathToImage);
         this.isMoving = false;
     }
 

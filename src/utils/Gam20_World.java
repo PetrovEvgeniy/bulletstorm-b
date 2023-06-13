@@ -25,7 +25,8 @@ public class Gam20_World extends A_World {
 
     public void init() {
         // Add the Avatar
-        avatar = new Gam20_Avatar(2500, 2000);
+        //TODO: Later on the path to the image should be decided when user selects character(if we have multiple characters)
+        avatar = new Gam20_Avatar(2500, 2000,"resourses/sprites/magiciansRetto.png");
         gameObjects.add(avatar);
 
         // Set WorldPart position

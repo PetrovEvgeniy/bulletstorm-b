@@ -6,77 +6,103 @@ import utils.GlobalConsts;
 
 import java.awt.*;
 import java.awt.image.*;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
-class B_Panel extends JPanel implements A_GraphicSystem
-{
-  // Constants
-  private static final long serialVersionUID = 1L;
-  private static final Font font = new Font("Arial",Font.PLAIN,24);
+class B_Panel extends JPanel implements A_GraphicSystem {
+    // Constants
+    private static final long serialVersionUID = 1L;
+    private static final Font font = new Font("Arial", Font.PLAIN, 24);
 
-  
-  // InputSystem is an external instance
-  private B_InputSystem inputSystem = new B_InputSystem();
-  private A_World world       = null;
 
-	
-  // GraphicsSystem variables
-  //
-  private GraphicsConfiguration graphicsConf = 
-    GraphicsEnvironment.getLocalGraphicsEnvironment().
-    getDefaultScreenDevice().getDefaultConfiguration();
-  private BufferedImage imageBuffer;
-  private Graphics      graphics;
+    // InputSystem is an external instance
+    private B_InputSystem inputSystem = new B_InputSystem();
+    private A_World world = null;
 
-  
-	
-  public B_Panel()
-  { 
-	this.setSize(GlobalConsts.WORLDPART_WIDTH, GlobalConsts.WORLDPART_HEIGHT);
-	imageBuffer = graphicsConf.createCompatibleImage(
-			        this.getWidth(), this.getHeight());	 
-	graphics = imageBuffer.getGraphics();
-	
-	// Initialize listeners
-	this.addMouseListener(inputSystem);
-	this.addMouseMotionListener(inputSystem);
-	this.addKeyListener(inputSystem);
-  }
-  
-  public void clear()
-  { graphics.setColor(Color.LIGHT_GRAY);
-    graphics.fillRect(
-               0, 0, GlobalConsts.WORLDPART_WIDTH, GlobalConsts.WORLDPART_HEIGHT);
-  }
-  
-  
-  public final void draw(GameObject dot)
-  {	  
-	int x = (int)(dot.x-dot.radius-world.worldPartX);
-	int y = (int)(dot.y-dot.radius-world.worldPartY);
-	int d = (int)(dot.radius*2);
-	
-	graphics.setColor(dot.color);
-	graphics.fillOval(x, y, d, d);
-	graphics.setColor(Color.DARK_GRAY);
-	graphics.drawOval(x,y,d,d);
-  }
-  
-  public final void draw(A_TextObject text)
-  {	  
-    graphics.setFont(font);
-    graphics.setColor(Color.DARK_GRAY);
-    graphics.drawString(text.toString(), (int)text.x+1, (int)text.y+1);    
-    graphics.setColor(text.color);
-    graphics.drawString(text.toString(), (int)text.x, (int)text.y);
-  }
-  
-  
-  public void redraw()
-  { this.getGraphics().drawImage(imageBuffer, 0, 0, this);
-  }
-  
-  public final A_InputSystem getInputSystem() { return inputSystem; }
-  public final void setWorld(A_World world_)  {this.world = world_;}
+
+    // GraphicsSystem variables
+    //
+    private GraphicsConfiguration graphicsConf =
+            GraphicsEnvironment.getLocalGraphicsEnvironment().
+                    getDefaultScreenDevice().getDefaultConfiguration();
+    private BufferedImage imageBuffer;
+    private Graphics graphics;
+
+    //Playing around with background image from here:
+
+    BufferedImage background;
+
+
+    public B_Panel() {
+        this.setSize(GlobalConsts.WORLDPART_WIDTH, GlobalConsts.WORLDPART_HEIGHT);
+        imageBuffer = graphicsConf.createCompatibleImage(
+                this.getWidth(), this.getHeight());
+        graphics = imageBuffer.getGraphics();
+
+        // Initialize listeners
+        this.addMouseListener(inputSystem);
+        this.addMouseMotionListener(inputSystem);
+        this.addKeyListener(inputSystem);
+
+        try {
+            background = ImageIO.read(new File("resourses/backgrounds/backgrounddetailed1.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void clear() {
+        graphics.setColor(Color.LIGHT_GRAY);
+        graphics.fillRect(
+                0, 0, GlobalConsts.WORLDPART_WIDTH, GlobalConsts.WORLDPART_HEIGHT);
+    }
+
+
+    public final void draw(GameObject dot) {
+
+        int x = (int) (dot.x - dot.radius - world.worldPartX);
+        int y = (int) (dot.y - dot.radius - world.worldPartY);
+        int d = (int) (dot.radius * 2);
+
+        // If there is no image resource it just fills the oval old school way. TODO: We should change that at some point
+        if (dot.getImage() == null) {
+            graphics.setColor(dot.color);
+            graphics.fillOval(x, y, d, d);
+            graphics.setColor(Color.DARK_GRAY);
+            graphics.drawOval(x, y, d, d);
+        } else {
+            //Draws the image file on screen at x,y and uses getScaledInstance() method to change the height and width of the original
+            //image file so that it fits according to width and height params in GameObject class
+            graphics.drawImage(background.getScaledInstance(GlobalConsts.WORLDPART_WIDTH, GlobalConsts.WORLDPART_HEIGHT, Image.SCALE_FAST), 0, 0, null);
+            graphics.drawImage(dot.getImage().getScaledInstance(dot.width, dot.height, Image.SCALE_FAST), x, y, null);
+        }
+
+    }
+
+    public final void draw(A_TextObject text) {
+        graphics.setFont(font);
+        graphics.setColor(Color.DARK_GRAY);
+        graphics.drawString(text.toString(), (int) text.x + 1, (int) text.y + 1);
+        graphics.setColor(text.color);
+        graphics.drawString(text.toString(), (int) text.x, (int) text.y);
+
+    }
+
+
+    public void redraw() {
+        this.getGraphics().drawImage(imageBuffer, 0, 0, this);
+    }
+
+    public final A_InputSystem getInputSystem() {
+        return inputSystem;
+    }
+
+    public final void setWorld(A_World world_) {
+        this.world = world_;
+    }
+
+
 }
 
