@@ -12,7 +12,7 @@ import utils.GlobalConsts;
 public class Gam20_World extends A_World {
     private double timePassed = 0;
     private double timeSinceLastShot = 0;
-    private final double charSpeed = 2.0;
+    private final double charSpeed = 5.0;
 
     // For grenades
     private int grenades = 5;
@@ -98,7 +98,7 @@ public class Gam20_World extends A_World {
         //
         //TODO MAYBE FIX COMBINATIONS
 
-        int denom = 2;
+        double denom = 1.7;
         if (userInput.isKeyEvent) {
             // this way is not perfect because you should implement all possible combinations
             // for now it is ok
