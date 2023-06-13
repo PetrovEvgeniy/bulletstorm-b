@@ -22,7 +22,7 @@ public abstract class GameObject {
     public int width;
 
     //TODO: remove radius and Color once not needed
-    public int radius = 7;
+    public int radius = 25;
     public Color color;
 
     // If the object is existing, moving etc
@@ -64,6 +64,8 @@ public abstract class GameObject {
         alfa = a_;
         speed = s_;
         imageFile = new File(pathToImage);
+
+
         try {
             objectImage = ImageIO.read(imageFile);
         } catch (IOException e) {
