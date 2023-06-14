@@ -69,29 +69,29 @@ public class Gam20_World extends A_World {
         //
         // Mouse events
         //
-        	if(userInput.isMouseEvent)
-        	{
-        	  // move
-        	  if(button==1) { avatar.setDestination(userInput.mousePressedX+worldPartX,
-                                      userInput.mousePressedY+worldPartY);
-        	  }
-        	}
-
-        //
-        // Mouse still pressed?
-        //
-        	if(userInput.isMousePressed && button==3) {
-        	  // only 1 shot every ... seconds:
-              timeSinceLastShot += diffSeconds;
-              if(timeSinceLastShot > 0.2)
-              {
-            	timeSinceLastShot = 0;
-
-                models.Gam20_Shot shot = new models.Gam20_Shot(
-                  avatar.x,avatar.y,userInput.mouseMovedX+worldPartX,userInput.mouseMovedY+worldPartY);
-                this.gameObjects.add(shot);
-              }
-        	}
+//        	if(userInput.isMouseEvent)
+//        	{
+//        	  // move
+//        	  if(button==1) { avatar.setDestination(userInput.mousePressedX+worldPartX,
+//                                      userInput.mousePressedY+worldPartY);
+//        	  }
+//        	}
+//
+//        //
+//        // Mouse still pressed?
+//        //
+//        	if(userInput.isMousePressed && button==3) {
+//        	  // only 1 shot every ... seconds:
+//              timeSinceLastShot += diffSeconds;
+//              if(timeSinceLastShot > 0.2)
+//              {
+//            	timeSinceLastShot = 0;
+//
+//                models.Gam20_Shot shot = new models.Gam20_Shot(
+//                  avatar.x,avatar.y,userInput.mouseMovedX+worldPartX,userInput.mouseMovedY+worldPartY);
+//                this.gameObjects.add(shot);
+//              }
+//        	}
 
         //
         // Keyboard events
@@ -102,6 +102,8 @@ public class Gam20_World extends A_World {
         if (userInput.isKeyEvent) {
             // this way is not perfect because you should implement all possible combinations
             // for now it is ok
+
+           // if(userInput.keyPressed.size()
             if (userInput.keyPressed.contains('w') && userInput.keyPressed.contains('a')) {
                 moveChar(-charSpeed/denom, -charSpeed/denom);
             }
@@ -126,7 +128,7 @@ public class Gam20_World extends A_World {
                 moveChar(charSpeed, 0);
             }
             // TODO
-            else if (userInput.keyPressed.contains(' ')) {
+             if (userInput.keyPressed.contains(' ')) {
                 throwGrenade(userInput.mouseMovedX + worldPartX, userInput.mouseMovedY + worldPartY);
             }
 

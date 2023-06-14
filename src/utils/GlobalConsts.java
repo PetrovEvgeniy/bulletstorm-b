@@ -21,6 +21,8 @@ public final class GlobalConsts
   public static final double SPAWN_INTERVAL = 0.2;
   public static final double SPAWN_GRENADE  = 10.0;
   public static final double LIFE_GRENADE   = 15.0;
+
+//  public static final char[]
   
 
   // Define constants for object types
