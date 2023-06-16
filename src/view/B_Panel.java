@@ -1,6 +1,7 @@
 package view;
 
 import abstracts.*;
+import models.Background;
 import utils.B_InputSystem;
 import utils.GlobalConsts;
 
@@ -32,7 +33,7 @@ class B_Panel extends JPanel implements A_GraphicSystem {
 
     //Playing around with background image from here:
 
-    BufferedImage background;
+    Background background;
 
 
     public B_Panel() {
@@ -46,11 +47,9 @@ class B_Panel extends JPanel implements A_GraphicSystem {
         this.addMouseMotionListener(inputSystem);
         this.addKeyListener(inputSystem);
 
-        try {
-            background = ImageIO.read(new File("resourses/backgrounds/backgrounddetailed1.png"));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+
+        background = new Background("resourses/backgrounds/backgrounddetailed1.png");
+
     }
 
     public void clear() {
@@ -62,22 +61,24 @@ class B_Panel extends JPanel implements A_GraphicSystem {
 
     public final void draw(GameObject dot) {
 
+
         int x = (int) (dot.x - dot.radius - world.worldPartX);
         int y = (int) (dot.y - dot.radius - world.worldPartY);
-        int d = (int) (dot.radius * 2);
+        int d = (dot.radius * 2);
 
-        // If there is no image resource it just fills the oval old school way. TODO: We should change that at some point
+
         if (dot.getImage() == null) {
             graphics.setColor(dot.color);
             graphics.fillOval(x, y, d, d);
             graphics.setColor(Color.DARK_GRAY);
             graphics.drawOval(x, y, d, d);
         } else {
-            //Draws the image file on screen at x,y and uses getScaledInstance() method to change the height and width of the original
-            //image file so that it fits according to width and height params in GameObject class
-            graphics.drawImage(background.getScaledInstance(GlobalConsts.WORLDPART_WIDTH, GlobalConsts.WORLDPART_HEIGHT, Image.SCALE_FAST), 0, 0, null);
-            graphics.drawImage(dot.getImage().getScaledInstance(dot.width, dot.height, Image.SCALE_FAST), x, y, null);
+            background.draw(graphics);
+            dot.draw(graphics,world);
+            //graphics.drawImage(dot.getImage().getScaledInstance(dot.width, dot.height, Image.SCALE_FAST), (int)x, (int)y, null);
         }
+
+
 
     }
 

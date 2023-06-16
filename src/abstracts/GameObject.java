@@ -38,6 +38,7 @@ public abstract class GameObject {
     // Objects for calling the physics methods
     protected static A_World world;
 
+    BufferedImage background;
 
     // Constructor
     public GameObject(double x_, double y_,
@@ -73,7 +74,7 @@ public abstract class GameObject {
             throw new RuntimeException(e);
         }
         //Setting height and width here according to screen size constants. We can change later
-        height = GlobalConsts.WORLDPART_HEIGHT/11;
+        height = GlobalConsts.WORLDPART_HEIGHT/10;
         width = GlobalConsts.WORLDPART_WIDTH/18;
     }
 
@@ -101,6 +102,27 @@ public abstract class GameObject {
         // Finally, moving one step
         x += Math.cos(alfa) * speed * diffSeconds;
         y += Math.sin(alfa) * speed * diffSeconds;
+    }
+
+
+    /**
+     * I moved the all the drawing of GameObjects into this base class so its easier to make the sprite animations and overall readability
+     */
+    public void draw(Graphics graphics, A_World world){
+
+        int x = (int) (this.x - this.radius - world.worldPartX);
+        int y = (int) (this.y - this.radius - world.worldPartY);
+        int d = (this.radius * 2);
+
+        if (objectImage == null) {
+            graphics.setColor(color);
+            graphics.fillOval(x, y, d, d);
+            graphics.setColor(Color.DARK_GRAY);
+            graphics.drawOval(x, y, d, d);
+        } else {
+            graphics.drawImage(objectImage.getScaledInstance(width, height, Image.SCALE_FAST), (int)x, (int)y, null);
+        }
+
     }
 
 

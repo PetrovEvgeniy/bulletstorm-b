@@ -35,9 +35,12 @@ public abstract class A_World {
     // The main GAME LOOP
     //
     public final void run() {
+
+
         long lastTick = System.currentTimeMillis();
 
         while (true) {
+            System.out.println("One loop");
             // Calculating elapsed time so that each frame doesn't run faster than min diff seconds *per frame*
             long currentTick = System.currentTimeMillis();
             long millisDiff = currentTick - lastTick;
