@@ -19,16 +19,17 @@ public class Wizard extends GameObject {
 
     public Wizard(double x_, double y_, String pathToImage) {
         super(x_, y_, 0, 200, pathToImage);
+        this.isMoving = false;
         spriteAnimation = new ArrayList<>();
-        loadAllImages("resourses/sprites/fire_wizard");
+        loadAllImages("resourses/sprites/fire_wizard/idle");
     }
 
 
     @Override
     public void draw(Graphics graphics, A_World world) {
 
-        int x = (int) (this.x - world.worldPartX);
-        int y = (int) (this.y - world.worldPartY);
+        int x = (int) (this.x - this.radius - world.worldPartX);
+        int y = (int) (this.y - this.radius - world.worldPartY);
 
         if(spriteCounter > 10) {
             spriteNumber++;
@@ -38,8 +39,8 @@ public class Wizard extends GameObject {
             spriteCounter = 0;
             }
         spriteCounter++;
-        graphics.drawImage(spriteAnimation.get(spriteNumber).getScaledInstance(width, height, Image.SCALE_FAST), (int) x, (int) y, null);
-
+        graphics.drawImage(spriteAnimation.get(spriteNumber).getScaledInstance(width, height, Image.SCALE_FAST), (int) x, (int) y,width,height, null);
+                                                                                                    //Changing argument width here ^ to -width flips character horizontally
     }
 
     /**
