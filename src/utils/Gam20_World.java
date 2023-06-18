@@ -5,6 +5,7 @@ import abstracts.A_UserInput;
 import abstracts.A_World;
 import models.*;
 import utils.Gam20_Counter;
+import utils.Gam20_CounterLevel;
 import utils.Gam20_CounterGrenades;
 import utils.Gam20_HelpText;
 import utils.GlobalConsts;
@@ -16,9 +17,11 @@ public class Gam20_World extends A_World {
 
     // For grenades
     private int grenades = 5;
+    private Gam20_CounterLevel counterL;
     private Gam20_CounterGrenades counterG;
     private Gam20_Counter counterZ;
     private Gam20_HelpText helpText;
+
     private double spawnGrenade = 0;
 
     private double lifeHelpText = 10.0;
@@ -52,6 +55,7 @@ public class Gam20_World extends A_World {
         gameObjects.add(new Gam20_ZombieAI(100, 100));
 
 
+        counterL = new Gam20_CounterLevel(400, 40);
         counterZ = new Gam20_Counter(20, 40);
         counterG = new Gam20_CounterGrenades(770, 40);
         helpText = new Gam20_HelpText(100, 400);
@@ -59,6 +63,7 @@ public class Gam20_World extends A_World {
         counterG.setNumber(grenades);
         textObjects.add(counterZ);
         textObjects.add(counterG);
+        textObjects.add(counterL);
         textObjects.add(helpText);
     }
 
