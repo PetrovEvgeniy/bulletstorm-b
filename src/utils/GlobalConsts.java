@@ -18,12 +18,12 @@ public final class GlobalConsts
 	  
 
   // Define constants for spawn intervals
-  public static final double SPAWN_INTERVAL = 0.2;
+  public static final double SPAWN_INTERVAL = 0.2; // increase this if you want to make zombies spawning faster
+
+
   public static final double SPAWN_GRENADE  = 10.0;
   public static final double LIFE_GRENADE   = 15.0;
 
-//  public static final char[]
-  
 
   // Define constants for object types
   public static final int TYPE_AVATAR  = 1;
@@ -32,4 +32,14 @@ public final class GlobalConsts
   public static final int TYPE_ZOMBIE  = 4;
   public static final int TYPE_SHOT    = 5;
   public static final int TYPE_GRENADE = 6;
+
+
+  // Time to wait before leveling up
+  public static final double LEVEL_UP_TIME   = 10.0;
+
+  // Number of spawned zombies per level
+  public static final double[] SPAWN_ZOMBIE_INTERVAL_PER_LEVEL = {0.3, 0.25, 0.2, 0.1, 0.05, 0.025, 0.001}; 
+
+
+
 }

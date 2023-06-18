@@ -11,6 +11,10 @@ public abstract class A_World {
     private A_InputSystem inputSystem;
     private A_UserInput userInput;
 
+
+    // Level of the game
+    public int level = 1;
+
     // Top left corner of the displayed pane of the world
     public double worldPartX = 0;
     public double worldPartY = 0;
@@ -108,6 +112,10 @@ public abstract class A_World {
 
             // Spawn any new objects here
             createNewObjects(millisDiff / 1000.0);
+            
+            // Spawn any new zombies here (depending on level)
+            createNewZombies(millisDiff / 1000.0);
+
         }
     }
 
@@ -174,4 +182,5 @@ public abstract class A_World {
 
     protected abstract void createNewObjects(double diffSeconds);
 
+    protected abstract void createNewZombies(double diffSeconds);
 }

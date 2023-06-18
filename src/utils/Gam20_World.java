@@ -24,7 +24,11 @@ public class Gam20_World extends A_World {
 
     private double spawnGrenade = 0;
 
-    private double lifeHelpText = 10.0;
+    private double spawnZombie = 0;
+
+    private double lifeHelpText = 5.0;
+
+    private double levelUpTime = GlobalConsts.LEVEL_UP_TIME;
 
     public void init() {
         // Add the Avatar
@@ -52,7 +56,7 @@ public class Gam20_World extends A_World {
 
 
         // Add one single zombie
-        gameObjects.add(new Gam20_ZombieAI(100, 100));
+        //gameObjects.add(new Gam20_ZombieAI(100, 100));
 
 
         counterL = new Gam20_CounterLevel(400, 40);
@@ -172,7 +176,7 @@ public class Gam20_World extends A_World {
 
 
     protected void createNewObjects(double diffSeconds) {
-        createZombie(diffSeconds);
+        // createZombie(diffSeconds);
         createGrenade(diffSeconds);
 
         // delete HelpText after ... seconds
@@ -183,6 +187,31 @@ public class Gam20_World extends A_World {
                 helpText = null;
             }
         }
+    }
+
+      protected void createNewZombies(double diffSeconds) {
+
+    
+        double INTERVAL = level <= 7 ? GlobalConsts.SPAWN_ZOMBIE_INTERVAL_PER_LEVEL[level-1] : GlobalConsts.SPAWN_ZOMBIE_INTERVAL_PER_LEVEL[6];
+
+        System.out.println("Zombie Spawn INTERVAL: " + INTERVAL);
+
+        spawnZombie += diffSeconds;
+        if (spawnZombie > INTERVAL) {
+            spawnZombie -= INTERVAL;
+
+            createZombie(diffSeconds);
+        }
+
+
+        //Level UP after ... seconds
+         levelUpTime -= diffSeconds;
+            if (levelUpTime < 0) {
+                level++;
+                counterL.increment();
+                levelUpTime = GlobalConsts.LEVEL_UP_TIME;
+            }
+
     }
 
 
@@ -223,6 +252,8 @@ public class Gam20_World extends A_World {
 
 
     private void createZombie(double diffSeconds) {
+
+        //Current interval depending on level
         final double INTERVAL = GlobalConsts.SPAWN_INTERVAL;
 
         timePassed += diffSeconds;
