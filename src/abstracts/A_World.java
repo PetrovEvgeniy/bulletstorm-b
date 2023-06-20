@@ -13,6 +13,7 @@ public abstract class A_World {
     private A_UserInput userInput;
 
 
+
     // Level of the game
     public int level = 1;
 
@@ -33,8 +34,17 @@ public abstract class A_World {
     public GameObject avatar;
     public ArrayList<A_TextObject> textObjects = new ArrayList<A_TextObject>();
 
+
+    // Define sound system (for sound effects)
+    public A_SoundSystem soundSystem;
+
+
     public A_World() {
         physicsSystem = new Gam20_PhysicsSystem(this);
+        soundSystem = new A_SoundSystem();
+        
+         // Load sounds
+        soundSystem.loadSound("gameOver", "resourses/sounds/game_over.wav");
     }
 
 
@@ -190,11 +200,27 @@ public abstract class A_World {
     // This method ends the game and freezes the objects
     private void endGame() {
 
+        // Play sound game over sound
+          soundSystem.playSound("gameOver");
+
          // Display the game over screen
           gameOverHelpText = new Gam20_HelpText(400, 400, "Game Over! You reached level: " + level);
           
           textObjects.clear();
           textObjects.add(gameOverHelpText);
+
+          // Pause the game for 2 seconds (GTA 5 style)
+          Object lock = new Object();
+            try {
+            synchronized (lock) {
+                // Pause the program
+                lock.wait(2000);
+            }
+
+            // Continue execution after the pause
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
          while (true) {
              graphicSystem.clear();

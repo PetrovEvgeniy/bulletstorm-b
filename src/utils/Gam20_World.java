@@ -36,6 +36,7 @@ public class Gam20_World extends A_World {
         avatar = new Wizard(2500, 2000,"resourses/sprites/fire_wizard/idle/wizard_1.png");
         gameObjects.add(avatar);
 
+
         // Set WorldPart position
         worldPartX = 1500;
         worldPartY = 1500;

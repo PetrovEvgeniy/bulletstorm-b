@@ -40,6 +40,4 @@ public final class GlobalConsts
   // Number of spawned zombies per level
   public static final double[] SPAWN_ZOMBIE_INTERVAL_PER_LEVEL = {0.35, 0.25, 0.2, 0.1, 0.05, 0.025, 0.001}; 
 
-
-
 }
