@@ -1,7 +1,9 @@
 package models;
 
+import abstracts.A_GameObjectList;
 import abstracts.A_World;
 import abstracts.GameObject;
+import utils.Gam20_World;
 import utils.GlobalConsts;
 
 import javax.imageio.ImageIO;
@@ -27,9 +29,8 @@ public class Wizard extends GameObject {
 
     @Override
     public void draw(Graphics graphics, A_World world) {
-
-        int x = (int) (this.x - this.radius - world.worldPartX);
-        int y = (int) (this.y - this.radius - world.worldPartY);
+        int x = (int) (this.x  - world.worldPartX);
+        int y = (int) (this.y  - world.worldPartY);
 
         if(spriteCounter > 10) {
             spriteNumber++;
@@ -39,6 +40,7 @@ public class Wizard extends GameObject {
             spriteCounter = 0;
             }
         spriteCounter++;
+        graphics.drawRect(x, y, width, height);
         graphics.drawImage(spriteAnimation.get(spriteNumber).getScaledInstance(width, height, Image.SCALE_FAST), (int) x, (int) y,width,height, null);
                                                                                                     //Changing argument width here ^ to -width flips character horizontally
     }
@@ -58,6 +60,39 @@ public class Wizard extends GameObject {
 
         }
     }
+    public void move(double x, double y ) {
+        // Move Avatar one step forward
+        super.move(x, y);
+
+        // Calculate all collisions with other Objects
+        A_GameObjectList collisions = world.getPhysicsSystem().getCollisions(this);
+        for (int i = 0; i < collisions.size(); i++) {
+            GameObject obj = collisions.get(i);
+
+            // If Object is a tree, move back one step
+            if (obj.type() == GlobalConsts.TYPE_TREE) {
+                this.moveBack();
+            }
+
+            // TODO: Do the same for other obstacles...
+
+
+            // Pick up Grenades
+            else if (obj.type() == GlobalConsts.TYPE_GRENADE) {
+                ((Gam20_World) world).addGrenade();
+                obj.isLiving = false;
+            }
+        }
+    }
+
+
+    public Shape getBounds(){
+        int x = (int) (this.x  - world.worldPartX);
+        int y = (int) (this.y  - world.worldPartY);
+        return new Rectangle((int) x, (int) y, width, height);
+    }
+
+
 
     public int type() {
         return GlobalConsts.TYPE_AVATAR;

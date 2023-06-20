@@ -68,10 +68,11 @@ class B_Panel extends JPanel implements A_GraphicSystem {
 
 
         if (dot.getImage() == null) {
-            graphics.setColor(dot.color);
-            graphics.fillOval(x, y, d, d);
-            graphics.setColor(Color.DARK_GRAY);
-            graphics.drawOval(x, y, d, d);
+            dot.draw(graphics,world);
+//            graphics.setColor(dot.color);
+//            graphics.fillOval(x, y, d, d);
+//            graphics.setColor(Color.DARK_GRAY);
+//            graphics.drawOval(x, y, d, d);
         } else {
             background.draw(graphics);
             dot.draw(graphics,world);

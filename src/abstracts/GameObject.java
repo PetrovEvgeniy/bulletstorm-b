@@ -32,7 +32,7 @@ public abstract class GameObject {
     // Destination the object will move to. Also, old coordinates
     private double destX, destY;
     private boolean hasDestination = false;
-    private double xOld, yOld;
+    public double xOld, yOld;
 
 
     // Objects for calling the physics methods
@@ -74,14 +74,22 @@ public abstract class GameObject {
             throw new RuntimeException(e);
         }
         //Setting height and width here according to screen size constants. We can change later
-        height = GlobalConsts.WORLDPART_HEIGHT/10;
-        width = GlobalConsts.WORLDPART_WIDTH/18;
+        height = GlobalConsts.WORLDPART_HEIGHT / 10;
+        width = GlobalConsts.WORLDPART_WIDTH / 18;
     }
 
 
     /**
      * Method that's called when the object has to move in direction of alfa
      */
+    public void move(double x, double y) {
+        this.yOld = this.y;
+        this.xOld = this.x;
+        this.x += x;
+        this.y += y;
+    }
+
+
     public void move(double diffSeconds) {
         if (!isMoving) return;
 
@@ -108,22 +116,22 @@ public abstract class GameObject {
     /**
      * I moved the all the drawing of GameObjects into this base class so its easier to make the sprite animations and overall readability
      */
-    public void draw(Graphics graphics, A_World world){
-
-        int x = (int) (this.x - this.radius - world.worldPartX);
-        int y = (int) (this.y - this.radius - world.worldPartY);
-        int d = (this.radius * 2);
-
-        if (objectImage == null) {
-            graphics.setColor(color);
-            graphics.fillOval(x, y, d, d);
-            graphics.setColor(Color.DARK_GRAY);
-            graphics.drawOval(x, y, d, d);
-        } else {
-            graphics.drawImage(objectImage.getScaledInstance(width, height, Image.SCALE_FAST), (int)x, (int)y, null);
-        }
-
-    }
+    public abstract void draw(Graphics graphics, A_World world) ;//{
+//
+//        int x = (int) (this.x - this.radius - world.worldPartX);
+//        int y = (int) (this.y - this.radius - world.worldPartY);
+//        int d = (this.radius * 2);
+//
+//        if (objectImage == null) {
+//            graphics.setColor(color);
+//            graphics.fillOval(x, y, d, d);
+//            graphics.setColor(Color.DARK_GRAY);
+//            graphics.drawOval(x, y, d, d);
+//        } else {
+//            graphics.drawImage(objectImage.getScaledInstance(width, height, Image.SCALE_FAST), (int) x, (int) y, null);
+//        }
+//
+//    }
 
 
     /**
@@ -188,16 +196,23 @@ public abstract class GameObject {
         world = w;
     }
 
-    public File getImageFile(){return imageFile;}
+    public File getImageFile() {
+        return imageFile;
+    }
 
-    public void setImageFile(File imageFile){
+    public void setImageFile(File imageFile) {
         this.imageFile = imageFile;
     }
 
-    public Image getImage(){return objectImage;}
+    public Image getImage() {
+        return objectImage;
+    }
 
-    public void setImage(BufferedImage image){
+    public void setImage(BufferedImage image) {
         this.objectImage = image;
     }
+
+
+    public abstract Shape getBounds();
 
 }

@@ -42,17 +42,17 @@ public class Gam20_World extends A_World {
 
         // [REMOVED] Add a little forest
 
-         for (int x = 0; x < 5000; x += 1000) {
-
-             for (int y = 0; y < 4000; y += 800) {
-                 gameObjects.add(new Gam20_Tree(x + 300, y + 200, 80));
-                 gameObjects.add(new Gam20_Tree(x + 600, y + 370, 50));
-                 gameObjects.add(new Gam20_Tree(x + 200, y + 600, 50));
-                 gameObjects.add(new Gam20_Tree(x + 500, y + 800, 40));
-                 gameObjects.add(new Gam20_Tree(x + 900, y + 500, 100));
-                 gameObjects.add(new Gam20_Tree(x + 760, y + 160, 40));
-             }
-         }
+//         for (int x = 0; x < 5000; x += 1000) {
+//
+//             for (int y = 0; y < 4000; y += 800) {
+//                 gameObjects.add(new Gam20_Tree(x + 300, y + 200, 80));
+//                 gameObjects.add(new Gam20_Tree(x + 600, y + 370, 50));
+//                 gameObjects.add(new Gam20_Tree(x + 200, y + 600, 50));
+//                 gameObjects.add(new Gam20_Tree(x + 500, y + 800, 40));
+//                 gameObjects.add(new Gam20_Tree(x + 900, y + 500, 100));
+//                 gameObjects.add(new Gam20_Tree(x + 760, y + 160, 40));
+//             }
+//         }
 
 
         // Add one single zombie
@@ -105,7 +105,6 @@ public class Gam20_World extends A_World {
         //
         // Keyboard events
         //
-        //TODO MAYBE FIX COMBINATIONS
 
         double denom = 1.7;
         if (userInput.isKeyEvent) {
@@ -113,28 +112,29 @@ public class Gam20_World extends A_World {
             // for now it is ok
 
            // if(userInput.keyPressed.size()
+
             if (userInput.keyPressed.contains('w') && userInput.keyPressed.contains('a')) {
-                moveChar(-charSpeed/denom, -charSpeed/denom);
+                avatar.move(-charSpeed/denom, -charSpeed/denom);
             }
             else if (userInput.keyPressed.contains('s') && userInput.keyPressed.contains('a')) {
 
-                moveChar(-charSpeed/denom, charSpeed/denom);
+                avatar.move(-charSpeed/denom, charSpeed/denom);
             }
             else if (userInput.keyPressed.contains('w') && userInput.keyPressed.contains('d')) {
-                moveChar(charSpeed/denom, -charSpeed/denom);
+                avatar.move(charSpeed/denom, -charSpeed/denom);
             }
             else if (userInput.keyPressed.contains('s') && userInput.keyPressed.contains('d')) {
-                moveChar(charSpeed/denom, charSpeed/denom);
+                avatar.move(charSpeed/denom, charSpeed/denom);
             }
             else if (userInput.keyPressed.contains('w')) {
-                moveChar(0, -charSpeed);
+                avatar.move(0, -charSpeed);
             } else if(userInput.keyPressed.contains('a')){
-                moveChar(-charSpeed, 0);
+                avatar.move(-charSpeed, 0);
             }
             else if (userInput.keyPressed.contains('s')) {
-                moveChar(0, charSpeed);
+                avatar.move(0, charSpeed);
             }else if(userInput.keyPressed.contains('d')){
-                moveChar(charSpeed, 0);
+                avatar.move(charSpeed, 0);
             }
             // TODO
              if (userInput.keyPressed.contains(' ')) {
@@ -194,7 +194,7 @@ public class Gam20_World extends A_World {
     
         double INTERVAL = level <= 7 ? GlobalConsts.SPAWN_ZOMBIE_INTERVAL_PER_LEVEL[level-1] : GlobalConsts.SPAWN_ZOMBIE_INTERVAL_PER_LEVEL[6];
 
-        System.out.println("Zombie Spawn INTERVAL: " + INTERVAL);
+      //  System.out.println("Zombie Spawn INTERVAL: " + INTERVAL);
 
         spawnZombie += diffSeconds;
         if (spawnZombie > INTERVAL) {
