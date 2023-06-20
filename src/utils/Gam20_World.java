@@ -170,9 +170,14 @@ public class Gam20_World extends A_World {
             this.gameObjects.add(shot);
         }
 
+        //Play explosion sound
+        soundSystem.playSound("explosion");
+
         // Adjust grenade counter
         grenades--;
         counterG.setNumber(grenades);
+
+
     }
 
 
@@ -229,6 +234,7 @@ public class Gam20_World extends A_World {
             double x = worldPartX + Math.random() * GlobalConsts.WORLDPART_WIDTH;
             double y = worldPartY + Math.random() * GlobalConsts.WORLDPART_HEIGHT;
 
+
             // if too close to Avatar, cancel
             double dx = x - avatar.x;
             double dy = y - avatar.y;
@@ -246,9 +252,10 @@ public class Gam20_World extends A_World {
                 return;
             }
 
-            // else add zombie to world
+            // add Grenade
             this.gameObjects.add(grenade);
             counterG.setNumber(grenades);
+
         }
 
     }

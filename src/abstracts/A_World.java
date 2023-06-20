@@ -45,6 +45,7 @@ public abstract class A_World {
         
          // Load sounds
         soundSystem.loadSound("gameOver", "resourses/sounds/game_over.wav");
+        soundSystem.loadSound("explosion", "resourses/sounds/explosion.wav");
     }
 
 
