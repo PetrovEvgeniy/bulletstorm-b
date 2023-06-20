@@ -42,17 +42,17 @@ public class Gam20_World extends A_World {
 
         // [REMOVED] Add a little forest
 
-//         for (int x = 0; x < 5000; x += 1000) {
-//
-//             for (int y = 0; y < 4000; y += 800) {
-//                 gameObjects.add(new Gam20_Tree(x + 300, y + 200, 80));
-//                 gameObjects.add(new Gam20_Tree(x + 600, y + 370, 50));
-//                 gameObjects.add(new Gam20_Tree(x + 200, y + 600, 50));
-//                 gameObjects.add(new Gam20_Tree(x + 500, y + 800, 40));
-//                 gameObjects.add(new Gam20_Tree(x + 900, y + 500, 100));
-//                 gameObjects.add(new Gam20_Tree(x + 760, y + 160, 40));
-//             }
-//         }
+         for (int x = 0; x < 5000; x += 1000) {
+
+             for (int y = 0; y < 4000; y += 800) {
+                 gameObjects.add(new Gam20_Tree(x + 300, y + 200, 80));
+                 gameObjects.add(new Gam20_Tree(x + 600, y + 370, 50));
+                 gameObjects.add(new Gam20_Tree(x + 200, y + 600, 50));
+                 gameObjects.add(new Gam20_Tree(x + 500, y + 800, 40));
+                 gameObjects.add(new Gam20_Tree(x + 900, y + 500, 100));
+                 gameObjects.add(new Gam20_Tree(x + 760, y + 160, 40));
+             }
+         }
 
 
         // Add one single zombie

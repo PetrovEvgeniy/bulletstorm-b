@@ -19,7 +19,7 @@ public class Gam20_PhysicsSystem extends A_PhysicsSystem {
 
 
     //
-    // Collisions for CIRCLE objects only...
+    // Collisions for CIRCLES AND RECTANGLES
     //
     public A_GameObjectList getCollisions(GameObject object) {
         A_GameObjectList result = new A_GameObjectList();
@@ -32,6 +32,8 @@ public class Gam20_PhysicsSystem extends A_PhysicsSystem {
             if (obj2 == object) continue;
 
             // Check if they touch each other
+
+            // 2 CIRCLES
             if (obj2.getBounds() instanceof Ellipse2D && object.getBounds() instanceof Ellipse2D) {
                 double dist = object.radius + obj2.radius;
                 double dx = object.x - obj2.x;
@@ -40,14 +42,18 @@ public class Gam20_PhysicsSystem extends A_PhysicsSystem {
                 if (dx * dx + dy * dy < dist * dist) {
                     result.add(obj2);
                 }
+            // A CIRCLE AND A RECTANGLE
             }else if (object.getBounds() instanceof Ellipse2D && obj2.getBounds() instanceof Rectangle){
+                // CONVERT THE CIRCLE TO 50 POINTS
                 List<Point> points = getCirclePoints(object);
                 for(int j = 0; j < points.size(); j++){
+                    //now it is much easier to check the collision of points
                     if(((Rectangle) obj2.getBounds()).contains(points.get(j))){
                         result.add(obj2);
                         break;
                     }
                 }
+                // TWO RECTANGLES
             }else if(object.getBounds() instanceof Rectangle && obj2.getBounds() instanceof Rectangle){
                 if(((Rectangle) object.getBounds()).intersects((Rectangle) obj2.getBounds())){
                     result.add(obj2);
@@ -64,7 +70,7 @@ public class Gam20_PhysicsSystem extends A_PhysicsSystem {
         }
         return result;
     }
-
+    //converts the circle into n number of points
     private List<Point> getCirclePoints(GameObject object){
         List<Point> points = new ArrayList<>();
         int numPoints = 50;
