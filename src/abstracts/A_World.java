@@ -2,6 +2,7 @@ package abstracts;
 
 import utils.Gam20_PhysicsSystem;
 import utils.GlobalConsts;
+import utils.Gam20_HelpText;
 
 import java.util.ArrayList;
 
@@ -24,6 +25,8 @@ public abstract class A_World {
 
     // Define if game is over
     public boolean gameOver = false;
+
+    public Gam20_HelpText gameOverHelpText;
 
     // All objects in the game, including the Avatar
     public A_GameObjectList gameObjects = new A_GameObjectList();
@@ -64,20 +67,29 @@ public abstract class A_World {
 
             // Processing user input here
             userInput = inputSystem.getUserInput();
+
+            // If game is not over process the user input
             processUserInput(userInput, millisDiff / 1000.0);
+          
             userInput.clear();
 
-            // No actions if game is over
+            // If game is over display the game over screen
             if (gameOver) {
-                continue;
+            
+                //[Game Over] Stop the game
+               endGame();
+               
             }
 
-            // Moving all objects. Zombies/Enemies will follow the player in their move method
+            // Moving all objects. Zombies/Enemies will follow the player in their move method. The objects will only move if the game is not over 
             int gameSize = gameObjects.size();
+
             for (int i = 0; i < gameSize; i++) {
                 GameObject obj = gameObjects.get(i);
                 if (obj.isLiving) obj.move(millisDiff / 1000.0);
             }
+        
+            
 
 
             // Delete the dead objects
@@ -173,6 +185,34 @@ public abstract class A_World {
 
     public A_PhysicsSystem getPhysicsSystem() {
         return physicsSystem;
+    }
+
+    // This method ends the game and freezes the objects
+    private void endGame() {
+
+         // Display the game over screen
+          gameOverHelpText = new Gam20_HelpText(400, 400, "Game Over! You reached level: " + level);
+          
+          textObjects.clear();
+          textObjects.add(gameOverHelpText);
+
+         while (true) {
+             graphicSystem.clear();
+
+            // Draw all objects so they stll appear on the screen
+            for (int i = 0; i < gameObjects.size(); i++) {
+                graphicSystem.draw(gameObjects.get(i));
+            }
+
+            // Draw text objects
+            for (int i = 0; i < textObjects.size(); i++) {
+                graphicSystem.draw(textObjects.get(i));
+            }
+
+            // Redraw everything here
+            graphicSystem.redraw();
+
+            }
     }
 
 
