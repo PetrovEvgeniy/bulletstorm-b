@@ -69,6 +69,11 @@ public class Wizard extends GameObject {
         for (int i = 0; i < collisions.size(); i++) {
             GameObject obj = collisions.get(i);
 
+
+
+
+
+
             // If Object is a tree, move back one step
             if (obj.type() == GlobalConsts.TYPE_TREE) {
                 this.moveBack();
