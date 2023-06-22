@@ -32,6 +32,7 @@ public final class GlobalConsts
   public static final int TYPE_ZOMBIE  = 4;
   public static final int TYPE_SHOT    = 5;
   public static final int TYPE_GRENADE = 6;
+  public static final int TYPE_ROCK    = 7;
 
 
   // Time to wait before leveling up
