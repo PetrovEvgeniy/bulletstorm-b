@@ -96,7 +96,7 @@ public class Gam20_World extends A_World {
             {
                 timeSinceLastShot = 0;
 
-                models.Gam20_Shot shot = new models.Gam20_Shot(
+                Wizard_Fireball shot = new Wizard_Fireball(
                         avatar.x,avatar.y,userInput.mouseMovedX+worldPartX,userInput.mouseMovedY+worldPartY);
                 this.gameObjects.add(shot);
             }

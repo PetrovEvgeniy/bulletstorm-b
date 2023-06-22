@@ -5,23 +5,45 @@ import abstracts.A_World;
 import abstracts.GameObject;
 import utils.GlobalConsts;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 
-public class Gam20_Shot extends GameObject {
+public class Wizard_Fireball extends GameObject {
+
+
     private double lifeTime = 1.2;
+    private int spriteCounter = 0;
+    private int spriteNumber = 0;
 
-    public Gam20_Shot(double x, double y, double xDest, double yDest) {
-        super(x, y, Math.atan2(yDest - y, xDest - x), 500, 4, Color.YELLOW);
+
+    ArrayList<BufferedImage> shootingAnimation;
+
+    public Wizard_Fireball(double x, double y, double xDest, double yDest) {
+        super(x, y, Math.atan2(yDest - y, xDest - x), 500, 4, Color.RED);   //Color in case there's issue with loading the animation
         this.isMoving = true;
+        shootingAnimation = new ArrayList<>();
+        width = 35;
+        height = 25;
+        loadAnimations();
     }
 
-    public Gam20_Shot(double x, double y, double a, double s, double time) {
-        super(x, y, a, s, 4, Color.YELLOW);
-        lifeTime = time;
-        this.isMoving = true;
+    public void loadAnimations() {
+        String path = "resourses/sprites/fire_wizard/bullets";
+        for (int i = 1; i < 5; i++) {
+            String fileName = "bullet_" + i + ".png";
+            try {
+                shootingAnimation.add(ImageIO.read(new File(path + "/" + fileName)));
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+                throw new RuntimeException(e);
+            }
+        }
     }
-
 
     public void move(double diffSeconds) {
         lifeTime -= diffSeconds;
@@ -72,14 +94,17 @@ public class Gam20_Shot extends GameObject {
         int y = (int) (this.y - this.radius - world.worldPartY);
         int d = (this.radius * 2);
 
-        if (objectImage == null) {
-            graphics.setColor(color);
-            graphics.fillOval(x, y, d, d);
-            graphics.setColor(Color.DARK_GRAY);
-            graphics.drawOval(x, y, d, d);
-        } else {
-            graphics.drawImage(objectImage.getScaledInstance(width, height, Image.SCALE_FAST), (int) x, (int) y, null);
-        }
 
+        if (spriteCounter > 10) {
+            spriteNumber++;
+            if (spriteNumber >= shootingAnimation.size()) {
+                spriteNumber = 0;
+            }
+            spriteCounter = 0;
+        }
+        spriteCounter++;
+
+        graphics.drawImage(shootingAnimation.get(spriteNumber).getScaledInstance(width, height, Image.SCALE_FAST), (int) x, (int) y, null);
     }
+
 }
