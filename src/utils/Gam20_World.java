@@ -79,29 +79,28 @@ public class Gam20_World extends A_World {
         //
         // Mouse events
         //
-//        	if(userInput.isMouseEvent)
-//        	{
-//        	  // move
-//        	  if(button==1) { avatar.setDestination(userInput.mousePressedX+worldPartX,
-//                                      userInput.mousePressedY+worldPartY);
-//        	  }
-//        	}
-//
-//        //
-//        // Mouse still pressed?
-//        //
-//        	if(userInput.isMousePressed && button==3) {
-//        	  // only 1 shot every ... seconds:
-//              timeSinceLastShot += diffSeconds;
-//              if(timeSinceLastShot > 0.2)
-//              {
-//            	timeSinceLastShot = 0;
-//
-//                models.Gam20_Shot shot = new models.Gam20_Shot(
-//                  avatar.x,avatar.y,userInput.mouseMovedX+worldPartX,userInput.mouseMovedY+worldPartY);
-//                this.gameObjects.add(shot);
-//              }
-//        	}
+//        if(userInput.isMouseEvent){
+//            // move
+//            if(button==1) { avatar.setDestination(userInput.mousePressedX+worldPartX,
+//                    userInput.mousePressedY+worldPartY);
+//            }
+//        }
+
+        //
+        // Mouse still pressed?
+        //
+        if(userInput.isMousePressed && button==1) {
+            // only 1 shot every ... seconds:
+            timeSinceLastShot += diffSeconds;
+            if(timeSinceLastShot > 0.3)
+            {
+                timeSinceLastShot = 0;
+
+                models.Gam20_Shot shot = new models.Gam20_Shot(
+                        avatar.x,avatar.y,userInput.mouseMovedX+worldPartX,userInput.mouseMovedY+worldPartY);
+                this.gameObjects.add(shot);
+            }
+        }
 
         //
         // Keyboard events
@@ -116,26 +115,31 @@ public class Gam20_World extends A_World {
 
             if (userInput.keyPressed.contains('w') && userInput.keyPressed.contains('a')) {
                 avatar.move(-charSpeed/denom, -charSpeed/denom);
+                avatar.isFacingRight = false;
             }
             else if (userInput.keyPressed.contains('s') && userInput.keyPressed.contains('a')) {
-
                 avatar.move(-charSpeed/denom, charSpeed/denom);
+                avatar.isFacingRight = false;
             }
             else if (userInput.keyPressed.contains('w') && userInput.keyPressed.contains('d')) {
                 avatar.move(charSpeed/denom, -charSpeed/denom);
+                avatar.isFacingRight = true;
             }
             else if (userInput.keyPressed.contains('s') && userInput.keyPressed.contains('d')) {
                 avatar.move(charSpeed/denom, charSpeed/denom);
+                avatar.isFacingRight = true;
             }
             else if (userInput.keyPressed.contains('w')) {
                 avatar.move(0, -charSpeed);
             } else if(userInput.keyPressed.contains('a')){
                 avatar.move(-charSpeed, 0);
+                avatar.isFacingRight = false;
             }
             else if (userInput.keyPressed.contains('s')) {
                 avatar.move(0, charSpeed);
             }else if(userInput.keyPressed.contains('d')){
                 avatar.move(charSpeed, 0);
+                avatar.isFacingRight = true;
             }
             // TODO
              if (userInput.keyPressed.contains(' ')) {

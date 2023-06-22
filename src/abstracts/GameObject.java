@@ -87,7 +87,7 @@ public abstract class GameObject {
      * Method that's called when the object has to move in direction of alfa
      */
     public void move(double x, double y) {
-
+        isMoving = true;
         this.yOld = this.y;
         this.xOld = this.x;
         this.x += x;
@@ -97,6 +97,7 @@ public abstract class GameObject {
 
 
     public void move(double diffSeconds) {
+
         if (!isMoving) return;
 
         // Stop if destination is reached
@@ -117,6 +118,7 @@ public abstract class GameObject {
         // Finally, moving one step
         x += Math.cos(alfa) * speed * diffSeconds;
         y += Math.sin(alfa) * speed * diffSeconds;
+
     }
 
 
@@ -221,5 +223,9 @@ public abstract class GameObject {
 
 
     public abstract Shape getBounds();
+
+    public void setMoving(boolean isMoving){
+        this.isMoving = isMoving;
+    }
 
 }

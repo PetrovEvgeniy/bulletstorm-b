@@ -97,7 +97,7 @@ public abstract class A_World {
 
             for (int i = 0; i < gameSize; i++) {
                 GameObject obj = gameObjects.get(i);
-                if (obj.isLiving) obj.move(millisDiff / 1000.0);
+                if (obj.isLiving && obj != avatar) obj.move(millisDiff / 1000.0);
             }
         
             
