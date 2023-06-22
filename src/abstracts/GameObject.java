@@ -32,6 +32,10 @@ public abstract class GameObject {
     // Destination the object will move to. Also, old coordinates
     private double destX, destY;
     private boolean hasDestination = false;
+
+    // isFacingRight is here to check if a characters model should be flipped horizontally
+    public boolean isFacingRight = true;
+
     public double xOld, yOld;
 
 
@@ -83,10 +87,12 @@ public abstract class GameObject {
      * Method that's called when the object has to move in direction of alfa
      */
     public void move(double x, double y) {
+
         this.yOld = this.y;
         this.xOld = this.x;
         this.x += x;
         this.y += y;
+
     }
 
 
@@ -95,6 +101,7 @@ public abstract class GameObject {
 
         // Stop if destination is reached
         if (hasDestination) {
+
             double diffX = Math.abs(x - destX);
             double diffY = Math.abs(y - destY);
             if (diffX < 3 && diffY < 3) {
