@@ -36,6 +36,7 @@ public abstract class A_World {
     public ArrayList<A_TextObject> textObjects = new ArrayList<A_TextObject>();
 
     Background background;
+    Background background_death;
 
 
     // Define sound system (for sound effects)
@@ -46,10 +47,13 @@ public abstract class A_World {
         physicsSystem = new Gam20_PhysicsSystem(this);
         soundSystem = new A_SoundSystem();
         background = new Background("resourses/backgrounds/backgrounddetailed1.png");
-        
-         // Load sounds
+        background_death = new Background("resourses/backgrounds/backgrounddetailed1-death.png");
+
+         // Loading sounds happens here
         soundSystem.loadSound("gameOver", "resourses/sounds/game_over.wav");
         soundSystem.loadSound("explosion", "resourses/sounds/explosion.wav");
+        soundSystem.loadSound("pickup", "resourses/sounds/pickup.wav");
+
     }
 
 
@@ -235,10 +239,27 @@ public abstract class A_World {
          while (true) {
              graphicSystem.clear();
 
-            // Draw all objects so they stll appear on the screen
+             //Draw the background when you are dead
+              graphicSystem.draw(background_death);
+
+            // Draw ONLY SOME objects so they stll appear on the screen (depending on their type)
             for (int i = 0; i < gameObjects.size(); i++) {
-                graphicSystem.draw(gameObjects.get(i));
+
+                GameObject obj = gameObjects.get(i);
+
+                // When the game is ended only display those objects
+                switch(obj.type()){
+                    case GlobalConsts.TYPE_AVATAR:
+                    case GlobalConsts.TYPE_ZOMBIE:
+                        graphicSystem.draw(obj);
+                        break;
+                    default: 
+                    
+                    break;
+                }
             }
+
+            //TODO play death animation
 
             // Draw text objects
             for (int i = 0; i < textObjects.size(); i++) {
