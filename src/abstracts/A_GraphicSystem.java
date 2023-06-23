@@ -2,6 +2,7 @@ package abstracts;
 
 import abstracts.A_World;
 import abstracts.GameObject;
+import models.Background;
 
 /**
  * Interface for implementing the methods for the graphic system
@@ -22,4 +23,6 @@ public interface A_GraphicSystem
   
   // Set the world
   void setWorld(A_World world);
+
+  void draw(Background background);
 }

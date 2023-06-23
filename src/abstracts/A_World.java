@@ -1,5 +1,6 @@
 package abstracts;
 
+import models.Background;
 import utils.Gam20_PhysicsSystem;
 import utils.GlobalConsts;
 import utils.Gam20_HelpText;
@@ -34,6 +35,8 @@ public abstract class A_World {
     public GameObject avatar;
     public ArrayList<A_TextObject> textObjects = new ArrayList<A_TextObject>();
 
+    Background background;
+
 
     // Define sound system (for sound effects)
     public A_SoundSystem soundSystem;
@@ -42,6 +45,7 @@ public abstract class A_World {
     public A_World() {
         physicsSystem = new Gam20_PhysicsSystem(this);
         soundSystem = new A_SoundSystem();
+        background = new Background("resourses/backgrounds/backgrounddetailed1.png");
         
          // Load sounds
         soundSystem.loadSound("gameOver", "resourses/sounds/game_over.wav");
@@ -118,8 +122,13 @@ public abstract class A_World {
             // Adjust displayed pane of the world
             this.adjustWorldPart();
 
+            //First drawing the background
+
+
+
             // Draw whatever objects needs to be drawn
             graphicSystem.clear();
+            graphicSystem.draw(background);
             for (int i = 0; i < gameSize; i++) {
                 graphicSystem.draw(gameObjects.get(i));
             }

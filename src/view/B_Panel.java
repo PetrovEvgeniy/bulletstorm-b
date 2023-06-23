@@ -33,7 +33,7 @@ class B_Panel extends JPanel implements A_GraphicSystem {
 
     //Playing around with background image from here:
 
-    Background background;
+
 
 
     public B_Panel() {
@@ -48,7 +48,7 @@ class B_Panel extends JPanel implements A_GraphicSystem {
         this.addKeyListener(inputSystem);
 
 
-        background = new Background("resourses/backgrounds/backgrounddetailed1.png");
+
 
     }
 
@@ -75,13 +75,17 @@ class B_Panel extends JPanel implements A_GraphicSystem {
 //            graphics.setColor(Color.DARK_GRAY);
 //            graphics.drawOval(x, y, d, d);
         } else {
-            background.draw(graphics);
+
             dot.draw(graphics,world);
             //graphics.drawImage(dot.getImage().getScaledInstance(dot.width, dot.height, Image.SCALE_FAST), (int)x, (int)y, null);
         }
 
 
 
+    }
+
+    public final void draw(Background background){
+        background.draw(graphics);
     }
 
     public final void draw(A_TextObject text) {
