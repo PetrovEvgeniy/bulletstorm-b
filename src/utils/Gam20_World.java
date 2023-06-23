@@ -5,7 +5,7 @@ import abstracts.A_UserInput;
 import abstracts.A_World;
 import abstracts.GameObject;
 import models.*;
-import utils.Gam20_Counter;
+import utils.Gam20_CounterEnemies;
 import utils.Gam20_CounterLevel;
 import utils.Gam20_CounterGrenades;
 import utils.Gam20_HelpText;
@@ -18,9 +18,11 @@ public class Gam20_World extends A_World {
 
     // For grenades
     private int grenades = 5;
+
     private Gam20_CounterLevel counterL;
     private Gam20_CounterGrenades counterG;
-    private Gam20_Counter counterZ;
+    private Gam20_CounterEnemies counterE;
+
     private Gam20_HelpText helpText;
 
     private double spawnGrenade = 0;
@@ -59,12 +61,12 @@ public class Gam20_World extends A_World {
 
 
         counterL = new Gam20_CounterLevel(400, 40);
-        counterZ = new Gam20_Counter(20, 40);
+        counterE = new Gam20_CounterEnemies(20, 40);
         counterG = new Gam20_CounterGrenades(770, 40);
         helpText = new Gam20_HelpText(100, 400);
 
         counterG.setNumber(grenades);
-        textObjects.add(counterZ);
+        textObjects.add(counterE);
         textObjects.add(counterG);
         textObjects.add(counterL);
         textObjects.add(helpText);
@@ -190,7 +192,6 @@ public class Gam20_World extends A_World {
 
 
     protected void createNewObjects(double diffSeconds) {
-        // createZombie(diffSeconds);
         createGrenade(diffSeconds);
 
         // delete HelpText after ... seconds
@@ -308,7 +309,7 @@ public class Gam20_World extends A_World {
             // else add zombie to world
             this.gameObjects.add(zombie);
             zombie.setDestination(avatar);
-            Gam20_Counter counter = (Gam20_Counter) textObjects.get(0);
+            Gam20_CounterEnemies counter = (Gam20_CounterEnemies) textObjects.get(0);
             counter.increment();
         }
 

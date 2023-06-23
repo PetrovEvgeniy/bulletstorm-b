@@ -18,6 +18,9 @@ public abstract class A_World {
     // Level of the game
     public int level = 1;
 
+    // Number of enemies kills
+    public int enemiesKilled = 0;
+
     // Top left corner of the displayed pane of the world
     public static double worldPartX = 0;
     public static double worldPartY = 0;
@@ -41,7 +44,6 @@ public abstract class A_World {
 
     // Define sound system (for sound effects)
     public A_SoundSystem soundSystem;
-
 
     public A_World() {
         physicsSystem = new Gam20_PhysicsSystem(this);
@@ -214,6 +216,9 @@ public abstract class A_World {
     // This method ends the game and freezes the objects
     private void endGame() {
 
+        // Stop all sounds 
+        soundSystem.stopAllSounds();
+
         // Play sound game over sound
           soundSystem.playSound("gameOver");
 
@@ -250,13 +255,14 @@ public abstract class A_World {
                 // When the game is ended only display those objects
                 switch(obj.type()){
                     case GlobalConsts.TYPE_AVATAR:
-                    case GlobalConsts.TYPE_ZOMBIE:
-                        graphicSystem.draw(obj);
-                        break;
+                        case GlobalConsts.TYPE_ZOMBIE:
+                            graphicSystem.draw(obj);
+                    break;
                     default: 
                     
                     break;
                 }
+
             }
 
             //TODO play death animation
