@@ -104,6 +104,12 @@ public class Wizard_Fireball extends GameObject {
         }
         spriteCounter++;
 
+        //TODO DELETE WHEN NOT NEEDED
+        graphics.setColor(color);
+        graphics.fillOval(x, y, d, d);
+        graphics.setColor(Color.RED);
+        graphics.drawOval(x, y, d, d);
+//
         graphics.drawImage(shootingAnimation.get(spriteNumber).getScaledInstance(width, height, Image.SCALE_FAST), (int) x, (int) y, null);
     }
 

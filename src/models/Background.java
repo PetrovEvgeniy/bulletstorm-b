@@ -25,6 +25,8 @@ public class Background {
 
 
     public void draw(Graphics graphics){
+        //insane
+        // we draw only the visible part of the screen
         BufferedImage sub = this.background.getSubimage((int) A_World.worldPartX, (int) A_World.worldPartY, GlobalConsts.WORLDPART_WIDTH, GlobalConsts.WORLDPART_HEIGHT);
         graphics.drawImage(sub, 0, 0, null);
     }
