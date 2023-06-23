@@ -23,7 +23,7 @@ public class Background {
 
 
     public void draw(Graphics graphics){
-        graphics.drawImage(this.background.getScaledInstance(GlobalConsts.WORLDPART_WIDTH, GlobalConsts.WORLDPART_HEIGHT, Image.SCALE_FAST), 0, 0, null);
+        graphics.drawImage(this.background, 0, 0, null);
     }
 
 

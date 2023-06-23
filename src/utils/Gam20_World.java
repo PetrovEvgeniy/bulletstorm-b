@@ -49,9 +49,6 @@ public class Gam20_World extends A_World {
                   gameObjects.add(new Rock(x + 300, y + 200));
                   gameObjects.add(new Rock(x + 600, y + 370));
                   gameObjects.add(new Rock(x + 200, y + 600));
-                  gameObjects.add(new Rock(x + 500, y + 800));
-                  gameObjects.add(new Rock(x + 900, y + 500));
-                  gameObjects.add(new Rock(x + 760, y + 160));
               }
           }
 

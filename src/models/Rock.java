@@ -11,7 +11,7 @@ public class Rock extends Foliage{
 
     @Override
     public int type() {
-        return GlobalConsts.TYPE_ROCK;
+        return GlobalConsts.TYPE_TREE;
     }
 
 }
