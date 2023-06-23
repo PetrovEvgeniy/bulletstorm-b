@@ -3,6 +3,7 @@ package utils;
 import abstracts.A_GameObjectList;
 import abstracts.A_UserInput;
 import abstracts.A_World;
+import abstracts.GameObject;
 import models.*;
 import utils.Gam20_Counter;
 import utils.Gam20_CounterLevel;
@@ -140,7 +141,8 @@ public class Gam20_World extends A_World {
             }
             // TODO
              if (userInput.keyPressed.contains(' ')) {
-                throwGrenade(userInput.mouseMovedX + worldPartX, userInput.mouseMovedY + worldPartY);
+                 throwSword();
+                //throwGrenade(userInput.mouseMovedX + worldPartX, userInput.mouseMovedY + worldPartY);
             }
 
 //
@@ -151,6 +153,11 @@ public class Gam20_World extends A_World {
 //
 //            }
         }
+    }
+
+    private void throwSword() {
+        GameObject sword = new SpinningSword("resourses/sprites/Sword/SwordH.png",avatar);
+        gameObjects.add(sword);
     }
 
 
