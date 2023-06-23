@@ -19,8 +19,8 @@ public abstract class A_World {
     public int level = 1;
 
     // Top left corner of the displayed pane of the world
-    public double worldPartX = 0;
-    public double worldPartY = 0;
+    public static double worldPartX = 0;
+    public static double worldPartY = 0;
 
     // Define maximum frame rate
     private static final int FRAME_MINIMUM_MILLIS = 10;

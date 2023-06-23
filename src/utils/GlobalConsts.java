@@ -6,8 +6,8 @@ package utils;
 public final class GlobalConsts
 {
   // Define size of the world
-  public static final int WORLD_WIDTH      = 5000;
-  public static final int WORLD_HEIGHT     = 4000;
+  public static final int WORLD_WIDTH      = 3200;
+  public static final int WORLD_HEIGHT     = 3200;
 
   // Define size of the displayed part of the world
   public static final int WORLDPART_WIDTH  = 1200;

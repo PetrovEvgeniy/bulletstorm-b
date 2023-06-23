@@ -40,8 +40,10 @@ public class B_InputSystem
     public void keyPressed(KeyEvent evt) {
         userInput.isKeyEvent = true;
 
-
-        userInput.keyPressed.add(evt.getKeyChar());
+        if(evt.getKeyChar() >= 65 && evt.getKeyChar() <= 90){
+            userInput.keyPressed.add((char)(evt.getKeyChar() - ('A' - 'a')));
+        }else
+            userInput.keyPressed.add(evt.getKeyChar());
 
 
      //   System.out.println(evt.getKeyChar());
@@ -58,7 +60,11 @@ public class B_InputSystem
     }
 
     public void keyReleased(KeyEvent evt) {
-        userInput.keyPressed.remove(evt.getKeyChar());
+        if(evt.getKeyChar() >= 65 && evt.getKeyChar() <= 90){
+            userInput.keyPressed.remove((char)(evt.getKeyChar() - ('A' - 'a')));
+        }else
+            userInput.keyPressed.remove(evt.getKeyChar());
+
     }
 
     public void keyTyped(KeyEvent evt) {

@@ -1,5 +1,6 @@
 package models;
 
+import abstracts.A_World;
 import utils.GlobalConsts;
 
 import javax.imageio.ImageIO;
@@ -7,6 +8,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.nio.Buffer;
 
 public class Background {
     BufferedImage background;
@@ -23,7 +25,8 @@ public class Background {
 
 
     public void draw(Graphics graphics){
-        graphics.drawImage(this.background, 0, 0, null);
+        BufferedImage sub = this.background.getSubimage((int) A_World.worldPartX, (int) A_World.worldPartY, GlobalConsts.WORLDPART_WIDTH, GlobalConsts.WORLDPART_HEIGHT);
+        graphics.drawImage(sub, 0, 0, null);
     }
 
 
