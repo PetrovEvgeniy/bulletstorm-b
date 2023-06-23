@@ -20,6 +20,11 @@ public abstract class A_World {
 
     // Number of enemies kills
     public int enemiesKilled = 0;
+    
+    // number of enemies killed (in the previous itteration)
+    private int _prevEnemiesKilled = 0;
+
+    private double _multikillTime = GlobalConsts.MULTI_KILL_TIME;
 
     // Top left corner of the displayed pane of the world
     public static double worldPartX = 0;
@@ -55,6 +60,12 @@ public abstract class A_World {
         soundSystem.loadSound("gameOver", "resourses/sounds/game_over.wav");
         soundSystem.loadSound("explosion", "resourses/sounds/explosion.wav");
         soundSystem.loadSound("pickup", "resourses/sounds/pickup.wav");
+        soundSystem.loadSound("monsterKill", "resourses/sounds/multikill/mmonster_kill.wav");
+        soundSystem.loadSound("killingSpree", "resourses/sounds/multikill/killingspree.wav");
+        soundSystem.loadSound("rampage", "resourses/sounds/multikill/rampage.wav");
+        soundSystem.loadSound("dominating", "resourses/sounds/multikill/dominating.wav");
+        soundSystem.loadSound("unstoppable", "resourses/sounds/multikill/unstoppable.wav");
+         soundSystem.loadSound("godlike", "resourses/sounds/multikill/godlike.wav");
 
     }
 
@@ -124,6 +135,9 @@ public abstract class A_World {
                 }
             }
 
+            //Handle if multiple enemies were killed at the same time
+            handleMultiKill(millisDiff / 1000.0);
+
 
             // Adjust displayed pane of the world
             this.adjustWorldPart();
@@ -153,6 +167,7 @@ public abstract class A_World {
             
             // Spawn any new zombies here (depending on level)
             createNewZombies(millisDiff / 1000.0);
+
 
         }
     }
@@ -223,7 +238,8 @@ public abstract class A_World {
           soundSystem.playSound("gameOver");
 
          // Display the game over screen
-          gameOverHelpText = new Gam20_HelpText(400, 400, "Game Over! You reached level: " + level);
+
+          gameOverHelpText = new Gam20_HelpText(400, 400, "Game Over! You slayed " + enemiesKilled + " enemies and reached level " + level);
           
           textObjects.clear();
           textObjects.add(gameOverHelpText);
@@ -278,7 +294,51 @@ public abstract class A_World {
             }
     }
 
+    private void handleMultiKill(double diffSeconds){
 
+        //Check if the number of enemies killed has changed
+        if(_prevEnemiesKilled != enemiesKilled){
+            //Calculate the difference of kills
+            int killDiff = enemiesKilled - _prevEnemiesKilled;
+            boolean isMultiKill = killDiff > 2;
+
+
+            //If there was a multi kill
+            if(isMultiKill && level < 8 ){
+                switch(killDiff){
+                    case 8:
+                        System.out.println("Monster Kill!");
+                        soundSystem.stopAllSounds();
+                        soundSystem.playSound("monsterKill");
+                        break;
+                    default: break;
+                }
+            }
+            
+            switch(enemiesKilled){
+                case 20:  soundSystem.playSound("killingSpree"); break;
+                case 45:  soundSystem.playSound("rampage"); break;
+                case 60:  soundSystem.playSound("dominating"); break;
+                case 120:  soundSystem.playSound("unstoppable"); break;
+                case 250:  soundSystem.playSound("godlike"); break;
+            }
+            
+            
+            //If there was no multi kill
+            //TODO: add other sound effects (rampage, godlike, dominating etc.)
+            
+            //Account multi kill after ... seconds
+         _multikillTime -= diffSeconds;
+            if (_multikillTime < 0) {
+                 _prevEnemiesKilled = enemiesKilled;
+                _multikillTime = GlobalConsts.MULTI_KILL_TIME;
+            }
+           
+            
+
+            
+        }
+    }
     public abstract void init();
 
     protected abstract void processUserInput(A_UserInput input, double diffSec);
