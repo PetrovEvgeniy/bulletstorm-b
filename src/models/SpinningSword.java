@@ -28,12 +28,12 @@ public class SpinningSword extends GameObject {
 
 
     public SpinningSword(String pathToImage, GameObject avatar) {
-        super(avatar.x + avatar.width/2 + 80,avatar.y + avatar.height/2 + 80, 0, 200, pathToImage);
+        super(avatar.x - A_World.worldPartX + avatar.width/2 + 120,avatar.y - A_World.worldPartY + avatar.height/2 + 120, 0, 200, pathToImage);
         this.isMoving = true;
         this.isLiving = true;
         shootingAnimation = new ArrayList<>();
-        width = 79;
-        height = 72;
+        width = 22;
+        height = 109;
         counter = 0;
         this.avatar = avatar;
         this.radius = (int) Math.sqrt(width*width + height*height);
@@ -104,8 +104,8 @@ public class SpinningSword extends GameObject {
 
 ////
         graphics.drawImage(img, (int) x, (int) y, null);
-        this.x =  (avatar.x + 80 * Math.cos(counter*ROTATION_INCREMENT));
-        this.y =  (avatar.y + 80 * Math.sin(counter*ROTATION_INCREMENT));
+        this.x =  (avatar.x + 120 * Math.cos(counter*ROTATION_INCREMENT));
+        this.y =  (avatar.y + 120 * Math.sin(counter*ROTATION_INCREMENT));
     }
 
 
