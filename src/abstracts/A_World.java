@@ -24,7 +24,7 @@ public abstract class A_World {
     // number of enemies killed (in the previous itteration)
     private int _prevEnemiesKilled = 0;
 
-    private double _multikillTime = GlobalConsts.MULTI_KILL_TIME;
+    private double _multikillTime = GlobalConsts.MULTI_KILL_DELAY;
 
     // Top left corner of the displayed pane of the world
     public static double worldPartX = 0;
@@ -60,12 +60,13 @@ public abstract class A_World {
         soundSystem.loadSound("gameOver", "resourses/sounds/game_over.wav");
         soundSystem.loadSound("explosion", "resourses/sounds/explosion.wav");
         soundSystem.loadSound("pickup", "resourses/sounds/pickup.wav");
+        soundSystem.loadSound("firstBlood", "resourses/sounds/multikill/firstblood.wav");
         soundSystem.loadSound("monsterKill", "resourses/sounds/multikill/mmonster_kill.wav");
         soundSystem.loadSound("killingSpree", "resourses/sounds/multikill/killingspree.wav");
         soundSystem.loadSound("rampage", "resourses/sounds/multikill/rampage.wav");
         soundSystem.loadSound("dominating", "resourses/sounds/multikill/dominating.wav");
         soundSystem.loadSound("unstoppable", "resourses/sounds/multikill/unstoppable.wav");
-         soundSystem.loadSound("godlike", "resourses/sounds/multikill/godlike.wav");
+        soundSystem.loadSound("godlike", "resourses/sounds/multikill/godlike.wav");
 
     }
 
@@ -296,6 +297,7 @@ public abstract class A_World {
 
     private void handleMultiKill(double diffSeconds){
 
+    
         //Check if the number of enemies killed has changed
         if(_prevEnemiesKilled != enemiesKilled){
             //Calculate the difference of kills
@@ -315,23 +317,22 @@ public abstract class A_World {
                 }
             }
             
+            //Play the sound for the multi kill
             switch(enemiesKilled){
+                case 1:   soundSystem.playSound("firstBlood"); break;
                 case 20:  soundSystem.playSound("killingSpree"); break;
-                case 45:  soundSystem.playSound("rampage"); break;
-                case 60:  soundSystem.playSound("dominating"); break;
-                case 120:  soundSystem.playSound("unstoppable"); break;
-                case 250:  soundSystem.playSound("godlike"); break;
+                case 60:  soundSystem.playSound("rampage"); break;
+                case 150:  soundSystem.playSound("dominating"); break;
+                case 250:  soundSystem.playSound("unstoppable"); break;
+                case 300:  soundSystem.playSound("godlike"); break;
             }
             
-            
-            //If there was no multi kill
-            //TODO: add other sound effects (rampage, godlike, dominating etc.)
             
             //Account multi kill after ... seconds
          _multikillTime -= diffSeconds;
             if (_multikillTime < 0) {
                  _prevEnemiesKilled = enemiesKilled;
-                _multikillTime = GlobalConsts.MULTI_KILL_TIME;
+                _multikillTime = GlobalConsts.MULTI_KILL_DELAY;
             }
            
             
