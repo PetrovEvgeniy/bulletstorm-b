@@ -304,11 +304,11 @@ public abstract class A_World {
             int killDiff = enemiesKilled - _prevEnemiesKilled;
             boolean isMultiKill = killDiff > 2;
 
-
+            System.out.println("Kill diff: " + killDiff);
             //If there was a multi kill
-            if(isMultiKill && level < 8 ){
+            if(isMultiKill && level < 9 ){
                 switch(killDiff){
-                    case 8:
+                    case 3:
                         System.out.println("Monster Kill!");
                         soundSystem.stopAllSounds();
                         soundSystem.playSound("monsterKill");
