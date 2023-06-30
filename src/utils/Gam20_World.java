@@ -159,6 +159,7 @@ public class Gam20_World extends A_World {
 
     private void throwSword() {
         GameObject sword = new SpinningSword("resourses/sprites/Sword/SwordH.png",avatar);
+        abilitySoundSystem.playSound("swordThrow");
         gameObjects.add(sword);
     }
 
@@ -181,7 +182,7 @@ public class Gam20_World extends A_World {
         }
 
         //Play explosion sound
-        soundSystem.playSound("explosion");
+        mkSoundSystem.playSound("explosion");
 
         // Adjust grenade counter
         grenades--;

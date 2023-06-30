@@ -47,27 +47,45 @@ public abstract class A_World {
     Background background_death;
 
 
-    // Define sound system (for sound effects)
-    public A_SoundSystem soundSystem;
+    // Define sound system (for sound multikill effects)
+    public A_SoundSystem mkSoundSystem;
+
+    // Define sound system (for sound music)
+    public A_SoundSystem musicSoundSystem;
+
+    // Define sound system (for sound abilities effects)
+    public A_SoundSystem abilitySoundSystem;
 
     public A_World() {
         physicsSystem = new Gam20_PhysicsSystem(this);
-        soundSystem = new A_SoundSystem();
+        mkSoundSystem = new A_SoundSystem();
+        abilitySoundSystem = new A_SoundSystem();
+        musicSoundSystem = new A_SoundSystem();
         background = new Background("resourses/backgrounds/backgrounddetailed1.png");
         background_death = new Background("resourses/backgrounds/backgrounddetailed1-death.png");
 
-         // Loading sounds happens here
-        soundSystem.loadSound("gameOver", "resourses/sounds/game_over.wav");
-        soundSystem.loadSound("explosion", "resourses/sounds/explosion.wav");
-        soundSystem.loadSound("pickup", "resourses/sounds/pickup.wav");
-        soundSystem.loadSound("firstBlood", "resourses/sounds/multikill/firstblood.wav");
-        soundSystem.loadSound("monsterKill", "resourses/sounds/multikill/mmonster_kill.wav");
-        soundSystem.loadSound("killingSpree", "resourses/sounds/multikill/killingspree.wav");
-        soundSystem.loadSound("rampage", "resourses/sounds/multikill/rampage.wav");
-        soundSystem.loadSound("dominating", "resourses/sounds/multikill/dominating.wav");
-        soundSystem.loadSound("unstoppable", "resourses/sounds/multikill/unstoppable.wav");
-        soundSystem.loadSound("godlike", "resourses/sounds/multikill/godlike.wav");
 
+        //Loading ability sounds
+        abilitySoundSystem.loadSound("swordThrow", "resourses/sounds/sword/sword_throw.wav");
+
+        // Loading multikill sounds 
+        mkSoundSystem.loadSound("gameOver", "resourses/sounds/game_over.wav");
+        mkSoundSystem.loadSound("explosion", "resourses/sounds/explosion.wav");
+        mkSoundSystem.loadSound("pickup", "resourses/sounds/pickup.wav");
+        mkSoundSystem.loadSound("firstBlood", "resourses/sounds/multikill/firstblood.wav");
+        mkSoundSystem.loadSound("monsterKill", "resourses/sounds/multikill/mmonster_kill.wav");
+        mkSoundSystem.loadSound("killingSpree", "resourses/sounds/multikill/killingspree.wav");
+        mkSoundSystem.loadSound("rampage", "resourses/sounds/multikill/rampage.wav");
+        mkSoundSystem.loadSound("dominating", "resourses/sounds/multikill/dominating.wav");
+        mkSoundSystem.loadSound("wickedSick", "resourses/sounds/multikill/wicked_sick.wav");
+        mkSoundSystem.loadSound("unstoppable", "resourses/sounds/multikill/unstoppable.wav");
+        mkSoundSystem.loadSound("godlike", "resourses/sounds/multikill/godlike.wav");
+
+        //Loading music
+        musicSoundSystem.loadSound("inGame", "resourses/sounds/music/ingame_music.wav");
+
+        //Start the ingame music immediately
+        musicSoundSystem.playSound("inGame");
     }
 
 
@@ -109,6 +127,9 @@ public abstract class A_World {
             // If game is over display the game over screen
             if (gameOver) {
             
+                //Stop music
+                musicSoundSystem.stopAllSounds();
+
                 //[Game Over] Stop the game
                endGame();
                
@@ -233,10 +254,10 @@ public abstract class A_World {
     private void endGame() {
 
         // Stop all sounds 
-        soundSystem.stopAllSounds();
+        mkSoundSystem.stopAllSounds();
 
         // Play sound game over sound
-          soundSystem.playSound("gameOver");
+          mkSoundSystem.playSound("gameOver");
 
          // Display the game over screen
 
@@ -304,14 +325,13 @@ public abstract class A_World {
             int killDiff = enemiesKilled - _prevEnemiesKilled;
             boolean isMultiKill = killDiff > 2;
 
-            System.out.println("Kill diff: " + killDiff);
             //If there was a multi kill
             if(isMultiKill && level < 9 ){
                 switch(killDiff){
                     case 3:
                         System.out.println("Monster Kill!");
-                        soundSystem.stopAllSounds();
-                        soundSystem.playSound("monsterKill");
+                        mkSoundSystem.stopAllSounds();
+                        mkSoundSystem.playSound("monsterKill");
                         break;
                     default: break;
                 }
@@ -319,12 +339,13 @@ public abstract class A_World {
             
             //Play the sound for the multi kill
             switch(enemiesKilled){
-                case 1:   soundSystem.playSound("firstBlood"); break;
-                case 20:  soundSystem.playSound("killingSpree"); break;
-                case 60:  soundSystem.playSound("rampage"); break;
-                case 150:  soundSystem.playSound("dominating"); break;
-                case 250:  soundSystem.playSound("unstoppable"); break;
-                case 300:  soundSystem.playSound("godlike"); break;
+                case 1:   mkSoundSystem.playSound("firstBlood"); break;
+                case 20:  mkSoundSystem.playSound("killingSpree"); break;
+                case 60:  mkSoundSystem.playSound("rampage"); break;
+                case 150:  mkSoundSystem.playSound("dominating"); break;
+                case 250:  mkSoundSystem.playSound("wickedSick"); break;
+                case 300:  mkSoundSystem.playSound("unstoppable"); break;
+                case 350:  mkSoundSystem.playSound("godlike"); break;
             }
             
             

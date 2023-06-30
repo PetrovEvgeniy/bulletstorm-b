@@ -135,7 +135,7 @@ public class Wizard extends GameObject {
             else if (obj.type() == GlobalConsts.TYPE_GRENADE) {
 
                 //Play pickup sound 
-               ((Gam20_World) world).soundSystem.playSound("pickup");
+               ((Gam20_World) world).mkSoundSystem.playSound("pickup");
 
                 //Add Grenade to Inventory
                 ((Gam20_World) world).addGrenade();

@@ -48,7 +48,7 @@ public class Gam20_Avatar extends GameObject {
                 ((Gam20_World) world).addGrenade();
                 
                 //Play pickup sound 
-               ((Gam20_World) world).soundSystem.playSound("pickup");
+               ((Gam20_World) world).mkSoundSystem.playSound("pickup");
 
 
                 // Remove Grenade from the world
