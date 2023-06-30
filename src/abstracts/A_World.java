@@ -93,8 +93,7 @@ public abstract class A_World {
     // The main GAME LOOP
     //
     public final void run() {
-
-
+        
         long lastTick = System.currentTimeMillis();
 
         while (true) {

@@ -41,7 +41,7 @@ public class A_SoundSystem {
     public void playSound(String soundName) {
         Clip clip = soundClips.get(soundName);
         if (clip != null) {
-            if (clip.isRunning() && !soundName.equals("explosion")) {
+            if (clip.isRunning() && (!soundName.equals("explosion") || !soundName.equals("swordThrow"))) {
                 clip.stop();
             }
             clip.setFramePosition(0);
