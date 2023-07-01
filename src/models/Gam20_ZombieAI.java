@@ -6,8 +6,12 @@ import abstracts.GameObject;
 import utils.Gam20_CounterEnemies;
 import utils.GlobalConsts;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 
 public class Gam20_ZombieAI extends GameObject {
@@ -24,7 +28,7 @@ public class Gam20_ZombieAI extends GameObject {
 
 
     public Gam20_ZombieAI(double x, double y) {
-        super(x, y, 0, 60, 15, new Color(160, 80, 40));
+        super(x, y, 0, 60, "resourses/sprites/zombie/zombie.png");
         this.isMoving = false;
 
         state = HUNTING;
@@ -32,7 +36,6 @@ public class Gam20_ZombieAI extends GameObject {
         // Turn LEFT or RIGHT to clear
         alfaClear = Math.PI;
         if (Math.random() < 0.5) alfaClear = -alfaClear;
-
     }
 
 
@@ -56,6 +59,12 @@ public class Gam20_ZombieAI extends GameObject {
             this.setDestination(world.avatar);
 
             super.move(diffSeconds);
+
+            if(world.avatar.x < this.x){
+                isFacingRight = false;
+            }else{
+                isFacingRight = true;
+            }
 
             // Handle collisions of the zombie
             A_GameObjectList collisions = world.getPhysicsSystem().getCollisions(this);
@@ -133,12 +142,12 @@ public class Gam20_ZombieAI extends GameObject {
         // every shot decreases life (health)
         life -= 0.21;
 
-		// if zombie is dead, delete it, increase the kills score
+        // if zombie is dead, delete it, increase the kills score
         if (life <= 0) {
 
             world.enemiesKilled++;
             Gam20_CounterEnemies counter = (Gam20_CounterEnemies) world.textObjects.get(0);
-            
+
             //Update the enemies counter 
             counter.decrement();
             this.isLiving = false;
@@ -160,7 +169,6 @@ public class Gam20_ZombieAI extends GameObject {
     }
 
 
-
     public void draw(Graphics graphics, A_World world) {
 
         int x = (int) (this.x - this.radius - world.worldPartX);
@@ -175,7 +183,11 @@ public class Gam20_ZombieAI extends GameObject {
 
 
         } else {
-            graphics.drawImage(objectImage.getScaledInstance(width, height, Image.SCALE_FAST), (int) x, (int) y, null);
+            if (isFacingRight) {
+                graphics.drawImage(objectImage.getScaledInstance(width, height, Image.SCALE_FAST), (int) x, (int) y, width,height,null);
+            }else{
+                graphics.drawImage(objectImage.getScaledInstance(width, height, Image.SCALE_FAST), (int) x, (int) y, -width,height,null);
+            }
         }
 
     }
