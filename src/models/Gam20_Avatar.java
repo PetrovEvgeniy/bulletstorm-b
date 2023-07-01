@@ -44,7 +44,14 @@ public class Gam20_Avatar extends GameObject {
 
             // Pick up Grenades
             else if (obj.type() == GlobalConsts.TYPE_GRENADE) {
+                //Add granade to inventory
                 ((Gam20_World) world).addGrenade();
+                
+                //Play pickup sound 
+               ((Gam20_World) world).mkSoundSystem.playSound("pickup");
+
+
+                // Remove Grenade from the world
                 obj.isLiving = false;
             }
         }

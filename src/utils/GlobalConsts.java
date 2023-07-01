@@ -6,8 +6,8 @@ package utils;
 public final class GlobalConsts
 {
   // Define size of the world
-  public static final int WORLD_WIDTH      = 5000;
-  public static final int WORLD_HEIGHT     = 4000;
+  public static final int WORLD_WIDTH      = 3200;
+  public static final int WORLD_HEIGHT     = 3200;
 
   // Define size of the displayed part of the world
   public static final int WORLDPART_WIDTH  = 1200;
@@ -18,7 +18,7 @@ public final class GlobalConsts
 	  
 
   // Define constants for spawn intervals
-  public static final double SPAWN_INTERVAL = 0.2; // increase this if you want to make zombies spawning faster
+  public static final double SPAWN_INTERVAL = 0.15; // increase this if you want to make zombies spawning faster
 
 
   public static final double SPAWN_GRENADE  = 10.0;
@@ -38,7 +38,10 @@ public final class GlobalConsts
   // Time to wait before leveling up
   public static final double LEVEL_UP_TIME   = 10.0;
 
+ // Time to wait before next multikill notification (in seconds)
+  public static final double MULTI_KILL_DELAY  = 0.1;
+
   // Number of spawned zombies per level
-  public static final double[] SPAWN_ZOMBIE_INTERVAL_PER_LEVEL = {0.35, 0.25, 0.2, 0.1, 0.05, 0.025, 0.001}; 
+  public static final double[] SPAWN_ZOMBIE_INTERVAL_PER_LEVEL = {0.35, 0.25, 0.2, 0.1, 0.05, 0.025, 0.005}; 
 
 }

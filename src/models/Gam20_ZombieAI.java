@@ -3,6 +3,7 @@ package models;
 import abstracts.A_GameObjectList;
 import abstracts.A_World;
 import abstracts.GameObject;
+import utils.Gam20_CounterEnemies;
 import utils.GlobalConsts;
 
 import java.awt.*;
@@ -132,8 +133,14 @@ public class Gam20_ZombieAI extends GameObject {
         // every shot decreases life (health)
         life -= 0.21;
 
-		// if zombie is dead, delete it
+		// if zombie is dead, delete it, increase the kills score
         if (life <= 0) {
+
+            world.enemiesKilled++;
+            Gam20_CounterEnemies counter = (Gam20_CounterEnemies) world.textObjects.get(0);
+            
+            //Update the enemies counter 
+            counter.decrement();
             this.isLiving = false;
             return;
         }
