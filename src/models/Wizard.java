@@ -35,12 +35,15 @@ public class Wizard extends GameObject {
 
     @Override
     public void draw(Graphics graphics, A_World world) {
-        if (!isMoving) {
-            currentAnimation = idleAnimation;
-        } else {
-            currentAnimation = runningAnimation;
+        if(isShooting){
+            currentAnimation = shootingAnimation;
+        }else {
+            if (!isMoving) {
+                currentAnimation = idleAnimation;
+            } else {
+                currentAnimation = runningAnimation;
+            }
         }
-
         int x = (int) (this.x - world.worldPartX);
         int y = (int) (this.y - world.worldPartY);
 
@@ -58,13 +61,13 @@ public class Wizard extends GameObject {
             try {
                 graphics.drawImage(currentAnimation.get(spriteNumber).getScaledInstance(width, height, Image.SCALE_FAST), (int) x + width, (int) y, -width, height, null);
             } catch (Exception e) {
-                System.out.println(e.getMessage());
+
             }
         } else {
             try {
                 graphics.drawImage(currentAnimation.get(spriteNumber).getScaledInstance(width, height, Image.SCALE_FAST), (int) x, (int) y, width, height, null);
             } catch (Exception e) {
-                System.out.println(e.getMessage());
+
             }                                                                                      //Changing argument width here ^ to -width flips character horizontally
         }
         graphics.drawRect(x, y, width, height);

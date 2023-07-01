@@ -87,6 +87,7 @@ public class Gam20_World extends A_World {
         // Mouse still pressed?
         //
         if(userInput.isMousePressed && button==1) {
+            avatar.isShooting = true;
             // only 1 shot every ... seconds:
             timeSinceLastShot += diffSeconds;
             if(timeSinceLastShot > 0.3)
@@ -97,6 +98,10 @@ public class Gam20_World extends A_World {
                         avatar.x,avatar.y,userInput.mouseMovedX+worldPartX,userInput.mouseMovedY+worldPartY);
                 this.gameObjects.add(shot);
             }
+        }
+
+        if(!userInput.isMousePressed){
+            avatar.isShooting = false;
         }
 
         //
@@ -163,7 +168,7 @@ public class Gam20_World extends A_World {
         if (grenades <= 0) return;
 
         // Throw a grenade
-        for (int i = 0; i < 2000; i++) {
+        for (int i = 0; i < 200; i++) {
             double alfa = Math.random() * Math.PI * 2;
             double speed = 50 + Math.random() * 200;
             double time = 0.2 + Math.random() * 0.4;

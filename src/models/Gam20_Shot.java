@@ -78,7 +78,7 @@ public class Gam20_Shot extends GameObject {
             graphics.setColor(Color.DARK_GRAY);
             graphics.drawOval(x, y, d, d);
         } else {
-            graphics.drawImage(objectImage.getScaledInstance(width, height, Image.SCALE_FAST), (int) x, (int) y, null);
+            graphics.drawImage(objectImage.getScaledInstance(width, height, Image.SCALE_FAST), x, y, null);
         }
 
     }

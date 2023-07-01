@@ -35,6 +35,7 @@ public abstract class GameObject {
 
     // isFacingRight is here to check if a characters model should be flipped horizontally
     public boolean isFacingRight = true;
+    public boolean isShooting = false;
 
     public double xOld, yOld;
 

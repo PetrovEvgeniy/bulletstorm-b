@@ -91,7 +91,7 @@ public class Wizard_Fireball extends GameObject {
     public void draw(Graphics graphics, A_World world) {
 
         int x = (int) (this.x - this.radius - world.worldPartX);
-        int y = (int) (this.y - this.radius - world.worldPartY);
+        int y = (int) (this.y - this.radius - world.worldPartY) + 10;
         int d = (this.radius * 2);
 
 
