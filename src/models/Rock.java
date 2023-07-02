@@ -2,8 +2,6 @@ package models;
 
 import utils.GlobalConsts;
 
-import java.awt.*;
-
 public class Rock extends Foliage{
     public Rock(double x_, double y_) {
         super(x_, y_, 0, 0, "resourses/sprites/foliage/rock.png");
@@ -11,7 +9,7 @@ public class Rock extends Foliage{
 
     @Override
     public int type() {
-        return GlobalConsts.TYPE_TREE;
+        return GlobalConsts.TYPE_ROCK;
     }
 
 }

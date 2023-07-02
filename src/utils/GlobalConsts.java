@@ -33,6 +33,7 @@ public final class GlobalConsts
   public static final int TYPE_SHOT    = 5;
   public static final int TYPE_FIREBALL = 6;
   public static final int TYPE_ROCK    = 7;
+  public static final int TYPE_BUSH  = 8;
 
 
   // Time to wait before leveling up

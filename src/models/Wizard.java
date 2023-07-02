@@ -127,7 +127,7 @@ public class Wizard extends GameObject {
 
 
             // If Object is a tree, move back one step
-            if (obj.type() == GlobalConsts.TYPE_TREE) {
+            if (obj.type() == GlobalConsts.TYPE_TREE || obj.type() == GlobalConsts.TYPE_ROCK) {
                 this.moveBack();
             }
 

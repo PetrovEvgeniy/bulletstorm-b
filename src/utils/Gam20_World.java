@@ -41,6 +41,12 @@ public class Gam20_World extends A_World {
 
         // [REMOVED] Add a little forest
 
+        for (int i = 0; i < 50; i++) {
+            int x = (int) (Math.random() * (GlobalConsts.WORLD_WIDTH - 50)) + 1;
+            int y = (int) (Math.random() * (GlobalConsts.WORLD_HEIGHT - 50)) + 1;
+            gameObjects.add(new Bush(x,y));
+        }
+
           for (int x = 0; x < 5000; x += 1000) {
 
               for (int y = 0; y < 4000; y += 800) {
