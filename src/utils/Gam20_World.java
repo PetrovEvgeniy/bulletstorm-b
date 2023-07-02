@@ -184,10 +184,10 @@ public class Gam20_World extends A_World {
         if (fireballs <= 0) return;
 
         // Throw a fireball
-        for (int i = 0; i < 200; i++) {
+        for (int i = 0; i < 50; i++) {
             double alfa = Math.random() * Math.PI * 2;
             double speed = 50 + Math.random() * 200;
-            double time = 0.2 + Math.random() * 0.4;
+            double time = 0.1 + Math.random() * 0.4;
             Gam20_Shot shot = new Gam20_Shot(x, y, alfa, speed, time);
             this.gameObjects.add(shot);
         }

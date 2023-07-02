@@ -340,11 +340,11 @@ public abstract class A_World {
             switch(enemiesKilled){
                 case 1:   mkSoundSystem.playSound("firstBlood"); break;
                 case 20:  mkSoundSystem.playSound("killingSpree"); break;
-                case 60:  mkSoundSystem.playSound("rampage"); break;
-                case 150:  mkSoundSystem.playSound("dominating"); break;
-                case 250:  mkSoundSystem.playSound("wickedSick"); break;
-                case 300:  mkSoundSystem.playSound("unstoppable"); break;
-                case 350:  mkSoundSystem.playSound("godlike"); break;
+                case 50:  mkSoundSystem.playSound("rampage"); break;
+                case 100:  mkSoundSystem.playSound("dominating"); break;
+                case 200:  mkSoundSystem.playSound("wickedSick"); break;
+                case 250:  mkSoundSystem.playSound("unstoppable"); break;
+                case 300:  mkSoundSystem.playSound("godlike"); break;
             }
             
             

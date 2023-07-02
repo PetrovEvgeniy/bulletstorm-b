@@ -22,6 +22,10 @@ public class Gam20_ZombieAI extends GameObject {
     private int state;
     private double alfaClear;
     private double secondsClear;
+    
+
+ 
+
 
     // Define the life (health) of a zombie
     private double life = 1.0;
@@ -32,6 +36,10 @@ public class Gam20_ZombieAI extends GameObject {
         this.isMoving = false;
 
         state = HUNTING;
+
+           //adjust height
+        this.height = GlobalConsts.WORLDPART_HEIGHT / 15;
+        this.width = GlobalConsts.WORLDPART_WIDTH / 23;
 
         // Turn LEFT or RIGHT to clear
         alfaClear = Math.PI;

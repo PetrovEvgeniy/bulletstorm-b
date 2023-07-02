@@ -9,7 +9,7 @@ import java.awt.*;
 import java.awt.geom.Ellipse2D;
 
 public class Gam20_Shot extends GameObject {
-    private double lifeTime = 1.2;
+    private double lifeTime = 1.5;
 
     public Gam20_Shot(double x, double y, double xDest, double yDest) {
         super(x, y, Math.atan2(yDest - y, xDest - x), 500, 4, Color.YELLOW);
@@ -17,7 +17,7 @@ public class Gam20_Shot extends GameObject {
     }
 
     public Gam20_Shot(double x, double y, double a, double s, double time) {
-        super(x, y, a, s, 4, Color.YELLOW);
+        super(x, y, a, s, 10, Color.YELLOW);
         lifeTime = time;
         this.isMoving = true;
     }
