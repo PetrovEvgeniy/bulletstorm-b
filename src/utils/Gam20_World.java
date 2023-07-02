@@ -5,27 +5,22 @@ import abstracts.A_UserInput;
 import abstracts.A_World;
 import abstracts.GameObject;
 import models.*;
-import utils.Gam20_CounterEnemies;
-import utils.Gam20_CounterLevel;
-import utils.Gam20_CounterGrenades;
-import utils.Gam20_HelpText;
-import utils.GlobalConsts;
 
 public class Gam20_World extends A_World {
     private double timePassed = 0;
     private double timeSinceLastShot = 0;
     private final double charSpeed = 5.0;
 
-    // For grenades
-    private int grenades = 5;
+    // For fireballs
+    private int fireballs = 5;
 
     private Gam20_CounterLevel counterL;
-    private Gam20_CounterGrenades counterG;
+    private Gam20_CounterFireballs counterG;
     private Gam20_CounterEnemies counterE;
 
     private Gam20_HelpText helpText;
 
-    private double spawnGrenade = 0;
+    private double spawnFireball = 0;
 
     private double spawnZombie = 0;
 
@@ -62,10 +57,10 @@ public class Gam20_World extends A_World {
 
         counterL = new Gam20_CounterLevel(400, 40);
         counterE = new Gam20_CounterEnemies(20, 40);
-        counterG = new Gam20_CounterGrenades(770, 40);
+        counterG = new Gam20_CounterFireballs(770, 40);
         helpText = new Gam20_HelpText(100, 400);
 
-        counterG.setNumber(grenades);
+        counterG.setNumber(fireballs);
         textObjects.add(counterE);
         textObjects.add(counterG);
         textObjects.add(counterL);
@@ -101,6 +96,11 @@ public class Gam20_World extends A_World {
                         avatar.x,avatar.y,userInput.mouseMovedX+worldPartX,userInput.mouseMovedY+worldPartY);
                 this.gameObjects.add(shot);
             }
+        }
+
+        if (userInput.isMousePressed && button == 3) {
+            avatar.isShooting = true;
+            throwFireball(userInput.mouseMovedX + worldPartX, userInput.mouseMovedY + worldPartY);
         }
 
         if(!userInput.isMousePressed){
@@ -149,7 +149,7 @@ public class Gam20_World extends A_World {
             // TODO
              if (userInput.keyPressed.contains(' ')) {
                  throwSword();
-                //throwGrenade(userInput.mouseMovedX + worldPartX, userInput.mouseMovedY + worldPartY);
+                //throwFireball(userInput.mouseMovedX + worldPartX, userInput.mouseMovedY + worldPartY);
             }
 
 //
@@ -174,10 +174,10 @@ public class Gam20_World extends A_World {
         avatar.y += y;
     }
 
-    private void throwGrenade(double x, double y) {
-        if (grenades <= 0) return;
+    private void throwFireball(double x, double y) {
+        if (fireballs <= 0) return;
 
-        // Throw a grenade
+        // Throw a fireball
         for (int i = 0; i < 200; i++) {
             double alfa = Math.random() * Math.PI * 2;
             double speed = 50 + Math.random() * 200;
@@ -189,16 +189,16 @@ public class Gam20_World extends A_World {
         //Play explosion sound
         mkSoundSystem.playSound("explosion");
 
-        // Adjust grenade counter
-        grenades--;
-        counterG.setNumber(grenades);
+        // Adjust fireball counter
+        fireballs--;
+        counterG.setNumber(fireballs);
 
 
     }
 
 
     protected void createNewObjects(double diffSeconds) {
-        createGrenade(diffSeconds);
+        createFireball(diffSeconds);
 
         // delete HelpText after ... seconds
         if (helpText != null) {
@@ -238,14 +238,14 @@ public class Gam20_World extends A_World {
     }
 
 
-    private void createGrenade(double diffSeconds) {
-        final double INTERVAL = GlobalConsts.SPAWN_GRENADE;
+    private void createFireball(double diffSeconds) {
+        final double INTERVAL = GlobalConsts.SPAWN_FIREBALL;
 
-        spawnGrenade += diffSeconds;
-        if (spawnGrenade > INTERVAL) {
-            spawnGrenade -= INTERVAL;
+        spawnFireball += diffSeconds;
+        if (spawnFireball > INTERVAL) {
+            spawnFireball -= INTERVAL;
 
-            // create new Grenade
+            // create new Fireball
             double x = worldPartX + Math.random() * GlobalConsts.WORLDPART_WIDTH;
             double y = worldPartY + Math.random() * GlobalConsts.WORLDPART_HEIGHT;
 
@@ -254,22 +254,22 @@ public class Gam20_World extends A_World {
             double dx = x - avatar.x;
             double dy = y - avatar.y;
             if (dx * dx + dy * dy < 200 * 200) {
-                spawnGrenade = INTERVAL;
+                spawnFireball = INTERVAL;
                 return;
             }
 
 
             // if collisions occur, cancel
-            Gam20_Grenade grenade = new Gam20_Grenade(x, y);
-            A_GameObjectList list = getPhysicsSystem().getCollisions(grenade);
+            FireBall fireball = new FireBall(x, y);
+            A_GameObjectList list = getPhysicsSystem().getCollisions(fireball);
             if (list.size() != 0) {
-                spawnGrenade = INTERVAL;
+                spawnFireball = INTERVAL;
                 return;
             }
 
-            // add Grenade
-            this.gameObjects.add(grenade);
-            counterG.setNumber(grenades);
+            // add Fireball
+            this.gameObjects.add(fireball);
+            counterG.setNumber(fireballs);
 
         }
 
@@ -322,11 +322,11 @@ public class Gam20_World extends A_World {
     }
 
 
-    public void addGrenade() {
-        if (grenades < 999) {
-            grenades++;
+    public void addFireball() {
+        if (fireballs < 999) {
+            fireballs++;
         }
-        counterG.setNumber(grenades);
+        counterG.setNumber(fireballs);
     }
 
 }

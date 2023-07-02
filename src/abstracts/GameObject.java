@@ -59,6 +59,21 @@ public abstract class GameObject {
         color = color_;
     }
 
+    public GameObject(double x_, double y_,
+                      double a_, double s_,
+                      int radius_, String pathToImage) {
+        x = x_;
+        y = y_;
+        xOld = x;
+        yOld = y;
+        alfa = a_;
+        speed = s_;
+        radius = radius_;
+        imageFile = new File(pathToImage);
+
+        loadImageFromFile();
+    }
+
     //TODO: Make this the only constructor at some point
     public GameObject(double x_, double y_,
                       double a_, double s_,
@@ -72,12 +87,7 @@ public abstract class GameObject {
         imageFile = new File(pathToImage);
 
 
-        try {
-            objectImage = ImageIO.read(imageFile);
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-            throw new RuntimeException(e);
-        }
+        loadImageFromFile();
         //Setting height and width here according to screen size constants. We can change later
         height = GlobalConsts.WORLDPART_HEIGHT / 10;
         width = GlobalConsts.WORLDPART_WIDTH / 18;
@@ -229,4 +239,12 @@ public abstract class GameObject {
         this.isMoving = isMoving;
     }
 
+    private void loadImageFromFile() {
+        try {
+            objectImage = ImageIO.read(imageFile);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            throw new RuntimeException(e);
+        }
+    }
 }

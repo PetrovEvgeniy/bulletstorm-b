@@ -6,10 +6,7 @@ import abstracts.GameObject;
 import utils.Gam20_World;
 import utils.GlobalConsts;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 public class Gam20_Avatar extends GameObject {
 
@@ -42,16 +39,16 @@ public class Gam20_Avatar extends GameObject {
             // TODO: Do the same for other obstacles...
 
 
-            // Pick up Grenades
-            else if (obj.type() == GlobalConsts.TYPE_GRENADE) {
-                //Add granade to inventory
-                ((Gam20_World) world).addGrenade();
+            // Pick up Fireball
+            else if (obj.type() == GlobalConsts.TYPE_FIREBALL) {
+                //Add fireball to inventory
+                ((Gam20_World) world).addFireball();
                 
                 //Play pickup sound 
                ((Gam20_World) world).mkSoundSystem.playSound("pickup");
 
 
-                // Remove Grenade from the world
+                // Remove Fireball from the world
                 obj.isLiving = false;
             }
         }

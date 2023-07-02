@@ -6,8 +6,8 @@ import java.awt.Color;
 
 public class Gam20_HelpText extends A_TextObject
 {
-  private String text = "MOVE:WASD      SHOOT:Mouse right      "+
-                     "Grenade:Space bar     END: Escape";
+  private String text = "MOVE:WASD    SHOOT:Mouse left    " +
+                        "Fireball:Mouse right   SWORDS:Space Bar    END: Escape";
 
   public Gam20_HelpText(int x, int y)
   { super(x,y, new Color(0,120,255,60));

@@ -21,8 +21,8 @@ public final class GlobalConsts
   public static final double SPAWN_INTERVAL = 0.15; // increase this if you want to make zombies spawning faster
 
 
-  public static final double SPAWN_GRENADE  = 10.0;
-  public static final double LIFE_GRENADE   = 15.0;
+  public static final double SPAWN_FIREBALL = 10.0;
+  public static final double LIFE_FIREBALL = 15.0;
 
 
   // Define constants for object types
@@ -31,7 +31,7 @@ public final class GlobalConsts
   public static final int TYPE_TREE    = 3;
   public static final int TYPE_ZOMBIE  = 4;
   public static final int TYPE_SHOT    = 5;
-  public static final int TYPE_GRENADE = 6;
+  public static final int TYPE_FIREBALL = 6;
   public static final int TYPE_ROCK    = 7;
 
 

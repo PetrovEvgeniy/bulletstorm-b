@@ -11,14 +11,15 @@ public abstract class Foliage extends GameObject {
         super(x_, y_, alfa, speed, pathToImage);
         this.isLiving = true;
         this.isMoving = false;
+        this.width = objectImage.getWidth();
+        this.height = objectImage.getHeight();
     }
 
     @Override
     public void draw(Graphics graphics, A_World world) {
         int x = (int) (this.x - world.worldPartX);
         int y = (int) (this.y - world.worldPartY);
-        graphics.drawImage(this.getImage().getScaledInstance(width, height, Image.SCALE_FAST), x, y, null);
-        graphics.drawRect(x, y, width, height);
+        graphics.drawImage(objectImage.getScaledInstance(width, height, Image.SCALE_FAST), x, y, null);
     }
 
     @Override
