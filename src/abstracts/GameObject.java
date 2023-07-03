@@ -247,4 +247,8 @@ public abstract class GameObject {
             throw new RuntimeException(e);
         }
     }
+
+    public void setSpeed(double speed) {
+        this.speed = speed;
+    }
 }

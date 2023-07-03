@@ -157,6 +157,8 @@ public class Gam20_World extends A_World {
                  throwSword();
                 //throwFireball(userInput.mouseMovedX + worldPartX, userInput.mouseMovedY + worldPartY);
             }
+          
+          
 
 //
 //            } else if (userInput.keyPressed == (char) 27) {
@@ -170,7 +172,7 @@ public class Gam20_World extends A_World {
 
     private void throwSword() {
         GameObject sword = new SpinningSword("resourses/sprites/sword/SwordH.png",avatar);
-        abilitySoundSystem.playSound("swordThrow");
+       // abilitySoundSystem.playSound("swordThrow");
         gameObjects.add(sword);
     }
 

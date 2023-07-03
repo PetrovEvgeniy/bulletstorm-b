@@ -23,7 +23,7 @@ public class Wizard extends GameObject {
     int spriteNumber = 0;
 
     public Wizard(double x_, double y_, String pathToImage) {
-        super(x_, y_, 0, 200, pathToImage);
+        super(x_, y_, 0, 250, pathToImage);
         this.isMoving = false;
         idleAnimation = new ArrayList<>();
         runningAnimation = new ArrayList<>();

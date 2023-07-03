@@ -32,7 +32,7 @@ public class Gam20_ZombieAI extends GameObject {
 
 
     public Gam20_ZombieAI(double x, double y) {
-        super(x, y, 0, 60, "resourses/sprites/zombie/zombie.png");
+        super(x, y, 0, 50, "resourses/sprites/zombie/zombie.png");
         this.isMoving = false;
 
         state = HUNTING;
