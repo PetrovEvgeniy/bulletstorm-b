@@ -178,7 +178,6 @@ public class ZombieAI extends GameObject {
 
 
     public void draw(Graphics graphics, A_World world) {
-
         int x = (int) (this.x - this.radius - world.worldPartX);
         int y = (int) (this.y - this.radius - world.worldPartY);
         int d = (this.radius * 2);
