@@ -234,13 +234,17 @@ public class Main_World extends A_World {
         }
 
 
-        //Level UP after ... seconds
-         levelUpTime -= diffSeconds;
+        //Level UP after ... seconds if the enemies were killed
+
+        if(enemiesKilled >= level * 10){
+            levelUpTime -= diffSeconds;
             if (levelUpTime < 0) {
                 level++;
                 counterL.increment();
                 levelUpTime = GlobalConsts.LEVEL_UP_TIME;
             }
+        }
+        
 
     }
 
