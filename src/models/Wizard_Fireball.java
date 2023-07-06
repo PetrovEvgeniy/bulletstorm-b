@@ -66,7 +66,7 @@ public class Wizard_Fireball extends GameObject {
             }
             // [Zombie]: inform Zombie it is hit
             else if (type == GlobalConsts.TYPE_ZOMBIE && obj.isLiving) {
-                Gam20_ZombieAI zombie = (Gam20_ZombieAI) obj;
+                ZombieAI zombie = (ZombieAI) obj;
                 zombie.hasBeenShot();
                 this.isLiving = false;
             }

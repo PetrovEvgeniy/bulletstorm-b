@@ -4,11 +4,11 @@ import abstracts.A_TextObject;
 
 import java.awt.Color;
 
-public class Gam20_CounterEnemies extends A_TextObject
+public class CounterEnemies extends A_TextObject
 {
   private int number = 1;
 	
-  public Gam20_CounterEnemies(int x, int y)
+  public CounterEnemies(int x, int y)
   { super(x,y, new Color(255,255,0,210));
   }
   

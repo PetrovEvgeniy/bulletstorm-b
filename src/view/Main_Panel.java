@@ -9,7 +9,7 @@ import java.awt.*;
 import java.awt.image.*;
 import javax.swing.*;
 
-class B_Panel extends JPanel implements A_GraphicSystem {
+class Main_Panel extends JPanel implements A_GraphicSystem {
     // Constants
     private static final long serialVersionUID = 1L;
     private static final Font font = new Font("Arial", Font.PLAIN, 24);
@@ -33,7 +33,7 @@ class B_Panel extends JPanel implements A_GraphicSystem {
 
 
 
-    public B_Panel() {
+    public Main_Panel() {
         this.setSize(GlobalConsts.WORLDPART_WIDTH, GlobalConsts.WORLDPART_HEIGHT);
         imageBuffer = graphicsConf.createCompatibleImage(
                 this.getWidth(), this.getHeight());

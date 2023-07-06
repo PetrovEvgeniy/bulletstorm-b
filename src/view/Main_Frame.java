@@ -8,13 +8,13 @@ import utils.GlobalConsts;
 import javax.swing.*;
 import java.awt.*;
 
-class B_Frame extends JFrame implements A_Frame {
+class Main_Frame extends JFrame implements A_Frame {
     // ...ok...
     private static final long serialVersionUID = 2L;
 
-    private B_Panel panel = null;
+    private Main_Panel panel = null;
 
-    public B_Frame() {
+    public Main_Frame() {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(GlobalConsts.WORLDPART_WIDTH + 2, GlobalConsts.WORLDPART_HEIGHT + 2);
 
@@ -23,7 +23,7 @@ class B_Frame extends JFrame implements A_Frame {
 
         this.setResizable(false);
 
-        panel = new B_Panel();
+        panel = new Main_Panel();
 
         // Needed for KEYBOARD input !!!
         panel.setFocusable(true);

@@ -3,7 +3,7 @@ package models;
 import abstracts.A_GameObjectList;
 import abstracts.A_World;
 import abstracts.GameObject;
-import utils.Gam20_World;
+import utils.Main_World;
 import utils.GlobalConsts;
 
 import javax.imageio.ImageIO;
@@ -141,10 +141,10 @@ public class Wizard extends GameObject {
             else if (obj.type() == GlobalConsts.TYPE_FIREBALL) {
 
                 //Play pickup sound 
-               ((Gam20_World) world).mkSoundSystem.playSound("pickup");
+               ((Main_World) world).mkSoundSystem.playSound("pickup");
 
                 //Add Fireball to Inventory
-                ((Gam20_World) world).addFireball();
+                ((Main_World) world).addFireball();
 
 
                 // Remove Fireball from World

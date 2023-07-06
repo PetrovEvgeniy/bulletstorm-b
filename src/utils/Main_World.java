@@ -6,7 +6,7 @@ import abstracts.A_World;
 import abstracts.GameObject;
 import models.*;
 
-public class Gam20_World extends A_World {
+public class Main_World extends A_World {
     private double timePassed = 0;
     private double timeSinceLastShot = 0;
     private final double charSpeed = 5.0;
@@ -14,11 +14,11 @@ public class Gam20_World extends A_World {
     // For fireballs
     private int fireballs = 5;
 
-    private Gam20_CounterLevel counterL;
-    private Gam20_CounterFireballs counterG;
-    private Gam20_CounterEnemies counterE;
+    private CounterLevel counterL;
+    private CounterFireballs counterG;
+    private CounterEnemies counterE;
 
-    private Gam20_HelpText helpText;
+    private HelpText helpText;
 
     private double spawnFireball = 0;
 
@@ -61,10 +61,10 @@ public class Gam20_World extends A_World {
         //gameObjects.add(new Gam20_ZombieAI(100, 100));
 
 
-        counterL = new Gam20_CounterLevel(400, 40);
-        counterE = new Gam20_CounterEnemies(20, 40);
-        counterG = new Gam20_CounterFireballs(770, 40);
-        helpText = new Gam20_HelpText(100, 400);
+        counterL = new CounterLevel(400, 40);
+        counterE = new CounterEnemies(20, 40);
+        counterG = new CounterFireballs(770, 40);
+        helpText = new HelpText(100, 400);
 
         counterG.setNumber(fireballs);
         textObjects.add(counterE);
@@ -312,7 +312,7 @@ public class Gam20_World extends A_World {
             }
 
             // if collisions occur, cancel
-            Gam20_ZombieAI zombie = new Gam20_ZombieAI(x, y);
+            ZombieAI zombie = new ZombieAI(x, y);
             A_GameObjectList list = getPhysicsSystem().getCollisions(zombie);
             if (list.size() != 0) {
                 timePassed = INTERVAL;
@@ -322,7 +322,7 @@ public class Gam20_World extends A_World {
             // else add zombie to world
             this.gameObjects.add(zombie);
             zombie.setDestination(avatar);
-            Gam20_CounterEnemies counter = (Gam20_CounterEnemies) textObjects.get(0);
+            CounterEnemies counter = (CounterEnemies) textObjects.get(0);
             counter.increment();
         }
 

@@ -11,9 +11,9 @@ import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Gam20_PhysicsSystem extends A_PhysicsSystem {
+public class PhysicsSystem extends A_PhysicsSystem {
 
-    public Gam20_PhysicsSystem(A_World w) {
+    public PhysicsSystem(A_World w) {
         super(w);
     }
 

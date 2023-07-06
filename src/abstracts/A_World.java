@@ -1,15 +1,10 @@
 package abstracts;
 
 import models.Background;
-import utils.Gam20_PhysicsSystem;
+import utils.PhysicsSystem;
 import utils.GlobalConsts;
-import utils.Gam20_HelpText;
+import utils.HelpText;
 
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public abstract class A_World {
@@ -41,7 +36,7 @@ public abstract class A_World {
     // Define if game is over
     public boolean gameOver = false;
 
-    public Gam20_HelpText gameOverHelpText;
+    public HelpText gameOverHelpText;
 
     // All objects in the game, including the Avatar
     public A_GameObjectList gameObjects = new A_GameObjectList();
@@ -62,7 +57,7 @@ public abstract class A_World {
     public A_SoundSystem abilitySoundSystem;
 
     public A_World() {
-        physicsSystem = new Gam20_PhysicsSystem(this);
+        physicsSystem = new PhysicsSystem(this);
         mkSoundSystem = new A_SoundSystem();
         abilitySoundSystem = new A_SoundSystem();
         musicSoundSystem = new A_SoundSystem();
@@ -267,7 +262,7 @@ public abstract class A_World {
 
          // Display the game over screen
 
-          gameOverHelpText = new Gam20_HelpText(400, 400, "Game Over! You slayed " + enemiesKilled + " enemies and reached level " + level);
+          gameOverHelpText = new HelpText(400, 400, "Game Over! You slayed " + enemiesKilled + " enemies and reached level " + level);
           
           textObjects.clear();
           textObjects.add(gameOverHelpText);

@@ -3,21 +3,21 @@ package models;
 import abstracts.A_GameObjectList;
 import abstracts.A_World;
 import abstracts.GameObject;
-import utils.Gam20_World;
+import utils.Main_World;
 import utils.GlobalConsts;
 
 import java.awt.*;
 
-public class Gam20_Avatar extends GameObject {
+public class Avatar extends GameObject {
 
 
 
-    public Gam20_Avatar(double x, double y) {
+    public Avatar(double x, double y) {
         super(x, y, 0, 200, 15, new Color(96, 96, 255));
         this.isMoving = false;
     }
 
-    public Gam20_Avatar(double x, double y, String pathToImage) {
+    public Avatar(double x, double y, String pathToImage) {
         super(x, y, 0, 200, pathToImage);
         this.isMoving = false;
     }
@@ -42,10 +42,10 @@ public class Gam20_Avatar extends GameObject {
             // Pick up Fireball
             else if (obj.type() == GlobalConsts.TYPE_FIREBALL) {
                 //Add fireball to inventory
-                ((Gam20_World) world).addFireball();
+                ((Main_World) world).addFireball();
                 
                 //Play pickup sound 
-               ((Gam20_World) world).mkSoundSystem.playSound("pickup");
+               ((Main_World) world).mkSoundSystem.playSound("pickup");
 
 
                 // Remove Fireball from the world

@@ -3,18 +3,14 @@ package models;
 import abstracts.A_GameObjectList;
 import abstracts.A_World;
 import abstracts.GameObject;
-import utils.Gam20_CounterEnemies;
+import utils.CounterEnemies;
 import utils.GlobalConsts;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 
-public class Gam20_ZombieAI extends GameObject {
+public class ZombieAI extends GameObject {
     private static final int HUNTING = 1;
     private static final int STUCK = 2;
     private static final int CLEARING = 3;
@@ -31,7 +27,7 @@ public class Gam20_ZombieAI extends GameObject {
     private double life = 1.0;
 
 
-    public Gam20_ZombieAI(double x, double y) {
+    public ZombieAI(double x, double y) {
         super(x, y, 0, 50, "resourses/sprites/zombie/zombie.png");
         this.isMoving = false;
 
@@ -155,7 +151,7 @@ public class Gam20_ZombieAI extends GameObject {
         if (life <= 0) {
 
             world.enemiesKilled++;
-            Gam20_CounterEnemies counter = (Gam20_CounterEnemies) world.textObjects.get(0);
+            CounterEnemies counter = (CounterEnemies) world.textObjects.get(0);
 
             //Update the enemies counter
             counter.decrement();

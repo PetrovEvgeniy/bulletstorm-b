@@ -8,7 +8,6 @@ import utils.GlobalConsts;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -96,7 +95,7 @@ public class FireBallShoot extends GameObject {
             }
             // [Zombie]: inform Zombie it is hit
             else if (type == GlobalConsts.TYPE_ZOMBIE && obj.isLiving) {
-                Gam20_ZombieAI zombie = (Gam20_ZombieAI) obj;
+                ZombieAI zombie = (ZombieAI) obj;
                 zombie.hasBeenShot();
 //                this.isLiving = false;
             }
