@@ -189,13 +189,13 @@ public class ZombieAI extends GameObject {
 
             if (isFacingRight) {
 
-
+//
 //                graphics.setColor(color);
 //                graphics.fillOval(x, y, d, d);
 //                graphics.setColor(Color.DARK_GRAY);
 //                graphics.drawOval(x, y, d, d);
 
-                graphics.drawImage(objectImage, (int) x, (int) y, width,height,null);
+                graphics.drawImage(objectImage.getScaledInstance(width, height, Image.SCALE_FAST), (int) x, (int) y, width,height,null);
             }else{
 //                graphics.setColor(color);
 //                graphics.fillOval(x-d, y, d, d);

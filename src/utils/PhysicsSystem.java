@@ -35,13 +35,15 @@ public class PhysicsSystem extends A_PhysicsSystem {
 
             // 2 CIRCLES
             if (obj2.getBounds() instanceof Ellipse2D && object.getBounds() instanceof Ellipse2D) {
-                double dist = object.radius + obj2.radius;
-                double dx = object.x - obj2.x;
-                double dy = object.y - obj2.y;
-
-                if (dx * dx + dy * dy < dist * dist) {
-                    result.add(obj2);
+                List<Point> points = getCirclePoints(object);
+                for(int j = 0; j < points.size(); j++){
+                    //now it is much easier to check the collision of points
+                    if((obj2.getBounds()).contains(points.get(j))){
+                        result.add(obj2);
+                        break;
+                    }
                 }
+
             // A CIRCLE AND A RECTANGLE
             }else if (object.getBounds() instanceof Ellipse2D && obj2.getBounds() instanceof Rectangle){
                 // CONVERT THE CIRCLE TO 50 POINTS
