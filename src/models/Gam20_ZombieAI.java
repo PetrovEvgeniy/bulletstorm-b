@@ -38,9 +38,8 @@ public class Gam20_ZombieAI extends GameObject {
         state = HUNTING;
 
            //adjust height
-        this.height = 97;
-        this.width = 106;
-
+        this.height = GlobalConsts.WORLDPART_HEIGHT / 15;
+        this.width = GlobalConsts.WORLDPART_WIDTH / 23;
         // Turn LEFT or RIGHT to clear
         alfaClear = Math.PI;
         if (Math.random() < 0.5) alfaClear = -alfaClear;
