@@ -181,9 +181,8 @@ public class ZombieAI extends GameObject {
         int x = (int) (this.x - this.radius - world.worldPartX);
         int y = (int) (this.y - this.radius - world.worldPartY);
         int d = (this.radius * 2);
-
-
-
+        // TODO mnogo sum lud
+        if ((x >= -100 && y >= -100) && (x <= GlobalConsts.WORLDPART_WIDTH + 100 && y <= GlobalConsts.WORLDPART_HEIGHT + 100)) {
 
 
             if (isFacingRight) {
@@ -194,15 +193,16 @@ public class ZombieAI extends GameObject {
 //                graphics.setColor(Color.DARK_GRAY);
 //                graphics.drawOval(x, y, d, d);
 
-                graphics.drawImage(objectImage.getScaledInstance(width, height, Image.SCALE_FAST), (int) x, (int) y, width,height,null);
-            }else{
+                graphics.drawImage(objectImage.getScaledInstance(width, height, Image.SCALE_FAST), (int) x, (int) y, width, height, null);
+            } else {
 //                graphics.setColor(color);
 //                graphics.fillOval(x-d, y, d, d);
 //                graphics.setColor(Color.DARK_GRAY);
 //                graphics.drawOval(x-d, y, d, d);
-                graphics.drawImage(objectImage.getScaledInstance(width, height, Image.SCALE_FAST), (int) x, (int) y, -width,height,null);
+                graphics.drawImage(objectImage.getScaledInstance(width, height, Image.SCALE_FAST), (int) x, (int) y, -width, height, null);
             }
         }
+    }
 
 
 }
