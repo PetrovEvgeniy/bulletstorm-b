@@ -75,7 +75,7 @@ public class PhysicsSystem extends A_PhysicsSystem {
     //converts the circle into n number of points
     private List<Point> getCirclePoints(GameObject object){
         List<Point> points = new ArrayList<>();
-        int numPoints = 50;
+        int numPoints = 10;
         double angleIncrement = 2 * Math.PI / numPoints;
         for (int j = 0; j < numPoints; j++) {
             double angle = j * angleIncrement;

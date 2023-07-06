@@ -8,6 +8,8 @@ import utils.GlobalConsts;
 
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class ZombieAI extends GameObject {
@@ -184,7 +186,7 @@ public class ZombieAI extends GameObject {
         // TODO mnogo sum lud
         if ((x >= -100 && y >= -100) && (x <= GlobalConsts.WORLDPART_WIDTH + 100 && y <= GlobalConsts.WORLDPART_HEIGHT + 100)) {
 
-
+           // List<Point> points = getCirclePoints(this);
             if (isFacingRight) {
 
 //
@@ -192,6 +194,12 @@ public class ZombieAI extends GameObject {
 //                graphics.fillOval(x, y, d, d);
 //                graphics.setColor(Color.DARK_GRAY);
 //                graphics.drawOval(x, y, d, d);
+//                for(int i = 0; i < points.size(); i++){
+//
+//
+//                    graphics.setColor(Color.RED);
+//                    graphics.fillOval(points.get(i).x, points.get(i).y, 3, 3);
+//                }
 
                 graphics.drawImage(img, (int) x, (int) y, width, height, null);
             } else {
@@ -199,9 +207,29 @@ public class ZombieAI extends GameObject {
 //                graphics.fillOval(x-d, y, d, d);
 //                graphics.setColor(Color.DARK_GRAY);
 //                graphics.drawOval(x-d, y, d, d);
+//                for(int i = 0; i < points.size(); i++){
+//
+//
+//                    graphics.setColor(Color.RED);
+//                    graphics.fillOval(points.get(i).x-d, points.get(i).y, 3, 3);
+//                }
                 graphics.drawImage(img, (int) x, (int) y, -width, height, null);
             }
         }
+    }
+    private java.util.List<Point> getCirclePoints(GameObject object){
+        List<Point> points = new ArrayList<>();
+        int numPoints = 10;
+        double angleIncrement = 2 * Math.PI / numPoints;
+        for (int j = 0; j < numPoints; j++) {
+            double angle = j * angleIncrement;
+            int realX = (int) (object.x  - world.worldPartX);
+            int realY = (int) (object.y  - world.worldPartY);
+            int x = (int) (realX + object.radius * Math.cos(angle));
+            int y = (int) (realY + object.radius * Math.sin(angle));
+            points.add(new Point(x, y));
+        }
+        return points;
     }
 
 
