@@ -14,10 +14,10 @@ import java.util.ArrayList;
 
 public class SpinningSword extends GameObject {
     private double lifeTime = 20;
-    private int spriteCounter = 0;
-    private int spriteNumber = 0;
+
     private int counter;
 
+    private int lifeCounter = 2;
     private static int ROTATION_INCREMENT = 20;
     private BufferedImage img;
     ArrayList<BufferedImage> shootingAnimation;
@@ -130,7 +130,11 @@ public class SpinningSword extends GameObject {
             else if (type == GlobalConsts.TYPE_ZOMBIE && obj.isLiving) {
                 ZombieAI zombie = (ZombieAI) obj;
                 zombie.hasBeenShot();
-                this.isLiving = false;
+                //this.isLiving = false;
+                lifeCounter--;
+                if(lifeCounter == 0){
+                    this.isLiving = false;
+                }
             }
         }
 
