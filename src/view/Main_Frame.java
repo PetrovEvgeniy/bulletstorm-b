@@ -48,7 +48,7 @@ class Main_Frame extends JFrame implements A_Frame {
 
     @Override
     public void setBufferedStragety() {
-        this.createBufferStrategy(3);
+        this.createBufferStrategy(6);
     }
 }
 
