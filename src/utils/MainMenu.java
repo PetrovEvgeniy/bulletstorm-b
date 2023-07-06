@@ -1,65 +1,63 @@
-package view;
+package utils;
 
 import abstracts.*;
 import models.Background;
-import utils.Gam20_World;
-import utils.GlobalConsts;
+
+import view.B_Panel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-class B_Frame extends JFrame implements A_Frame {
-    // ...ok...
-    private static final long serialVersionUID = 2L;
-
-    private B_Panel panel = null;
+public class MainMenu extends JFrame implements A_Frame {
 
     Background menuBg;
     JPanel menuPanel;
+    B_Panel gamePanel;
     JButton buttonNewGame;
     JButton buttonExit;
-    JPanel layout;
+    CardLayout layout;
 
     JLabel gameName;
+    private B_Panel panel;
 
-    public B_Frame() {
+    public MainMenu() {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setSize(GlobalConsts.WORLDPART_WIDTH + 2, GlobalConsts.WORLDPART_HEIGHT + 2);
+        this.setSize(GlobalConsts.WORLDPART_WIDTH, GlobalConsts.WORLDPART_HEIGHT);
+
 
         menuBg = new Background("resourses/backgrounds/zombiesBG.png");
         buttonNewGame = new JButton();
         buttonExit = new JButton();
         gameName = new JLabel("Bulletstorm Brigade", SwingConstants.CENTER);
 
-        setMenuItems();
-
-//	this.setAlwaysOnTop(true);
-//	this.setUndecorated(true);
-
         this.setResizable(false);
         panel = new B_Panel();
 
-        // Needed for KEYBOARD input !!!
+
+        gamePanel = new B_Panel();
+
         panel.setFocusable(true);
         panel.requestFocusInWindow();
 
-        layout = new JPanel(new CardLayout());
-        layout.add(panel,"game");
-        layout.add(menuPanel,"menu");
+        this.setContentPane(panel);
 
+        this.setMenuItems();
+        this.setGamePanel();
 
-        this.setContentPane(layout);
+        layout = new CardLayout();
+        setLayout(layout);
 
-//        layout.show(this.getContentPane(),"game");
+        add(menuPanel, "menu");
+        add(gamePanel, "game");
 
+        layout.show(this.getContentPane(), "menu");
 
     }
 
-    public void showMenu(){
-        CardLayout temp = (CardLayout) layout.getLayout();
-        temp.show(layout, "menu");
+    private void setGamePanel() {
+        gamePanel = new B_Panel();
     }
 
     private void setMenuItems() {
@@ -114,25 +112,23 @@ class B_Frame extends JFrame implements A_Frame {
         menuPanel.add(buttonExit);
     }
 
+
     public void gameStart() {
 
-        CardLayout temp = (CardLayout) layout.getLayout();
-        temp.show(layout, "game");
+        layout.show(this.getContentPane(), "game");
+//        setContentPane(gamePanel); TODO: Probvai s BFrame da napravish toq cardlayout
 
-        setContentPane(layout);
-
-
-        A_World world = new Gam20_World();
-
-        world.setGraphicSystem(this.getGraphicSystem());
-        world.setInputSystem(this.getInputSystem());
-
-        GameObject.setWorld(world);
-        A_TextObject.setWorld(world);
-        this.getGraphicSystem().setWorld(world);
-
-        world.init();
-        world.run();
+//        A_World world = new Gam20_World();
+//
+//        world.setGraphicSystem(this.getGraphicSystem());
+//        world.setInputSystem(this.getInputSystem());
+//
+//        GameObject.setWorld(world);
+//        A_TextObject.setWorld(world);
+//        this.getGraphicSystem().setWorld(world);
+//
+//        world.init();
+//        world.run();
 
     }
 
@@ -140,18 +136,19 @@ class B_Frame extends JFrame implements A_Frame {
         System.exit(0);
     }
 
+    @Override
     public void displayOnScreen() {
         validate();
         setVisible(true);
     }
 
+    @Override
     public A_GraphicSystem getGraphicSystem() {
         return panel;
     }
 
+    @Override
     public A_InputSystem getInputSystem() {
         return panel.getInputSystem();
     }
 }
-
-

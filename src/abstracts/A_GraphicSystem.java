@@ -25,4 +25,5 @@ public interface A_GraphicSystem
   void setWorld(A_World world);
 
   void draw(Background background);
+
 }

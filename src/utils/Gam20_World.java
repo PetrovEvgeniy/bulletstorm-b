@@ -30,7 +30,6 @@ public class Gam20_World extends A_World {
 
     public void init() {
         // Add the Avatar
-        //TODO: Later on the path to the image should be decided when user selects character(if we have multiple characters)
         avatar = new Wizard(2500, 2000,"resourses/sprites/fire_wizard/idle/wizard_1.png");
         gameObjects.add(avatar);
 

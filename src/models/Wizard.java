@@ -59,13 +59,13 @@ public class Wizard extends GameObject {
         if (!isFacingRight) {
             //I put try catch blocks here because some sprite lists are larger so to dodge IndexOutOfBoundsException
             try {
-                graphics.drawImage(currentAnimation.get(spriteNumber).getScaledInstance(width, height, Image.SCALE_FAST), (int) x + width, (int) y, -width, height, null);
+                graphics.drawImage(currentAnimation.get(spriteNumber), (int) x + width, (int) y, -width, height, null);
             } catch (Exception e) {
 
             }
         } else {
             try {
-                graphics.drawImage(currentAnimation.get(spriteNumber).getScaledInstance(width, height, Image.SCALE_FAST), (int) x, (int) y, width, height, null);
+                graphics.drawImage(currentAnimation.get(spriteNumber), (int) x, (int) y, width, height, null);
             } catch (Exception e) {
 
             }                                                                                      //Changing argument width here ^ to -width flips character horizontally

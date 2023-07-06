@@ -12,7 +12,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-class B_Panel extends JPanel implements A_GraphicSystem {
+public class B_Panel extends JPanel implements A_GraphicSystem {
     // Constants
     private static final long serialVersionUID = 1L;
     private static final Font font = new Font("Arial", Font.PLAIN, 24);

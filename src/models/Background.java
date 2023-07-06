@@ -31,5 +31,9 @@ public class Background {
         graphics.drawImage(sub, 0, 0, null);
     }
 
+    public BufferedImage getImage(){
+        return background;
+    }
+
 
 }
