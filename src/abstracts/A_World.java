@@ -5,6 +5,11 @@ import utils.Gam20_PhysicsSystem;
 import utils.GlobalConsts;
 import utils.Gam20_HelpText;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public abstract class A_World {
@@ -93,13 +98,15 @@ public abstract class A_World {
     // The main GAME LOOP
     //
     public final void run() {
-        
+
         long lastTick = System.currentTimeMillis();
 
         while (true) {
+
            // System.out.println("One loop");
             // Calculating elapsed time so that each frame doesn't run faster than min diff seconds *per frame*
             long currentTick = System.currentTimeMillis();
+
             long millisDiff = currentTick - lastTick;
 
             //That time is defined in the int FRAME_MINIMUM_MILLIS
@@ -120,29 +127,29 @@ public abstract class A_World {
 
             // If game is not over process the user input
             processUserInput(userInput, millisDiff / 1000.0);
-          
+
             userInput.clear();
 
             // If game is over display the game over screen
             if (gameOver) {
-            
+
                 //Stop music
                 musicSoundSystem.stopAllSounds();
 
                 //[Game Over] Stop the game
                endGame();
-               
+
             }
 
-            // Moving all objects. Zombies/Enemies will follow the player in their move method. The objects will only move if the game is not over 
+            // Moving all objects. Zombies/Enemies will follow the player in their move method. The objects will only move if the game is not over
             int gameSize = gameObjects.size();
 
             for (int i = 0; i < gameSize; i++) {
                 GameObject obj = gameObjects.get(i);
                 if (obj.isLiving && obj != avatar) obj.move(millisDiff / 1000.0);
             }
-        
-            
+
+
 
 
             // Delete the dead objects
@@ -185,7 +192,7 @@ public abstract class A_World {
 
             // Spawn any new objects here
             createNewObjects(millisDiff / 1000.0);
-            
+
             // Spawn any new zombies here (depending on level)
             createNewZombies(millisDiff / 1000.0);
 

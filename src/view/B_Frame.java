@@ -45,4 +45,3 @@ class B_Frame extends JFrame implements A_Frame {
     }
 }
 
-

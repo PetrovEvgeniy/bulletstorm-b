@@ -105,6 +105,7 @@ public class Gam20_World extends A_World {
         }
 
         if (userInput.isMousePressed && button == 3) {
+            userInput.isMousePressed = false;
             avatar.isShooting = true;
             throwFireball(userInput.mouseMovedX + worldPartX, userInput.mouseMovedY + worldPartY);
         }
@@ -185,14 +186,11 @@ public class Gam20_World extends A_World {
     private void throwFireball(double x, double y) {
         if (fireballs <= 0) return;
 
+        FireBall ball = new FireBall(x,y);
+
         // Throw a fireball
-        for (int i = 0; i < 50; i++) {
-            double alfa = Math.random() * Math.PI * 2;
-            double speed = 50 + Math.random() * 200;
-            double time = 0.1 + Math.random() * 0.4;
-            Gam20_Shot shot = new Gam20_Shot(x, y, alfa, speed, time);
-            this.gameObjects.add(shot);
-        }
+        FireBallShoot shoot = new FireBallShoot(x,y);
+        this.gameObjects.add(shoot);
 
         //Play explosion sound
         mkSoundSystem.playSound("explosion");

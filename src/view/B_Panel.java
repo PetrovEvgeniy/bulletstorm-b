@@ -7,9 +7,6 @@ import utils.GlobalConsts;
 
 import java.awt.*;
 import java.awt.image.*;
-import java.io.File;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 import javax.swing.*;
 
 class B_Panel extends JPanel implements A_GraphicSystem {
@@ -87,6 +84,8 @@ class B_Panel extends JPanel implements A_GraphicSystem {
     public final void draw(Background background){
         background.draw(graphics);
     }
+
+
 
     public final void draw(A_TextObject text) {
         graphics.setFont(font);
