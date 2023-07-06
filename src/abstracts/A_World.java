@@ -5,6 +5,7 @@ import utils.PhysicsSystem;
 import utils.GlobalConsts;
 import utils.HelpText;
 
+import java.awt.Color;
 import java.util.ArrayList;
 
 public abstract class A_World {
@@ -12,8 +13,6 @@ public abstract class A_World {
     private A_PhysicsSystem physicsSystem;
     private A_InputSystem inputSystem;
     private A_UserInput userInput;
-
-
 
     // Level of the game
     public int level = 1;
@@ -37,6 +36,7 @@ public abstract class A_World {
     public boolean gameOver = false;
 
     public HelpText gameOverHelpText;
+    public HelpText gameWonHelpText;
 
     // All objects in the game, including the Avatar
     public A_GameObjectList gameObjects = new A_GameObjectList();
@@ -64,12 +64,12 @@ public abstract class A_World {
         background = new Background("resourses/backgrounds/backgrounddetailed1.png");
         background_death = new Background("resourses/backgrounds/backgrounddetailed1-death.png");
 
-
         //Loading ability sounds
         abilitySoundSystem.loadSound("swordThrow", "resourses/sounds/sword/sword_throw.wav");
 
         // Loading multikill sounds
         mkSoundSystem.loadSound("gameOver", "resourses/sounds/game_over.wav");
+               mkSoundSystem.loadSound("gameWon", "resourses/sounds/game_won.wav");
         mkSoundSystem.loadSound("explosion", "resourses/sounds/explosion.wav");
         mkSoundSystem.loadSound("pickup", "resourses/sounds/pickup.wav");
         mkSoundSystem.loadSound("firstBlood", "resourses/sounds/multikill/firstblood.wav");
@@ -134,6 +134,15 @@ public abstract class A_World {
                 //[Game Over] Stop the game
                endGame();
 
+            }
+
+            // If game is won display the game won screen (if your level is 21)
+            if(level == 12){
+                //Stop music
+                musicSoundSystem.stopAllSounds();
+
+                //[Game Won] Stop the game
+                winGame();
             }
 
             // Moving all objects. Zombies/Enemies will follow the player in their move method. The objects will only move if the game is not over
@@ -317,6 +326,63 @@ public abstract class A_World {
             }
     }
 
+// This method ends the game when you win and freezes the objects
+    private void winGame() {
+
+        // Stop all sounds 
+        mkSoundSystem.stopAllSounds();
+
+        // Play sound game won sound
+          mkSoundSystem.playSound("gameWon");
+
+         // Display the game won screen
+
+          gameWonHelpText = new HelpText(400, 400, "Congratulations, you won! You slayed " + enemiesKilled + " enemies");
+          
+         gameWonHelpText.color = new Color(255,255,255,255);
+        
+          textObjects.clear();
+          textObjects.add(gameWonHelpText);
+
+         while (true) {
+             graphicSystem.clear();
+
+              //Draw the usual background 
+              graphicSystem.draw(background);
+
+            // Draw ONLY SOME objects so they stll appear on the screen (depending on their type)
+            for (int i = 0; i < gameObjects.size(); i++) {
+
+                GameObject obj = gameObjects.get(i);
+
+                // When the game is ended only display those objects
+                switch(obj.type()){
+                    case GlobalConsts.TYPE_AVATAR:
+                    case GlobalConsts.TYPE_ROCK:
+                    case GlobalConsts.TYPE_BUSH:
+                    case GlobalConsts.TYPE_TREE:
+                            graphicSystem.draw(obj);
+                    break;
+                    default: 
+                    
+                    break;
+                }
+
+            }
+
+
+            // Draw text objects
+            for (int i = 0; i < textObjects.size(); i++) {
+                graphicSystem.draw(textObjects.get(i));
+            }
+
+            // Redraw everything here
+            graphicSystem.redraw();
+
+            }
+    }
+
+    
     private void handleMultiKill(double diffSeconds){
 
     

@@ -21,6 +21,7 @@ public abstract class A_TextObject
   }
   
   public abstract String toString();
+
   
   public static void setWorld(A_World w){world=w;}
 }
