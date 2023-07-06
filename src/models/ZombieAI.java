@@ -19,7 +19,7 @@ public class ZombieAI extends GameObject {
     private double alfaClear;
     private double secondsClear;
 
-
+    private Image img;
 
 
 
@@ -40,7 +40,7 @@ public class ZombieAI extends GameObject {
         alfaClear = Math.PI;
         if (Math.random() < 0.5) alfaClear = -alfaClear;
 
-
+        img = objectImage.getScaledInstance(width, height, Image.SCALE_FAST);
     }
 
 
@@ -193,13 +193,13 @@ public class ZombieAI extends GameObject {
 //                graphics.setColor(Color.DARK_GRAY);
 //                graphics.drawOval(x, y, d, d);
 
-                graphics.drawImage(objectImage.getScaledInstance(width, height, Image.SCALE_FAST), (int) x, (int) y, width, height, null);
+                graphics.drawImage(img, (int) x, (int) y, width, height, null);
             } else {
 //                graphics.setColor(color);
 //                graphics.fillOval(x-d, y, d, d);
 //                graphics.setColor(Color.DARK_GRAY);
 //                graphics.drawOval(x-d, y, d, d);
-                graphics.drawImage(objectImage.getScaledInstance(width, height, Image.SCALE_FAST), (int) x, (int) y, -width, height, null);
+                graphics.drawImage(img, (int) x, (int) y, -width, height, null);
             }
         }
     }
