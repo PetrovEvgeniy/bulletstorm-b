@@ -21,7 +21,7 @@ public class FireBallShoot extends GameObject {
     private int spriteNumber = 0;
 
     public FireBallShoot(double x, double y){
-        super(x,y,0,0,50,Color.red);
+        super(x,y,0,0,75,Color.red);
         animationList = new ArrayList<>();
         loadAnimations();
     }
@@ -33,7 +33,7 @@ public class FireBallShoot extends GameObject {
         for (int i = 1; i < 11; i++) {
             String fileName = "Explosion_" + i + ".png";
             try {
-                animationList.add(ImageIO.read(new File(path + "/" + fileName)).getScaledInstance(radius*5,radius*5,Image.SCALE_FAST));
+                animationList.add(ImageIO.read(new File(path + "/" + fileName)).getScaledInstance(radius*4,radius*4,Image.SCALE_FAST));
             } catch (IOException e) {
                 System.out.println(e.getMessage());
                 throw new RuntimeException(e);
