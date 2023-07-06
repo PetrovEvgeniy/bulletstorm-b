@@ -30,6 +30,7 @@ class Main_Frame extends JFrame implements A_Frame {
         panel.requestFocusInWindow();
         Toolkit.getDefaultToolkit();
         this.setContentPane(panel);
+
     }
 
     public void displayOnScreen() {
@@ -43,6 +44,11 @@ class Main_Frame extends JFrame implements A_Frame {
 
     public A_InputSystem getInputSystem() {
         return panel.getInputSystem();
+    }
+
+    @Override
+    public void setBufferedStragety() {
+        this.createBufferStrategy(3);
     }
 }
 

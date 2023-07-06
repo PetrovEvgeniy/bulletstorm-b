@@ -14,6 +14,7 @@ public final class Main {
 
     public Main() {
         A_Frame frame = new Main_Frame();
+
         frame.displayOnScreen();
         world = new Main_World();
 
@@ -23,7 +24,7 @@ public final class Main {
         GameObject.setWorld(world);
         A_TextObject.setWorld(world);
         frame.getGraphicSystem().setWorld(world);
-
+        frame.setBufferedStragety();
         world.init();
         world.run();
     }

@@ -17,4 +17,6 @@ public interface A_Frame
   */
   A_GraphicSystem getGraphicSystem();
   A_InputSystem getInputSystem();
+
+  void setBufferedStragety();
 }
