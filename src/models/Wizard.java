@@ -21,7 +21,7 @@ public class Wizard extends GameObject {
     ArrayList<BufferedImage> currentAnimation;
     int spriteCounter = 0;
     int spriteNumber = 0;
-
+    private static final int shiftRight = 15;
     public Wizard(double x_, double y_, String pathToImage) {
         super(x_, y_, 0, 250, pathToImage);
         this.isMoving = false;
@@ -70,7 +70,10 @@ public class Wizard extends GameObject {
 
             }                                                                                      //Changing argument width here ^ to -width flips character horizontally
         }
-        graphics.drawRect(x, y, width, height);
+//        if(this.isFacingRight == true)
+//            graphics.drawRect(x+shiftRight, y, width-shiftRight-5, height);
+//        else
+//            graphics.drawRect(x, y, width-shiftRight-5, height);
         isMoving = false;
     }
 
@@ -155,7 +158,10 @@ public class Wizard extends GameObject {
     public Shape getBounds() {
         int x = (int) (this.x - world.worldPartX);
         int y = (int) (this.y - world.worldPartY);
-        return new Rectangle((int) x, (int) y, width, height);
+        if (this.isFacingRight == true)
+        return new Rectangle((int) x+shiftRight, (int) y, width-shiftRight-5, height);
+        else
+            return new Rectangle((int) x, (int) y, width-shiftRight-5, height);
     }
 
 

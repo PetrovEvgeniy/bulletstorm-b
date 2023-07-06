@@ -103,6 +103,9 @@ public abstract class GameObject {
         this.xOld = this.x;
         this.x += x;
         this.y += y;
+        if(this.x + this.width >= GlobalConsts.WORLD_WIDTH || this.x < 0 || this.y < 0 || this.y + this.height >= GlobalConsts.WORLD_HEIGHT){
+            this.moveBack();
+        }
 
     }
 
