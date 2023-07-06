@@ -6,6 +6,7 @@ import abstracts.A_InputSystem;
 import utils.GlobalConsts;
 
 import javax.swing.*;
+import java.awt.*;
 
 class B_Frame extends JFrame implements A_Frame {
     // ...ok...
@@ -27,7 +28,7 @@ class B_Frame extends JFrame implements A_Frame {
         // Needed for KEYBOARD input !!!
         panel.setFocusable(true);
         panel.requestFocusInWindow();
-
+        Toolkit.getDefaultToolkit();
         this.setContentPane(panel);
     }
 

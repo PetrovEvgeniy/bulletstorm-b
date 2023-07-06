@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class SpinningSword extends GameObject {
-    private double lifeTime = 200;
+    private double lifeTime = 20;
     private int spriteCounter = 0;
     private int spriteNumber = 0;
     private int counter;
@@ -75,25 +75,25 @@ public class SpinningSword extends GameObject {
     @Override
     public void draw(Graphics graphics, A_World world) {
         if(counter >= 360) {
-            this.isLiving = false;
-            this.isMoving = false;
+//            this.isLiving = false;
+//            this.isMoving = false;
         }
-        Graphics2D g2d = (Graphics2D) graphics;
+//        Graphics2D g2d = (Graphics2D) graphics;
         double pointX = avatar.x + avatar.width/2;
         double pointY = avatar.y + avatar.height/2;
 
-        AffineTransform originalTransform = g2d.getTransform();
-        g2d.translate(pointX, pointY);
-
-        // Apply rotation transformation
-        g2d.rotate(counter*ROTATION_INCREMENT);
+//        AffineTransform originalTransform = g2d.getTransform();
+//        g2d.translate(pointX, pointY);
+//
+//        // Apply rotation transformation
+//        g2d.rotate(counter*ROTATION_INCREMENT);
         counter++;
 
 
 
         // Translate back to the original position
 
-        g2d.setTransform(originalTransform);
+    //    g2d.setTransform(originalTransform);
 
         int x = (int) (this.x  - world.worldPartX);
         int y = (int) (this.y  - world.worldPartY);
@@ -126,7 +126,7 @@ public class SpinningSword extends GameObject {
 
             // [Tree]: shot is deleted
             if (type == GlobalConsts.TYPE_TREE) {
-                this.isLiving = false;
+                //this.isLiving = false;
             }
             // [Zombie]: inform Zombie it is hit
             else if (type == GlobalConsts.TYPE_ZOMBIE && obj.isLiving) {

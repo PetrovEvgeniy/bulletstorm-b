@@ -22,9 +22,9 @@ public class Gam20_ZombieAI extends GameObject {
     private int state;
     private double alfaClear;
     private double secondsClear;
-    
 
- 
+
+
 
 
     // Define the life (health) of a zombie
@@ -40,10 +40,11 @@ public class Gam20_ZombieAI extends GameObject {
            //adjust height
         this.height = GlobalConsts.WORLDPART_HEIGHT / 15;
         this.width = GlobalConsts.WORLDPART_WIDTH / 23;
-
         // Turn LEFT or RIGHT to clear
         alfaClear = Math.PI;
         if (Math.random() < 0.5) alfaClear = -alfaClear;
+
+
     }
 
 
@@ -156,7 +157,7 @@ public class Gam20_ZombieAI extends GameObject {
             world.enemiesKilled++;
             Gam20_CounterEnemies counter = (Gam20_CounterEnemies) world.textObjects.get(0);
 
-            //Update the enemies counter 
+            //Update the enemies counter
             counter.decrement();
             this.isLiving = false;
             return;
@@ -173,7 +174,10 @@ public class Gam20_ZombieAI extends GameObject {
         int x = (int) (this.x - this.radius - world.worldPartX);
         int y = (int) (this.y - this.radius - world.worldPartY);
         int d = (this.radius * 2);
-        return new Ellipse2D.Double(x, y, d, d);
+        if(this.isFacingRight)
+            return new Ellipse2D.Double(x, y, d, d);
+        else
+            return new Ellipse2D.Double(x-d, y, d, d);
     }
 
 
@@ -183,20 +187,27 @@ public class Gam20_ZombieAI extends GameObject {
         int y = (int) (this.y - this.radius - world.worldPartY);
         int d = (this.radius * 2);
 
-        if (objectImage == null) {
-            graphics.setColor(color);
-            graphics.fillOval(x, y, d, d);
-            graphics.setColor(Color.DARK_GRAY);
-            graphics.drawOval(x, y, d, d);
 
 
-        } else {
+
+
             if (isFacingRight) {
-                graphics.drawImage(objectImage.getScaledInstance(width, height, Image.SCALE_FAST), (int) x, (int) y, width,height,null);
+
+
+//                graphics.setColor(color);
+//                graphics.fillOval(x, y, d, d);
+//                graphics.setColor(Color.DARK_GRAY);
+//                graphics.drawOval(x, y, d, d);
+
+                graphics.drawImage(objectImage, (int) x, (int) y, width,height,null);
             }else{
+//                graphics.setColor(color);
+//                graphics.fillOval(x-d, y, d, d);
+//                graphics.setColor(Color.DARK_GRAY);
+//                graphics.drawOval(x-d, y, d, d);
                 graphics.drawImage(objectImage.getScaledInstance(width, height, Image.SCALE_FAST), (int) x, (int) y, -width,height,null);
             }
         }
 
-    }
+
 }

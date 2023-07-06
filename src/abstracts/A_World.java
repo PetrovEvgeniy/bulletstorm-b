@@ -73,7 +73,7 @@ public abstract class A_World {
         //Loading ability sounds
         abilitySoundSystem.loadSound("swordThrow", "resourses/sounds/sword/sword_throw.wav");
 
-        // Loading multikill sounds 
+        // Loading multikill sounds
         mkSoundSystem.loadSound("gameOver", "resourses/sounds/game_over.wav");
         mkSoundSystem.loadSound("explosion", "resourses/sounds/explosion.wav");
         mkSoundSystem.loadSound("pickup", "resourses/sounds/pickup.wav");
