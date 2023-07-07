@@ -13,7 +13,7 @@ public class CounterFireballs extends A_TextObject
   }
   
   public String toString()
-  { String display = "Fireballs: ";
+  { String display = "Mega Fireballs: ";
     display += number;
     return display;
   }
