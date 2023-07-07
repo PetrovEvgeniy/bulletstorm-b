@@ -5,5 +5,5 @@ The game features a colorful and vibrant art style, with detailed character desi
 
 With its intense action, engaging gameplay, and vibrant visuals, Bulletstorm Brigade is a thrilling and addictive 2D topdown shooter game that will keep players on the edge of their seats.
 
-## Copyright © Notice
-This game contains certain sounds that are subject to copyright protection. The use of these copyrighted sounds is strictly intended for non-commercial purposes and personal enjoyment. It is prohibited to utilize these sounds for any form of personal gain, including but not limited to reproduction, distribution, sale, or any other commercial exploitation without obtaining the necessary permissions from the respective copyright holders.
+## ©️ Copyright Notice
+This game contains certain music and sounds that are subject to copyright protection. The use of these copyrighted sounds is strictly intended for non-commercial purposes and personal enjoyment. It is prohibited to utilize these sounds for any form of personal gain, including but not limited to reproduction, distribution, sale, or any other commercial exploitation without obtaining the necessary permissions from the respective copyright holders.
