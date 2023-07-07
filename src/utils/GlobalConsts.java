@@ -18,7 +18,7 @@ public final class GlobalConsts
 	  
 
   // Define constants for spawn intervals
-  public static final double SPAWN_INTERVAL = 0.2; // increase this if you want to make zombies spawning faster
+  public static final double SPAWN_INTERVAL = 0.2; // decrease this if you want to make zombies spawning faster
 
 
   public static final double SPAWN_FIREBALL = 10.0;
@@ -43,6 +43,6 @@ public final class GlobalConsts
   public static final double MULTI_KILL_DELAY  = 0.2;
 
   // Number of spawned zombies per level
-  public static final double[] SPAWN_ZOMBIE_INTERVAL_PER_LEVEL = {0.3, 0.25, 0.2, 0.1, 0.05, 0.1, 0.4}; 
+  public static final double[] SPAWN_ZOMBIE_INTERVAL_PER_LEVEL = {0.15, 0.20, 0.15, 0.20, 0.1, 0.005, 0.5}; 
 
 }

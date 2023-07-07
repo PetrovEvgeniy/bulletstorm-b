@@ -35,6 +35,10 @@ public abstract class A_World {
     // Define if game is over
     public boolean gameOver = false;
 
+       //If it's late game (level > 7)
+    public boolean isLateGame = true;
+    
+
     public HelpText gameOverHelpText;
     public HelpText gameWonHelpText;
 
@@ -84,6 +88,8 @@ public abstract class A_World {
         //Loading music
         musicSoundSystem.loadSound("inGame", "resourses/sounds/music/ingame_music.wav");
 
+        musicSoundSystem.loadSound("lateGame", "resourses/sounds/music/lategame_music.wav");
+
         //Start the ingame music immediately
         musicSoundSystem.playSound("inGame");
     }
@@ -97,6 +103,12 @@ public abstract class A_World {
         long lastTick = System.currentTimeMillis();
 
         while (true) {
+
+            if(level == 6 && isLateGame){
+                musicSoundSystem.stopAllSounds();
+                musicSoundSystem.playSound("lateGame");
+                isLateGame = false;
+            }
 
            // System.out.println("One loop");
             // Calculating elapsed time so that each frame doesn't run faster than min diff seconds *per frame*
@@ -136,8 +148,8 @@ public abstract class A_World {
 
             }
 
-            // If game is won display the game won screen (if your level is 21)
-            if(level == 12){
+            // If game is won display the game won screen (if your level is 15)
+            if(level == 15){
                 //Stop music
                 musicSoundSystem.stopAllSounds();
 
@@ -411,7 +423,7 @@ public abstract class A_World {
                 case 40:  mkSoundSystem.playSound("rampage"); break;
                 case 60:  mkSoundSystem.playSound("dominating"); break;
                 case 90:  mkSoundSystem.playSound("wickedSick"); break;
-                case 130:  mkSoundSystem.playSound("unstoppable"); break;
+                case 120:  mkSoundSystem.playSound("unstoppable"); break;
                 case 150:  mkSoundSystem.playSound("godlike"); break;
             }
             
