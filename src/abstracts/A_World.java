@@ -149,7 +149,7 @@ public abstract class A_World {
             }
 
             // If game is won display the game won screen (if your level is 15)
-            if(level == 15){
+            if(level == 12){
                 //Stop music
                 musicSoundSystem.stopAllSounds();
 
